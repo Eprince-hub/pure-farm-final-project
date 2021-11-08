@@ -474,79 +474,31 @@ function OrderDeliver({ params }) {
                       </Grid>
                     </Grid>
                   </ListItem>
-                  {/*  Paypal corners*/}
-                  {/* {!isPaid && (
-                    <ListItem>
-                      {' '}
+
+                  {/* conditional rendering of the buttons */}
+
+                  {userInfo.isAdmin && !isPaid && (
+                    /* !userInfo.isAdmin ?  */ <ListItem>
                       {isPending ? (
                         <CircularProgress />
                       ) : (
                         <div className={classes.fullWidth}>
-                          <PayPalButtons
-                            style={{
-                              color: 'blue',
-                              label: 'pay',
-                            }}
-                            createOrder={createOrder}
-                            onApprove={onApprove}
-                            onError={onError}
-                          ></PayPalButtons>
+                          <ListItem>
+                            <NextLink href="/admin/orders" passHref>
+                              <Button
+                                variant="contained"
+                                fullWidth
+                                component="a"
+                                color="primary"
+                              >
+                                Back To Orders
+                              </Button>
+                            </NextLink>
+                          </ListItem>
                         </div>
                       )}
                     </ListItem>
-                  )} */}
-                  {
-                    !isPaid && (
-                      /* !userInfo.isAdmin ?  */ <ListItem>
-                        {isPending ? (
-                          <CircularProgress />
-                        ) : (
-                          <div className={classes.fullWidth}>
-                            <PayPalButtons
-                              style={{
-                                color: 'blue',
-                                label: 'pay',
-                              }}
-                              createOrder={createOrder}
-                              onApprove={onApprove}
-                              onError={onError}
-                            ></PayPalButtons>
-                          </div>
-                        )}
-                      </ListItem>
-                    )
-                    /* To implement when i transfer it to admin alone */
-                    /*  : (
-                    <ListItem>
-                      <NextLink href="/admin/orders" passHref>
-                        <Button
-                          variant="contained"
-                          fullWidth
-                          component="a"
-                          color="primary"
-                        >
-                          Back To Dashboard
-                        </Button>
-                      </NextLink>
-                    </ListItem>
-                  ) */
-                  }
-
-                  {/* To implement when i transfer this to admin alone */}
-                  {/*   {isPaid && !userInfo.isAdmin && (
-                    <ListItem>
-                      <NextLink href="/order-history" passHref>
-                        <Button
-                          variant="contained"
-                          fullWidth
-                          component="a"
-                          color="primary"
-                        >
-                          View Your Orders
-                        </Button>
-                      </NextLink>
-                    </ListItem>
-                  )} */}
+                  )}
 
                   {userInfo.isAdmin && isPaid && !isDelivered && (
                     <ListItem>
@@ -560,6 +512,21 @@ function OrderDeliver({ params }) {
                       >
                         Mark As Delivered
                       </Button>
+                    </ListItem>
+                  )}
+
+                  {userInfo.isAdmin && isDelivered && isPaid && (
+                    <ListItem>
+                      <NextLink href="/admin/orders" passHref>
+                        <Button
+                          variant="contained"
+                          fullWidth
+                          component="a"
+                          color="primary"
+                        >
+                          Back To Dashboard
+                        </Button>
+                      </NextLink>
                     </ListItem>
                   )}
                 </List>

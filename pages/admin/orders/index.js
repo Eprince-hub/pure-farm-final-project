@@ -153,7 +153,7 @@ function Orders() {
                             {/* columns */}
                             <TableCell>ID</TableCell>
                             <TableCell>USER</TableCell>
-                            <TableCell>DATE</TableCell>
+                            <TableCell>ORDER DATE</TableCell>
                             <TableCell>TOTAL</TableCell>
                             <TableCell>PAYMENT STATUS</TableCell>
                             <TableCell>DELIVERY STATUS</TableCell>
@@ -174,19 +174,27 @@ function Orders() {
                                 {order.user ? order.user.name : 'DELETED USER'}
                               </TableCell>
 
-                              <TableCell>{order.createdAt}</TableCell>
+                              <TableCell>
+                                {order.createdAt.slice(0, 10)}
+                              </TableCell>
 
                               <TableCell>€ {order.totalPrice}</TableCell>
 
                               <TableCell>
                                 {order.isPaid
-                                  ? `Paid At ${order.paidAt}`
+                                  ? `Payment made on ${order.paidAt.slice(
+                                      0,
+                                      10,
+                                    )}`
                                   : 'Not Paid'}
                               </TableCell>
 
                               <TableCell>
                                 {order.isDelivered
-                                  ? `Delivery Started on ${order.isDelivered}`
+                                  ? `Delivery Started on ${order.deliveredAt.slice(
+                                      0,
+                                      10,
+                                    )}`
                                   : 'Not Delivered'}
                               </TableCell>
 
