@@ -13,19 +13,21 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@material-ui/core'; // YES
+} from '@material-ui/core';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import axios from 'axios'; // YES
-import dynamic from 'next/dynamic'; // YES
-import Image from 'next/image'; // YES
-import NextLink from 'next/link'; // YES
-import { useRouter } from 'next/router'; // YES
-import { useSnackbar } from 'notistack'; // YES
-import React, { useContext, useEffect, useReducer, useState } from 'react'; // YES
-import Layout from '../../components/Layout'; // YES
-import { getError } from '../../utils/error'; // YES
-import { Store } from '../../utils/Store'; // YES
-import useStyles from '../../utils/styles'; // YES
+import axios from 'axios';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
+// import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
+// import { getError } from '../../utils/error';
+import { getError } from '../../../utils/error';
+import { Store } from '../../../utils/Store';
+import useStyles from '../../../utils/styles';
 
 // defining the reducer function for the react useReducer hook with each cases
 function reducer(state, action) {
@@ -74,7 +76,7 @@ function reducer(state, action) {
   }
 }
 
-function Order({ params }) {
+function OrderDeliver({ params }) {
   // getting the orderId from the params
   const orderId = params.id;
 
@@ -127,6 +129,10 @@ function Order({ params }) {
   useEffect(() => {
     if (!userInfo) {
       return router.push('/login');
+    }
+
+    if (!userInfo.isAdmin) {
+      return router.push('/profile');
     }
 
     // fetching the order information from the database
@@ -576,4 +582,4 @@ export async function getServerSideProps({ params }) {
 // setting es6 to true in .eslintrc file removed the error coming from using Promise.
 // setting the cart page to a dynamic component and setting the ssr to false
 // makes this component only renders on the client side because the cookie was giving errors
-export default dynamic(() => Promise.resolve(Order), { ssr: false });
+export default dynamic(() => Promise.resolve(OrderDeliver), { ssr: false });

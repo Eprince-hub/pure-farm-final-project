@@ -165,13 +165,19 @@ function OrderHistory() {
 
                               <TableCell>
                                 {order.isPaid
-                                  ? `Paid At ${order.paidAt}`
+                                  ? `Payment made on ${order.paidAt.slice(
+                                      0,
+                                      10,
+                                    )}`
                                   : 'Not Paid'}
                               </TableCell>
 
                               <TableCell>
                                 {order.isDelivered
-                                  ? `Delivery Started on ${order.isDelivered}`
+                                  ? `Delivery Started on ${order.deliveredAt.slice(
+                                      0,
+                                      10,
+                                    )}`
                                   : 'Not Delivered'}
                               </TableCell>
 

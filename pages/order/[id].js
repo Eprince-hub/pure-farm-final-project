@@ -53,7 +53,7 @@ function reducer(state, action) {
 
     // The delivery status cases
 
-    case 'DELIVER_REQUEST':
+    /*    case 'DELIVER_REQUEST':
       return { ...state, loadingDeliver: true };
 
     case 'DELIVER_SUCCESS':
@@ -68,7 +68,7 @@ function reducer(state, action) {
         loadingDeliver: false,
         successDeliver: false,
         errorDeliver: '',
-      };
+      }; */
     default:
       state;
   }
@@ -100,7 +100,12 @@ function Order({ params }) {
 
   // defining the react reducer => parameters for useReducer: reducer function and default values
   const [
-    { loading, error, order, successPay, loadingDeliver, successDeliver },
+    {
+      loading,
+      error,
+      order,
+      successPay /* , loadingDeliver, successDeliver  */,
+    },
     dispatch,
   ] = useReducer(reducer, {
     loading: true,
@@ -151,8 +156,7 @@ function Order({ params }) {
     if (
       !order._id ||
       successPay ||
-      successDeliver ||
-      (order._id && order._id !== orderId)
+      /* successDeliver || */ (order._id && order._id !== orderId)
     ) {
       // order coming from reducer
       // calling the function
@@ -163,9 +167,9 @@ function Order({ params }) {
         dispatch({ type: 'PAY_RESET' });
       }
 
-      if (successDeliver) {
+      /*  if (successDeliver) {
         dispatch({ type: 'DELIVER_RESET' });
-      }
+      } */
     } else {
       // implementing paypal payment action
       const loadPaypalScript = async () => {
@@ -188,7 +192,7 @@ function Order({ params }) {
 
       loadPaypalScript();
     }
-  }, [order, successPay, successDeliver]);
+  }, [order, successPay /* , successDeliver */]);
 
   const { closeSnackbar, enqueueSnackbar } = useSnackbar();
 
@@ -250,6 +254,8 @@ function Order({ params }) {
   }
 
   // function for deliveryHandler
+
+  /*
   async function deliverOrderHandler() {
     try {
       // do something
@@ -274,6 +280,7 @@ function Order({ params }) {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   }
+ */
 
   return (
     <Layout title={`Oder Detail Id: ${orderId}`}>
@@ -309,7 +316,7 @@ function Order({ params }) {
                   <ListItem>
                     Status:{' '}
                     {isDelivered
-                      ? `delivered at ${deliveredAt}`
+                      ? `Delivery started on ${deliveredAt.slice(0, 10)}`
                       : 'not delivered'}
                   </ListItem>
                 </List>
@@ -327,7 +334,13 @@ function Order({ params }) {
                   <ListItem>{paymentMethod}</ListItem>
 
                   <ListItem>
-                    Status: {isPaid ? `paid at ${paidAt}` : 'not paid'}
+                    Status:{' '}
+                    {isPaid
+                      ? `Payment of € ${totalPrice}, made on ${paidAt.slice(
+                          0,
+                          10,
+                        )}`
+                      : 'not paid'}
                   </ListItem>
                 </List>
               </Card>
@@ -489,30 +502,27 @@ function Order({ params }) {
                       )}
                     </ListItem>
                   )} */}
-                  {
-                    !isPaid && (
-                      /* !userInfo.isAdmin ?  */ <ListItem>
-                        {isPending ? (
-                          <CircularProgress />
-                        ) : (
-                          <div className={classes.fullWidth}>
-                            <PayPalButtons
-                              style={{
-                                color: 'blue',
-                                label: 'pay',
-                              }}
-                              createOrder={createOrder}
-                              onApprove={onApprove}
-                              onError={onError}
-                            ></PayPalButtons>
-                          </div>
-                        )}
-                      </ListItem>
-                    )
-                    /* To implement when i transfer it to admin alone */
-                    /*  : (
+                  {!isPaid ? (
+                    /* !userInfo.isAdmin ?  */ <ListItem>
+                      {isPending ? (
+                        <CircularProgress />
+                      ) : (
+                        <div className={classes.fullWidth}>
+                          <PayPalButtons
+                            style={{
+                              color: 'blue',
+                              label: 'pay',
+                            }}
+                            createOrder={createOrder}
+                            onApprove={onApprove}
+                            onError={onError}
+                          ></PayPalButtons>
+                        </div>
+                      )}
+                    </ListItem>
+                  ) : (
                     <ListItem>
-                      <NextLink href="/admin/orders" passHref>
+                      <NextLink href="/order-history" passHref>
                         <Button
                           variant="contained"
                           fullWidth
@@ -523,8 +533,7 @@ function Order({ params }) {
                         </Button>
                       </NextLink>
                     </ListItem>
-                  ) */
-                  }
+                  )}
 
                   {/* To implement when i transfer this to admin alone */}
                   {/*   {isPaid && !userInfo.isAdmin && (
@@ -542,7 +551,7 @@ function Order({ params }) {
                     </ListItem>
                   )} */}
 
-                  {userInfo.isAdmin && isPaid && !isDelivered && (
+                  {/*      {userInfo.isAdmin && isPaid && !isDelivered && (
                     <ListItem>
                       {loadingDeliver && <CircularProgress />}
 
@@ -555,7 +564,7 @@ function Order({ params }) {
                         Mark As Delivered
                       </Button>
                     </ListItem>
-                  )}
+                  )} */}
                 </List>
               </Card>
             </Grid>

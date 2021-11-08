@@ -22,10 +22,11 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Bar } from 'react-chartjs-2';
-import Layout from '../../components/Layout';
-import { getError } from '../../utils/error';
-import { Store } from '../../utils/Store';
-import useStyles from '../../utils/styles';
+// import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
+import { getError } from '../../../utils/error';
+import { Store } from '../../../utils/Store';
+import useStyles from '../../../utils/styles';
 
 // on this page i am fetching all the orders of the user from the database and displaying them
 // to the user
@@ -190,7 +191,10 @@ function Orders() {
                               </TableCell>
 
                               <TableCell>
-                                <NextLink href={`/order/${order._id}`} passHref>
+                                <NextLink
+                                  href={`/admin/orders/${order._id}`}
+                                  passHref
+                                >
                                   <Button
                                     style={{
                                       textAlign: 'center',
