@@ -40,7 +40,7 @@ function reducer(state, action) {
   }
 }
 
-function AdminDashboard() {
+function SiteAdminDashboard() {
   // getting the userInfo from the state of the react context from the Store.js
   const { state } = useContext(Store);
 
@@ -51,8 +51,6 @@ function AdminDashboard() {
 
   const { userInfo } = state;
 
-  console.log('User Info from Dashboard: ', userInfo);
-
   // defining the react reducer => parameters for useReducer: reducer function and default values
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
     loading: true,
@@ -60,7 +58,7 @@ function AdminDashboard() {
     error: '',
   });
 
-  console.log('Sales Data: ', summary.salesData);
+  // console.log('Sales Data: ', summary.salesData);
 
   // this makes sure that only a logged in user can access this page
   useEffect(() => {
@@ -70,7 +68,7 @@ function AdminDashboard() {
       router.push('/login');
 
       // if the userInfo is available but not an admin then redirect to the user's profile
-    } else if (!userInfo.isAdmin) {
+    } else if (!userInfo.isSiteAdmin) {
       router.push('/profile');
     }
 
@@ -99,31 +97,25 @@ function AdminDashboard() {
   }, []);
 
   return (
-    <Layout title="Admin Dashboard">
-      <section>
-        <Typography component="h1" variant="h1">
-          Admin Dashboard {/* Maybe not needed	 */}
-        </Typography>
-
+    <Layout title="Site Admin Dashboard">
+      <section className={classes.siteAdminStyle}>
+        <Typography component="h2" variant="h2">
+          Site Admin Dashboard
+        </Typography>{' '}
+        {/* Maybe not needed	 */}
         <Grid container spacing={1}>
           <Grid item md={3} xs={12}>
-            <Card className={classes.section}>
+            <Card raised className={classes.section}>
               <List>
-                <NextLink href="/admin/dashboard" passHref>
+                <NextLink href="/admin/site-admin" passHref>
                   <ListItem selected button component="a">
-                    <ListItemText primary="Admin Dashboard"></ListItemText>
+                    <ListItemText primary="Site Admin Dashboard"></ListItemText>
                   </ListItem>
                 </NextLink>
 
                 <NextLink href="/admin/orders" passHref>
                   <ListItem button component="a">
                     <ListItemText primary="Orders"></ListItemText>
-                  </ListItem>
-                </NextLink>
-
-                <NextLink href="/admin/products" passHref>
-                  <ListItem button component="a">
-                    <ListItemText primary="Products"></ListItemText>
                   </ListItem>
                 </NextLink>
               </List>
@@ -274,4 +266,6 @@ function AdminDashboard() {
   );
 }
 
-export default dynamic(() => Promise.resolve(AdminDashboard), { ssr: false });
+export default dynamic(() => Promise.resolve(SiteAdminDashboard), {
+  ssr: false,
+});

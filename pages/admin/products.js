@@ -22,13 +22,12 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Bar } from 'react-chartjs-2';
-// import Layout from '../../components/Layout';
-import Layout from '../../../components/Layout';
-import { getError } from '../../../utils/error';
-import { Store } from '../../../utils/Store';
-import useStyles from '../../../utils/styles';
+import Layout from '../../components/Layout';
+import { getError } from '../../utils/error';
+import { Store } from '../../utils/Store';
+import useStyles from '../../utils/styles';
 
-// on this page i am fetching all the orders of the user from the database and displaying them
+// on this page i am fetching all the products of the user from the database and displaying them
 // to the user
 
 // defining the reducer function for the react useReducer hook with each cases
@@ -38,7 +37,7 @@ function reducer(state, action) {
       return { ...state, loading: true, error: '' };
 
     case 'FETCH_SUCCESS':
-      return { ...state, loading: false, orders: action.payload, error: '' };
+      return { ...state, loading: false, products: action.payload, error: '' };
 
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
@@ -47,7 +46,7 @@ function reducer(state, action) {
   }
 }
 
-function Orders() {
+function Products() {
   // getting the userInfo from the state of the react context from the Store.js
   const { state } = useContext(Store);
 
@@ -61,9 +60,9 @@ function Orders() {
   console.log('User Info from Dashboard: ', userInfo);
 
   // defining the react reducer => parameters for useReducer: reducer function and default values
-  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     loading: true,
-    orders: [],
+    products: [],
     error: '',
   });
 
@@ -79,14 +78,14 @@ function Orders() {
       router.push('/profile');
     }
 
-    // fetching the order information from the database
+    // fetching the product information from the database
     const fetchData = async () => {
       try {
         // use the reducer hook to dispatch this information
         dispatch({ type: 'FETCH_REQUEST' }); // reducer hook
 
         // making the api call to fetch the data
-        const { data } = await axios.get(`/api/admin/orders`, {
+        const { data } = await axios.get(`/api/admin/products`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
 
@@ -121,13 +120,13 @@ function Orders() {
                 </NextLink>
 
                 <NextLink href="/admin/orders" passHref>
-                  <ListItem selected button component="a">
+                  <ListItem button component="a">
                     <ListItemText primary="Orders"></ListItemText>
                   </ListItem>
                 </NextLink>
 
                 <NextLink href="/admin/products" passHref>
-                  <ListItem button component="a">
+                  <ListItem selected button component="a">
                     <ListItemText primary="Products"></ListItemText>
                   </ListItem>
                 </NextLink>
@@ -135,13 +134,13 @@ function Orders() {
             </Card>
           </Grid>
 
-          {/* Main order information and content */}
+          {/* Main product information and content */}
           <Grid item md={9} xs={12}>
             <Card className={classes.section}>
               <List>
                 <ListItem>
                   <Typography component="h1" variant="h1">
-                    Orders
+                    Products
                   </Typography>
                 </ListItem>
 
@@ -158,67 +157,60 @@ function Orders() {
                           <TableRow>
                             {/* columns */}
                             <TableCell>ID</TableCell>
-                            <TableCell>USER</TableCell>
-                            <TableCell>ORDER DATE</TableCell>
-                            <TableCell>TOTAL</TableCell>
-                            <TableCell>PAYMENT STATUS</TableCell>
-                            <TableCell>DELIVERY STATUS</TableCell>
-                            <TableCell align="center">ACTION</TableCell>
+                            <TableCell>NAME</TableCell>
+                            <TableCell>PRICE</TableCell>
+                            <TableCell>CATEGORY</TableCell>
+                            <TableCell>COUNT</TableCell>
+                            <TableCell>RATING</TableCell>
+                            <TableCell align="center">ACTIONS</TableCell>
                           </TableRow>
                         </TableHead>
 
                         {/* the table body */}
                         <TableBody>
-                          {orders.map((order) => (
-                            <TableRow key={order._id}>
+                          {products.map((product) => (
+                            <TableRow key={product._id}>
                               <TableCell>
-                                {order._id.substring(20, 24)}
+                                {product._id.substring(20, 24)}
                               </TableCell>
 
-                              {/* This will display the user that made the particular order */}
-                              <TableCell>
-                                {order.user ? order.user.name : 'DELETED USER'}
-                              </TableCell>
+                              {/* This will display the user that made the particular product */}
+                              <TableCell>{product.name}</TableCell>
 
-                              <TableCell>
-                                {order.createdAt.slice(0, 10)}
-                              </TableCell>
+                              <TableCell>€ {product.price}</TableCell>
 
-                              <TableCell>€ {order.totalPrice}</TableCell>
+                              <TableCell>{product.category}</TableCell>
 
-                              <TableCell>
-                                {order.isPaid
-                                  ? `Payment made on ${order.paidAt.slice(
-                                      0,
-                                      10,
-                                    )}`
-                                  : 'Not Paid'}
-                              </TableCell>
+                              <TableCell>{product.countInStock}</TableCell>
 
-                              <TableCell>
-                                {order.isDelivered
-                                  ? `Delivery Started on ${order.deliveredAt.slice(
-                                      0,
-                                      10,
-                                    )}`
-                                  : 'Not Delivered'}
-                              </TableCell>
+                              <TableCell>{product.rating}</TableCell>
 
                               <TableCell>
                                 <NextLink
-                                  href={`/admin/orders/${order._id}`}
+                                  href={`/admin/product/${product._id}`}
                                   passHref
                                 >
                                   <Button
+                                    size="small"
                                     style={{
                                       textAlign: 'center',
                                     }}
                                     variant="contained"
                                     color="secondary"
                                   >
-                                    Order Detail
+                                    Edit
                                   </Button>
-                                </NextLink>
+                                </NextLink>{' '}
+                                <Button
+                                  size="small"
+                                  style={{
+                                    textAlign: 'center',
+                                  }}
+                                  variant="contained"
+                                  color="secondary"
+                                >
+                                  Delete
+                                </Button>
                               </TableCell>
                             </TableRow>
                           ))}
@@ -236,4 +228,4 @@ function Orders() {
   );
 }
 
-export default dynamic(() => Promise.resolve(Orders), { ssr: false });
+export default dynamic(() => Promise.resolve(Products), { ssr: false });
