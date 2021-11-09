@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  TextareaAutosize,
   TextField,
   Typography,
 } from '@material-ui/core';
@@ -34,7 +35,6 @@ function reducer(state, action) {
 
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
-
     default:
       return state;
   }
@@ -53,7 +53,7 @@ function ProductEdit({ params }) {
 
   // using the reducer defined above
   const [{ loading, error }, dispatch] = useReducer(reducer, {
-    // default values
+    // default value
     loading: true,
     error: '',
   });
@@ -106,22 +106,21 @@ function ProductEdit({ params }) {
           setValue('category', data.category);
           setValue('farmerName', data.farmerName);
           setValue('farmingMethod', data.farmingMethod);
-          setValue('address', data.address);
-          setValue('city', data.city);
-          setValue('postCode', data.postCode);
           setValue('description', data.description);
           setValue('contains', data.contains);
           setValue('dietType', data.dietType);
           setValue('package', data.package);
           setValue('recipe', data.recipe);
           setValue('countInStock', data.countInStock);
+          setValue('address', data.address);
+          setValue('city', data.city);
+          setValue('postCode', data.postCode);
         } catch (err) {
           // if there is an error
 
-          dispatch({ type: 'FAIL_FETCH', payload: getError(err) });
+          dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
         }
       };
-
       fetchData();
     }
   }, []);
@@ -130,7 +129,7 @@ function ProductEdit({ params }) {
   const submitHandler = async ({ name }) => {
     closeSnackbar();
     // prevent default
-    // event.preventDefault();
+    // event.preventDefault(); // not needed because of react hook form
 
     // send an ajax post request with the user information
     try {
@@ -293,6 +292,35 @@ function ProductEdit({ params }) {
                         ></Controller>
                       </ListItem>
 
+                      {/* product's countInStock */}
+                      <ListItem>
+                        <Controller
+                          name="countInStock"
+                          control={control}
+                          defaultValue=""
+                          rules={{
+                            // validations
+                            required: true,
+                          }}
+                          render={({ field }) => (
+                            <TextField
+                              variant="outlined"
+                              fullWidth
+                              id="countInStock"
+                              label="Count in stock"
+                              error={Boolean(errors.countInStock)}
+                              helperText={
+                                errors.countInStock // errors exists or not
+                                  ? 'Your stock can`t be empty'
+                                  : ''
+                              }
+                              /* onChange={(event) => setName(event.target.value)} */
+                              {...field}
+                            ></TextField>
+                          )}
+                        ></Controller>
+                      </ListItem>
+
                       {/* product's Image */}
                       <ListItem>
                         <Controller
@@ -393,6 +421,7 @@ function ProductEdit({ params }) {
                           render={({ field }) => (
                             <TextField
                               variant="outlined"
+                              multiline
                               fullWidth
                               id="farmingMethod"
                               label="Farming method"
@@ -423,6 +452,7 @@ function ProductEdit({ params }) {
                             <TextField
                               variant="outlined"
                               fullWidth
+                              multiline
                               id="description"
                               label="Description"
                               error={Boolean(errors.description)}
@@ -452,6 +482,7 @@ function ProductEdit({ params }) {
                             <TextField
                               variant="outlined"
                               fullWidth
+                              multiline
                               id="contains"
                               label="Contains"
                               error={Boolean(errors.contains)}
@@ -467,10 +498,10 @@ function ProductEdit({ params }) {
                         ></Controller>
                       </ListItem>
 
-                      {/* product's Contains */}
+                      {/* product's Diet Type */}
                       <ListItem>
                         <Controller
-                          name="contains"
+                          name="dietType"
                           control={control}
                           defaultValue=""
                           rules={{
@@ -481,12 +512,13 @@ function ProductEdit({ params }) {
                             <TextField
                               variant="outlined"
                               fullWidth
-                              id="contains"
-                              label="Contains"
-                              error={Boolean(errors.contains)}
+                              multiline
+                              id="dietType"
+                              label="Diet Type"
+                              error={Boolean(errors.dietType)}
                               helperText={
-                                errors.contains // errors exists or not
-                                  ? 'Contains is required'
+                                errors.dietType // errors exists or not
+                                  ? 'Diet Type is required'
                                   : ''
                               }
                               /* onChange={(event) => setName(event.target.value)} */
@@ -525,6 +557,36 @@ function ProductEdit({ params }) {
                         ></Controller>
                       </ListItem>
 
+                      {/* product's Recipe */}
+                      <ListItem>
+                        <Controller
+                          name="recipe"
+                          control={control}
+                          defaultValue=""
+                          rules={{
+                            // validations
+                            required: true,
+                          }}
+                          render={({ field }) => (
+                            <TextField
+                              variant="outlined"
+                              fullWidth
+                              multiline
+                              id="recipe"
+                              label="Recipe"
+                              error={Boolean(errors.recipe)}
+                              helperText={
+                                errors.recipe // errors exists or not
+                                  ? 'This is important, so people know what they can cook with what is in the box'
+                                  : ''
+                              }
+                              /* onChange={(event) => setName(event.target.value)} */
+                              {...field}
+                            ></TextField>
+                          )}
+                        ></Controller>
+                      </ListItem>
+
                       {/* product's Address */}
                       <ListItem>
                         <Controller
@@ -539,6 +601,7 @@ function ProductEdit({ params }) {
                             <TextField
                               variant="outlined"
                               fullWidth
+                              multiline
                               id="address"
                               label="Address"
                               error={Boolean(errors.address)}
@@ -603,65 +666,6 @@ function ProductEdit({ params }) {
                               helperText={
                                 errors.postCode // errors exists or not
                                   ? 'Post code is required'
-                                  : ''
-                              }
-                              /* onChange={(event) => setName(event.target.value)} */
-                              {...field}
-                            ></TextField>
-                          )}
-                        ></Controller>
-                      </ListItem>
-
-                      {/* product's countInStock */}
-                      <ListItem>
-                        <Controller
-                          name="countInStock"
-                          control={control}
-                          defaultValue=""
-                          rules={{
-                            // validations
-                            required: true,
-                          }}
-                          render={({ field }) => (
-                            <TextField
-                              variant="outlined"
-                              fullWidth
-                              id="countInStock"
-                              label="Count in stock"
-                              error={Boolean(errors.countInStock)}
-                              helperText={
-                                errors.countInStock // errors exists or not
-                                  ? 'Count in stock is required'
-                                  : ''
-                              }
-                              /* onChange={(event) => setName(event.target.value)} */
-                              {...field}
-                            ></TextField>
-                          )}
-                        ></Controller>
-                      </ListItem>
-
-                      {/* product's Recipe */}
-                      <ListItem>
-                        <Controller
-                          name="recipe"
-                          control={control}
-                          defaultValue=""
-                          rules={{
-                            // validations
-                            required: true,
-                          }}
-                          render={({ field }) => (
-                            <TextField
-                              variant="outlined"
-                              fullWidth
-                              multiline
-                              id="recipe"
-                              label="Recipe"
-                              error={Boolean(errors.recipe)}
-                              helperText={
-                                errors.recipe // errors exists or not
-                                  ? 'Recipe is required'
                                   : ''
                               }
                               /* onChange={(event) => setName(event.target.value)} */
