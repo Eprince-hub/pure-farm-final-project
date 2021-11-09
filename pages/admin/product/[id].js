@@ -27,6 +27,7 @@ import useStyles from '../../../utils/styles';
 // creating the reducer for the product
 function reducer(state, action) {
   switch (action.type) {
+    // Product fetch request reducer
     case 'FETCH_REQUEST':
       return { ...state, loading: true, error: '' };
 
@@ -35,6 +36,27 @@ function reducer(state, action) {
 
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
+
+    // product update reducer
+
+    case 'UPDATE_REQUEST':
+      return { ...state, loadingUpdate: true, errorUpdate: '' };
+
+    case 'UPDATE_SUCCESS':
+      return { ...state, loadingUpdate: false, errorUpdate: '' };
+
+    case 'UPDATE_FAIL':
+      return { ...state, loadingUpdate: false, errorUpdate: action.payload };
+
+    // product image upload reducer
+    case 'UPLOAD_REQUEST':
+      return { ...state, loadingUpload: true, errorUpload: '' };
+
+    case 'UPLOAD_SUCCESS':
+      return { ...state, loadingUpload: false, errorUpload: '' };
+
+    case 'UPLOAD_FAIL':
+      return { ...state, loadingUpload: false, errorUpload: action.payload };
     default:
       return state;
   }
@@ -52,11 +74,12 @@ function ProductEdit({ params }) {
   console.log('State from edit page: ', state);
 
   // using the reducer defined above
-  const [{ loading, error }, dispatch] = useReducer(reducer, {
-    // default value
-    loading: true,
-    error: '',
-  });
+  const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] =
+    useReducer(reducer, {
+      // default value
+      loading: true,
+      error: '',
+    });
 
   // defining the variables from useForm from react-hook-form
   const {
@@ -125,25 +148,42 @@ function ProductEdit({ params }) {
     }
   }, []);
 
+  // function that handles the image upload to Cloudinary
+  const uploadHandler = async (event) => {
+    const file = event.target.files[0];
+
+    // define a new form data
+    const bodyFormData = new FormData();
+
+    // append the new file to the form data
+    bodyFormData.append('file', file);
+
+    // send an ajax request
+    try {
+      dispatch({ type: 'UPLOAD_REQUEST' });
+
+      const { data } = await axios.post('/api/admin/upload', bodyFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // multipart file system allows file upload through ajax request
+          authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+
+      dispatch({ type: 'UPLOAD_SUCCESS' });
+
+      // populate the image field with the url from cloudinary
+      setValue('image', data.secure_url); // from cloudinary
+
+      enqueueSnackbar('File upload was successful', { variant: 'success' });
+    } catch (err) {
+      // the upload request was not successful
+
+      dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+
   // function that handles the form submission for the product update
-
-  /* name,
-slug,
-price,
-image,
-category,
-farmerName,
-farmingMethod,
-description,
-contains,
-dietType,
-packaging,
-recipe,
-countInStock,
-address,
-city,
-postCode, */
-
   const submitHandler = async ({
     name,
     slug,
@@ -168,19 +208,42 @@ postCode, */
 
     // send an ajax post request with the user information
     try {
-      const { data } = await axios.put(
+      dispatch({ type: 'UPDATE_REQUEST' });
+
+      // delete the data variable
+      await axios.put(
         `/api/admin/products/${productId}`,
         {
           name,
+          slug,
+          price,
+          image,
+          category,
+          farmerName,
+          farmingMethod,
+          description,
+          contains,
+          dietType,
+          packaging,
+          recipe,
+          countInStock,
+          address,
+          city,
+          postCode,
         },
         { headers: { authorization: `Bearer ${userInfo.token}` } },
       );
+
+      dispatch({ type: 'UPDATE_SUCCESS' });
 
       // success message
       enqueueSnackbar('Product Update Was Successful', {
         variant: 'success',
       });
+
+      router.push('/admin/products');
     } catch (err) {
+      dispatch({ type: 'UPDATE_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
@@ -269,7 +332,7 @@ postCode, */
                         ></Controller>
                       </ListItem>
 
-                      {/* product's Slug */}
+                      {/* product's Slug || Slug is going to be removed */}
                       <ListItem>
                         <Controller
                           name="slug"
@@ -383,6 +446,16 @@ postCode, */
                             ></TextField>
                           )}
                         ></Controller>
+                      </ListItem>
+
+                      {/* Image uplaod to cloudinary */}
+                      <ListItem>
+                        <Button variant="contained" component="label">
+                          Upload File
+                          <input type="file" onChange={uploadHandler} hidden />
+                        </Button>
+
+                        {loadingUpload && <CircularProgress />}
                       </ListItem>
 
                       {/* product's Category */}
@@ -719,6 +792,8 @@ postCode, */
                         >
                           Update
                         </Button>
+
+                        {loadingUpdate && <CircularProgress />}
                       </ListItem>
                     </List>
                   </form>
