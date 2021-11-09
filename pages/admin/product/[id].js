@@ -109,7 +109,7 @@ function ProductEdit({ params }) {
           setValue('description', data.description);
           setValue('contains', data.contains);
           setValue('dietType', data.dietType);
-          setValue('package', data.package);
+          setValue('packaging', data.packaging);
           setValue('recipe', data.recipe);
           setValue('countInStock', data.countInStock);
           setValue('address', data.address);
@@ -126,7 +126,42 @@ function ProductEdit({ params }) {
   }, []);
 
   // function that handles the form submission for the product update
-  const submitHandler = async ({ name }) => {
+
+  /* name,
+slug,
+price,
+image,
+category,
+farmerName,
+farmingMethod,
+description,
+contains,
+dietType,
+packaging,
+recipe,
+countInStock,
+address,
+city,
+postCode, */
+
+  const submitHandler = async ({
+    name,
+    slug,
+    price,
+    image,
+    category,
+    farmerName,
+    farmingMethod,
+    description,
+    contains,
+    dietType,
+    packaging,
+    recipe,
+    countInStock,
+    address,
+    city,
+    postCode,
+  }) => {
     closeSnackbar();
     // prevent default
     // event.preventDefault(); // not needed because of react hook form
@@ -528,10 +563,10 @@ function ProductEdit({ params }) {
                         ></Controller>
                       </ListItem>
 
-                      {/* product's Package */}
+                      {/* product's packaging */}
                       <ListItem>
                         <Controller
-                          name="package"
+                          name="packaging"
                           control={control}
                           defaultValue=""
                           rules={{
@@ -542,12 +577,12 @@ function ProductEdit({ params }) {
                             <TextField
                               variant="outlined"
                               fullWidth
-                              id="package"
-                              label="Package"
-                              error={Boolean(errors.package)}
+                              id="packaging"
+                              label="packaging"
+                              error={Boolean(errors.packaging)}
                               helperText={
-                                errors.package // errors exists or not
-                                  ? 'Package is required'
+                                errors.packaging // errors exists or not
+                                  ? 'packaging is required'
                                   : ''
                               }
                               /* onChange={(event) => setName(event.target.value)} */
@@ -704,6 +739,28 @@ export async function getServerSideProps({ params }) {
 }
 
 export default dynamic(() => Promise.resolve(ProductEdit), { ssr: false });
+
+/*
+
+name,
+slug,
+price,
+image,
+category,
+farmerName,
+farmingMethod,
+description,
+contains,
+dietType,
+packaging,
+recipe,
+countInStock,
+address,
+city,
+postCode,
+
+
+*/
 
 /* import {
   Button,

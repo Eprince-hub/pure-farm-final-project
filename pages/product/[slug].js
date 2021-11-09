@@ -241,7 +241,7 @@ export default function ProductScreen(props) {
                   </List>
 
                   <Typography variant="p" component="p">
-                    {product.package}
+                    {product.packaging}
                   </Typography>
                 </CardContent>
               </Card>

@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, required: true },
     contains: { type: String, required: true },
     dietType: { type: String, required: true },
-    package: { type: String, required: true },
+    packaging: { type: String, required: true },
     recipe: { type: String, required: true },
   },
   {
@@ -59,7 +59,7 @@ export default Product;
         'The food box contains the following items and they are sweet. and the farmer will suggest some recept for cooking what is inside the box',
       contains: 'Spinach, Tomatoes, Asparagus, Garlic',
       dietType: 'Gluten Free, Lactose Free, Vegan, No preservatives',
-      package: 'In a Carton Box',
+      packaging: 'In a Carton Box',
       recipe: 'You can cook bla bla bla with this items',
 
 
