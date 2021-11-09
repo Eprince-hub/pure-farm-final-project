@@ -12,6 +12,10 @@ handler.get(async (req, res) => {
 
   const product = await Product.findById(req.query.id);
 
+  console.log('Products from API: ', product);
+
+  console.log('ID OF THE PRODUCT: ', req.query.id);
+
   await db.disconnect();
 
   res.send(product);

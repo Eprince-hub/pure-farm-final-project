@@ -16,11 +16,11 @@ handler.use(isAuth, isAdmin);
 handler.get(async (req, res) => {
   await db.connect();
 
-  const Products = await Product.find({});
+  const products = await Product.find({});
 
   await db.disconnect();
 
-  res.send(Products);
+  res.send(products);
 });
 
 export default handler;

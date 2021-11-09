@@ -21,7 +21,6 @@ import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useReducer } from 'react';
-import { Bar } from 'react-chartjs-2';
 import Layout from '../../components/Layout';
 import { getError } from '../../utils/error';
 import { Store } from '../../utils/Store';
@@ -57,7 +56,7 @@ function Products() {
 
   const { userInfo } = state;
 
-  console.log('User Info from Dashboard: ', userInfo);
+  console.log('User Info from product Display: ', userInfo);
 
   // defining the react reducer => parameters for useReducer: reducer function and default values
   const [{ loading, error, products }, dispatch] = useReducer(reducer, {
@@ -74,9 +73,10 @@ function Products() {
       router.push('/login');
 
       // if the userInfo is available but not an admin then redirect to the user's profile
-    } else if (!userInfo.isAdmin) {
+    } /* else if (!userInfo.isAdmin) {
       router.push('/profile');
-    }
+    } */
+    // Removed the above condition trying to fix error but it didn't,, will return it later
 
     // fetching the product information from the database
     const fetchData = async () => {
@@ -103,11 +103,11 @@ function Products() {
   }, []);
 
   return (
-    <Layout title="Admin Dashboard">
+    <Layout title="Admin Product Display">
       <section>
-        <Typography component="h1" variant="h1">
-          Admin Dashboard {/* Maybe not needed	 */}
-        </Typography>
+        {/* <Typography component="h1" variant="h1">
+          Admin Dashboard
+        </Typography> */}
 
         <Grid container spacing={1}>
           <Grid item md={3} xs={12}>
