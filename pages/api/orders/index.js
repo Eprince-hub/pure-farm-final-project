@@ -3,6 +3,8 @@ import Order from '../../../models/Order';
 import { isAuth } from '../../../utils/auth';
 import db, { onError } from '../../../utils/db';
 
+// api for creating the orders
+
 const handler = nc({ onError }); // onError would handle any error that occurs while creating the order => eg payment method is undefined
 
 // Implementing a middleware using the handler from the next-connect to make sure

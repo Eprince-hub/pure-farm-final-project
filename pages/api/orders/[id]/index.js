@@ -3,6 +3,8 @@ import Order from '../../../../models/Order';
 import { isAuth } from '../../../../utils/auth';
 import db from '../../../../utils/db';
 
+// api rout for calling up the order detail for the client
+
 const handler = nc();
 handler.use(isAuth);
 handler.get(async (req, res) => {

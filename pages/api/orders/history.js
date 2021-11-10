@@ -4,6 +4,8 @@ import { isAuth } from '../../../utils/auth';
 import db from '../../../utils/db';
 import { onError } from '../../../utils/error';
 
+// api for calling up all orders for the client
+
 // if any error exists, no access to the handler
 const handler = nc({
   onError,

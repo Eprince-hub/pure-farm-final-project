@@ -11,12 +11,19 @@ const orderSchema = new mongoose.Schema(
     // creating the structure of the database
     // This is the schema that connected the user to the Order they are creating
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, // type => object id from mongoose
+
     orderItems: [
       {
         name: { type: String, required: true },
         quantity: { type: Number, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
+        _id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Product',
+          required: true,
+          // added this to reference the product object in the order for later use
+        },
       },
     ],
     shippingAddress: {

@@ -33,7 +33,7 @@ handler.use(isAuth, isAdmin, upload.single('file')).post(async (req, res) => {
           transformation: [
             // need more testing
             { width: 300, crop: 'scale' },
-            { effect: 'shadow:50', x: 10, y: 10, color: '#465d6d' },
+            { effect: 'shadow:50', x: 10, y: 10 },
             { format: 'png' },
           ],
 

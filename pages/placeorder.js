@@ -135,6 +135,7 @@ function PlaceOrder() {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
+
   return (
     <Layout title="Place Order">
       <section>
