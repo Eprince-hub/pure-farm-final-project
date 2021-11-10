@@ -25,13 +25,35 @@ const upload = multer();
 handler.use(isAuth, isAdmin, upload.single('file')).post(async (req, res) => {
   const streamUpload = (req) => {
     return new Promise((resolve, reject) => {
-      const stream = cloudinary.uploader.upload_stream((error, result) => {
-        if (result) {
-          resolve(result);
-        } else {
-          reject(error);
-        }
-      });
+      const stream = cloudinary.uploader.upload_stream(
+        // settings for the image like background removal etc
+        {
+          background_removal: 'cloudinary_ai', // worked
+
+          transformation: [
+            // need more testing
+            { width: 300, crop: 'scale' },
+            { effect: 'shadow:50', x: 10, y: 10, color: '#465d6d' },
+            { format: 'png' },
+          ],
+
+          /*  transformation: [
+            // need more testing
+            { width: 300, crop: 'scale' },
+            { effect: 'shadow:50', x: 10, y: 10 },
+          ], */
+        },
+
+        // without the above argument, the image will remain unchanged
+
+        (error, result) => {
+          if (result) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        },
+      );
 
       streamifier.createReadStream(req.file.buffer).pipe(stream);
     });
