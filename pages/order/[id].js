@@ -282,6 +282,8 @@ function Order({ params }) {
   }
  */
 
+  console.log('Order items: ', orderItems);
+
   return (
     <Layout title={`Oder Detail Id: ${orderId}`}>
       <section>

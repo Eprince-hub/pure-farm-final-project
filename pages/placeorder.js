@@ -136,6 +136,8 @@ function PlaceOrder() {
     }
   };
 
+  console.log('Cart Items: ', cartItems);
+
   return (
     <Layout title="Place Order">
       <section>
