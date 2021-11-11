@@ -294,5 +294,12 @@ const useStyles = makeStyles({
     fontSize: '2rem',
     marginTop: '3rem',
   },
+
+  cartContinueShopping: {
+    '& h1': {
+      fontSize: '1.5rem',
+      display: 'inline',
+    },
+  },
 });
 export default useStyles;

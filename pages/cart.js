@@ -23,8 +23,12 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
+import useStyles from '../utils/styles';
 
 function CartScreen() {
+  // css
+  const classes = useStyles();
+
   const router = useRouter();
   // getting state from useContext and passing in the Store to get access to get access to the
   // react context in the utils/Store
@@ -185,6 +189,17 @@ function CartScreen() {
                   </ListItem>
                 </List>
               </Card>
+              <List className={classes.cartContinueShopping}>
+                <ListItem>
+                  <NextLink href="/market" passHref>
+                    <Link className={classes.cartContent}>
+                      <Typography component="h1" variant="h1">
+                        Continue Shopping
+                      </Typography>
+                    </Link>
+                  </NextLink>
+                </ListItem>
+              </List>
             </Grid>
           </Grid>
         )}
