@@ -13,9 +13,9 @@ handler.put(async (req, res) => {
   await db.connect();
   const order = await Order.findById(req.query.id);
 
-  console.log('The Oder Info ID: ', order);
+  // console.log('The Oder Info ID: ', order);
 
-  console.log('The query header: ', req.query);
+  // console.log('The query header: ', req.query);
 
   if (order) {
     order.isPaid = true;

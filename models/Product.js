@@ -5,6 +5,13 @@ import mongoose from 'mongoose';
 // creating the product schema using mongoose
 const productSchema = new mongoose.Schema(
   {
+    // This is the schema that connected the user to the product they are creating
+    // farmer: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'User',
+    //   required: true,
+    // }, // type => object id from mongoose // commented out for error
+
     // creating the structure of the database
     name: { type: String, required: true },
     slug: { type: String, required: true, unique: true },

@@ -9,7 +9,7 @@ const handler = nc();
 
 handler.use(isAuth, isAdmin);
 
-// api that handles the product information fetch to the frontend.
+// api that handles the product information fetch to the frontend. The product that should be edited.
 handler.get(async (req, res) => {
   await db.connect();
 
@@ -27,18 +27,27 @@ handler.put(async (req, res) => {
   // find the product with corresponding id
   const product = await Product.findById(req.query.id);
 
+  // console.log('The body request header: ', req.body);
+  // console.log('checking for user info: ', req.user);
+
   // check if product exists and was found
   if (product) {
+    // this uses the reference from the product model to create an objectId of the farmer that updated this product and it can be referenced in other to get the farmer's information
+    // product.farmer = req.user._id; // comment it out: checking errors
+
     // convert the product name to SEO friendly slug and removing any extra white space
-    const newSlug = req.body.name
-      .replace(/\s+/g, ' ')
-      .trim()
-      .toLowerCase()
-      .replaceAll(' ', '-');
+    const newSlug =
+      req.body.name
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toLowerCase()
+        .replaceAll(' ', '-') +
+      '-' +
+      Math.random();
 
     // populate the product information with the new information coming from the api request
     product.name = req.body.name;
-    product.slug = newSlug;
+    product.slug = newSlug; // have to remove the slug from the frontend
     product.price = req.body.price;
     product.image = req.body.image;
     product.category = req.body.category;

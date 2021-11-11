@@ -20,6 +20,7 @@ import axios from 'axios';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
 import React, { useContext, useEffect, useReducer } from 'react';
 import Layout from '../../components/Layout';
 import { getError } from '../../utils/error';
@@ -40,6 +41,16 @@ function reducer(state, action) {
 
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
+
+    // Reducer for creating a product
+    case 'CREATE_REQUEST':
+      return { ...state, loadingCreate: true };
+
+    case 'CREATE_SUCCESS':
+      return { ...state, loadingCreate: false };
+
+    case 'CREATE_FAIL':
+      return { ...state, loadingCreate: false };
     default:
       state;
   }
@@ -59,7 +70,10 @@ function Products() {
   console.log('User Info from product Display: ', userInfo);
 
   // defining the react reducer => parameters for useReducer: reducer function and default values
-  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+  const [
+    { loading, error, products, loadingCreate /* new product */ },
+    dispatch,
+  ] = useReducer(reducer, {
     loading: true,
     products: [],
     error: '',
@@ -102,12 +116,54 @@ function Products() {
     fetchData();
   }, []);
 
+  const { enqueueSnackbar } = useSnackbar();
+
+  // function that handles the creation of a new product
+  const createProductHandler = async () => {
+    // on click of the create product => prompt a user to confirm this action
+    // as a sample product would be created and the user need to edit it to a personal specification
+    if (!window.confirm('Are you sure you want to create a product?')) {
+      return;
+    }
+
+    try {
+      // dispatch request context
+      dispatch({ type: 'CREATE_REQUEST' });
+
+      // making a post request
+      const { data } = await axios.post(
+        '/api/admin/products',
+        {
+          /* name */
+        },
+        {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        },
+      );
+
+      dispatch({ type: 'CREATE_SUCCESS' });
+
+      enqueueSnackbar('The product was created successfully', {
+        variant: 'success',
+      });
+
+      router.push(`/admin/product/${data.product._id}`);
+    } catch (err) {
+      // there is an error
+      dispatch({ type: 'CREATE_FAIL' });
+
+      enqueueSnackbar(getError(err), {
+        variant: 'error',
+      });
+    }
+  };
+
   return (
     <Layout title="Admin Product Display">
       <section>
-        {/* <Typography component="h1" variant="h1">
-          Admin Dashboard
-        </Typography> */}
+        <Typography component="h1" variant="h1">
+          Products
+        </Typography>
 
         <Grid container spacing={1}>
           <Grid item md={3} xs={12}>
@@ -139,9 +195,18 @@ function Products() {
             <Card className={classes.section}>
               <List>
                 <ListItem>
-                  <Typography component="h1" variant="h1">
-                    Products
-                  </Typography>
+                  <Card raised>
+                    <Button
+                      onClick={createProductHandler}
+                      color="secondary"
+                      variant="contained"
+                    >
+                      Create Products
+                    </Button>
+
+                    {/* while creating a product,, load a spinner */}
+                    {loadingCreate && <CircularProgress />}
+                  </Card>
                 </ListItem>
 
                 <ListItem>
