@@ -77,4 +77,23 @@ handler.put(async (req, res) => {
   }
 });
 
+// api that handles the deletion of the product
+handler.delete(async (req, res) => {
+  await db.connect();
+
+  const product = await Product.findById(req.query.id);
+
+  if (product) {
+    await product.remove();
+
+    await db.disconnect();
+
+    res.send({ message: 'This Product have been deleted' });
+  } else {
+    await db.disconnect();
+
+    res.status(404).send({ message: 'The Product does not exist' });
+  }
+});
+
 export default handler;

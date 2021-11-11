@@ -51,6 +51,19 @@ function reducer(state, action) {
 
     case 'CREATE_FAIL':
       return { ...state, loadingCreate: false };
+
+    // Reducer for deleting a product
+    case 'DELETE_REQUEST':
+      return { ...state, loadingDelete: true };
+
+    case 'DELETE_SUCCESS':
+      return { ...state, loadingDelete: false, successDelete: true };
+
+    case 'DELETE_FAIL':
+      return { ...state, loadingDelete: false };
+
+    case 'DELETE_RESET':
+      return { ...state, loadingDelete: false, successDelete: false };
     default:
       state;
   }
@@ -71,7 +84,14 @@ function Products() {
 
   // defining the react reducer => parameters for useReducer: reducer function and default values
   const [
-    { loading, error, products, loadingCreate /* new product */ },
+    {
+      loading,
+      error,
+      products,
+      loadingCreate /* new product */,
+      successDelete,
+      loadingDelete,
+    },
     dispatch,
   ] = useReducer(reducer, {
     loading: true,
@@ -112,9 +132,16 @@ function Products() {
       }
     };
 
-    // calling the fetchData function
-    fetchData();
-  }, []);
+    // resetting the products information to reflect the new value after deletion
+    if (successDelete) {
+      dispatch({ type: 'DELETE_RESET' });
+
+      // prevents fetchData from running when not needed
+    } else {
+      // calling the fetchData function
+      fetchData();
+    }
+  }, [successDelete]);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -122,7 +149,11 @@ function Products() {
   const createProductHandler = async () => {
     // on click of the create product => prompt a user to confirm this action
     // as a sample product would be created and the user need to edit it to a personal specification
-    if (!window.confirm('Are you sure you want to create a product?')) {
+    if (
+      !window.confirm(
+        'You are about to create a product with pre-filled information - you will need to edit the information?',
+      )
+    ) {
       return;
     }
 
@@ -134,7 +165,7 @@ function Products() {
       const { data } = await axios.post(
         '/api/admin/products',
         {
-          /* name */
+          /* name and other information needed for the creation of the product*/
         },
         {
           headers: { authorization: `Bearer ${userInfo.token}` },
@@ -151,6 +182,42 @@ function Products() {
     } catch (err) {
       // there is an error
       dispatch({ type: 'CREATE_FAIL' });
+
+      enqueueSnackbar(getError(err), {
+        variant: 'error',
+      });
+    }
+  };
+
+  // function that handles the creation of a new product
+  const deleteProductHandler = async (productId) => {
+    // on click of the delete product => prompt a user to confirm this action
+    // as a sample product would be deleted and the user need to edit it to a personal specification
+    if (
+      !window.confirm(
+        'You are about to delete this product. This action can not be revised.',
+      )
+    ) {
+      return;
+    }
+
+    try {
+      // dispatch request context
+      dispatch({ type: 'DELETE_REQUEST' });
+
+      // making a post request
+      await axios.delete(`/api/admin/products/${productId}`, {
+        headers: { authorization: `Bearer ${userInfo.token}` },
+      });
+
+      dispatch({ type: 'DELETE_SUCCESS' });
+
+      enqueueSnackbar('The product was deleted successfully', {
+        variant: 'success',
+      });
+    } catch (err) {
+      // there is an error
+      dispatch({ type: 'DELETE_FAIL' });
 
       enqueueSnackbar(getError(err), {
         variant: 'error',
@@ -194,21 +261,36 @@ function Products() {
           <Grid item md={9} xs={12}>
             <Card className={classes.section}>
               <List>
-                <ListItem>
-                  <Card raised>
-                    <Button
-                      onClick={createProductHandler}
-                      color="secondary"
-                      variant="contained"
-                    >
-                      Create Products
-                    </Button>
+                <ListItem>{loadingDelete && <CircularProgress />}</ListItem>
+                <Grid container spacing={1}>
+                  <Grid item>
+                    {/* create product with filled information */}
+                    <ListItem>
+                      <Card raised>
+                        <Button
+                          onClick={createProductHandler}
+                          color="secondary"
+                          variant="contained"
+                        >
+                          Create Quick Products
+                        </Button>
 
-                    {/* while creating a product,, load a spinner */}
-                    {loadingCreate && <CircularProgress />}
-                  </Card>
-                </ListItem>
-
+                        {/* while creating a product,, load a spinner */}
+                        {loadingCreate && <CircularProgress />}
+                      </Card>
+                    </ListItem>
+                  </Grid>
+                  <Grid item>
+                    {/* Create product from scratch */}
+                    <ListItem>
+                      <Card raised>
+                        <Button color="secondary" variant="contained">
+                          Create Products
+                        </Button>
+                      </Card>
+                    </ListItem>
+                  </Grid>
+                </Grid>
                 <ListItem>
                   {loading ? (
                     <CircularProgress />
@@ -267,6 +349,9 @@ function Products() {
                                   </Button>
                                 </NextLink>{' '}
                                 <Button
+                                  onClick={() =>
+                                    deleteProductHandler(product._id)
+                                  }
                                   size="small"
                                   style={{
                                     textAlign: 'center',
