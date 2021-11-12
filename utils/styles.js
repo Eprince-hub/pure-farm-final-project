@@ -299,9 +299,48 @@ const useStyles = makeStyles({
   },
 
   footer: {
+    padding: '1rem',
     marginTop: 60,
     color: '#FFFFFF',
     backgroundColor: '#002B2B',
+
+    '& span p:last-of-type': {
+      textAlign: 'center',
+    },
+
+    '& input': {
+      borderRadius: 16,
+      marginRight: 5,
+      border: '2px solid white',
+      height: '6px',
+    },
+  },
+
+  footerSocialIcons: {
+    paddingTop: '0.5rem',
+    width: 200,
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+
+  icons: {
+    width: 20,
+  },
+
+  footerButton: {
+    background: 'transparent',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  formInputContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 80,
+    padding: '20px 0px',
   },
 });
 export default useStyles;

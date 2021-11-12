@@ -35,6 +35,7 @@ export default function Footer(props) {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm();
 
   // function that handles the newsletter signup
@@ -51,6 +52,8 @@ export default function Footer(props) {
       enqueueSnackbar('Thanks for registering for our newsletter', {
         variant: 'success',
       });
+
+      setValue('email', '');
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
@@ -81,35 +84,45 @@ export default function Footer(props) {
               interested in buying locally produced farm products.
             </Typography>
             <div className={classes.footerSocialIcons}>
-              <NextLink href="/" passHref>
-                <Link>
-                  <Image src={twitter} alt="Twitter Social Icon"></Image>
-                </Link>
-              </NextLink>
+              <div className={classes.icons}>
+                <NextLink href="/" passHref>
+                  <Link>
+                    <Image src={twitter} alt="Twitter Social Icon"></Image>
+                  </Link>
+                </NextLink>
+              </div>
 
-              <NextLink href="/" passHref>
-                <Link>
-                  <Image src={facebook} alt="Facebook Social Icon"></Image>
-                </Link>
-              </NextLink>
+              <div className={classes.icons}>
+                <NextLink href="/" passHref>
+                  <Link>
+                    <Image src={facebook} alt="Facebook Social Icon"></Image>
+                  </Link>
+                </NextLink>
+              </div>
 
-              <NextLink href="/" passHref>
-                <Link>
-                  <Image src={instagram} alt="Instagram Social Icon"></Image>
-                </Link>
-              </NextLink>
+              <div className={classes.icons}>
+                <NextLink href="/" passHref>
+                  <Link>
+                    <Image src={instagram} alt="Instagram Social Icon"></Image>
+                  </Link>
+                </NextLink>
+              </div>
 
-              <NextLink href="/" passHref>
-                <Link>
-                  <Image src={linkedIn} alt="LinkedIn Social Icon"></Image>
-                </Link>
-              </NextLink>
+              <div className={classes.icons}>
+                <NextLink href="/" passHref>
+                  <Link>
+                    <Image src={linkedIn} alt="LinkedIn Social Icon"></Image>
+                  </Link>
+                </NextLink>
+              </div>
 
-              <NextLink href="/" passHref>
-                <Link>
-                  <Image src={youtube} alt="Youtube Social Icon"></Image>
-                </Link>
-              </NextLink>
+              <div className={classes.icons}>
+                <NextLink href="/" passHref>
+                  <Link>
+                    <Image src={youtube} alt="Youtube Social Icon"></Image>
+                  </Link>
+                </NextLink>
+              </div>
             </div>
           </Grid>
 
@@ -127,7 +140,7 @@ export default function Footer(props) {
             </Typography>
 
             <form onSubmit={handleSubmit(newsLetterSubmitHandler)}>
-              <List>
+              <List className={classes.formInputContainer}>
                 <ListItem>
                   {/* Define the controller component that comes from the react-hook-form
               using the controller to wrap all our textField, but before it works we need to define the render property. and give it a function that will return the textField*/}
@@ -135,7 +148,7 @@ export default function Footer(props) {
                   <Controller
                     name="email"
                     control={control}
-                    defaultValue=" "
+                    defaultValue=""
                     rules={{
                       // validations
                       required: true,
@@ -163,10 +176,10 @@ export default function Footer(props) {
                   ></Controller>
 
                   <Button
+                    className={classes.footerButton}
                     variant="contained"
                     type="submit"
                     contained
-                    color="transparent"
                   >
                     <Image src={newsLetter} alt="Youtube Social Icon"></Image>
                   </Button>
@@ -176,7 +189,11 @@ export default function Footer(props) {
           </Grid>
         </Grid>
 
-        <Typography>All rights reserved. Final Project Pure Farm.</Typography>
+        <span>
+          <Typography component="p" variant="p">
+            All rights reserved. Final Project Pure Farm.
+          </Typography>
+        </span>
       </section>
     </footer>
   );
