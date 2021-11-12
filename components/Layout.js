@@ -23,6 +23,7 @@ import cartIcon from '../public/images/cart.png';
 import profileIcon from '../public/images/profileLogo.png';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
+import Footer from './Footer';
 import Header from './Header';
 
 export default function Layout({
@@ -281,9 +282,7 @@ export default function Layout({
         <Header />
 
         <Container className={classes.main}>{children}</Container>
-        <footer className={classes.footer}>
-          <Typography>All rights reserved. Final Project Pure Farm.</Typography>
-        </footer>
+        <Footer className={classes.footer} />
       </ThemeProvider>
     </section>
   );

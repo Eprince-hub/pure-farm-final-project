@@ -2,7 +2,7 @@ import { Link, Typography } from '@material-ui/core';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
-import pureFarm from '../public/images/pureFarm.png';
+import headerLogo from '../public/images/logos/header-logo.png';
 import useStyles from '../utils/styles';
 
 export default function Header() {
@@ -15,7 +15,7 @@ export default function Header() {
         <div className={classes.logo}>
           <NextLink href="/" passHref>
             <Link>
-              <Image src={pureFarm} alt="Pure Farm Logo"></Image>
+              <Image src={headerLogo} alt="Pure Farm Logo"></Image>
             </Link>
           </NextLink>
         </div>
