@@ -23,7 +23,7 @@ import useStyles from '../utils/styles';
 // the cardActionArea inside the card will be clickable areas.
 // cardMedia = image
 
-export default function Market(props) {
+export default function Farmers(props) {
   // getting the react context from useContext
   const { state } = useContext(Store);
 
