@@ -27,6 +27,16 @@ const useStyles = makeStyles({
     justifyContent: 'space-around',
     backgroundColor: '#FFFFFF',
     color: '#002B2B',
+
+    '@media (max-width: 1230px)': {
+      '& h2': {
+        fontSize: '1rem',
+      },
+    },
+
+    '@media (max-width: 870px)': {
+      display: 'none',
+    },
   },
 
   logo: {
@@ -341,6 +351,62 @@ const useStyles = makeStyles({
     alignItems: 'center',
     height: 80,
     padding: '20px 0px',
+  },
+
+  mobileDisplayNav: {
+    display: 'flex',
+  },
+
+  mobileLogo: {
+    width: 260,
+    margin: '0 auto',
+    padding: '0.5rem 0 0 4rem',
+    display: 'none',
+
+    '@media (max-width: 870px)': {
+      display: 'block',
+    },
+  },
+
+  hamburgerMenuContainer: {
+    textAlign: 'right',
+    margin: '0 0 0 auto',
+    display: 'none',
+
+    '& button': {
+      width: '5px',
+    },
+
+    '@media (max-width: 870px)': {
+      display: 'block',
+    },
+  },
+
+  closeHamburgerMenuImage: {
+    width: 60,
+    marginLeft: 400,
+
+    '& img': {
+      borderRadius: 10,
+      background: 'white',
+    },
+  },
+
+  hamburgerMenuItem: {
+    background: '#002B2B',
+    color: 'white',
+    width: '600px',
+    height: '50px',
+
+    '& p': {
+      width: '100%',
+      height: '100%',
+    },
+
+    '& p:hover': {
+      fontWeight: 'bold',
+      color: '#002B2B',
+    },
   },
 });
 export default useStyles;

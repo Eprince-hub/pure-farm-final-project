@@ -5,6 +5,8 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Dialog,
+  DialogActions,
   Grid,
   Typography,
 } from '@material-ui/core';

@@ -281,7 +281,9 @@ export default function Layout({
 
         <Header />
 
-        <Container className={classes.main}>{children}</Container>
+        <Container className={classes.main} maxWidth={false}>
+          {children}
+        </Container>
         <Footer className={classes.footer} />
       </ThemeProvider>
     </section>
