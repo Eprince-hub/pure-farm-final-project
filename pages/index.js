@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import CategoryNavigation from '../components/CategoryNavigation';
 import HeroPage from '../components/HeroPage';
+import LandingPageInfoDisplay from '../components/LandingPageInfoDisplay';
 import Layout from '../components/Layout';
 import Product from '../models/Product';
 // import data from '../utils/data';
@@ -107,6 +108,8 @@ export default function Home(props) {
             ))}
           </Grid>
         </div>
+
+        <LandingPageInfoDisplay />
       </section>
     </Layout>
   );

@@ -4,7 +4,9 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import closeHamburgerMenu from '../public/images/logos/closeHamburgerMenu.svg';
+import footerLogo from '../public/images/logos/footer-logo.png';
 import hamburgerMenu from '../public/images/logos/hamburgerMenu.png';
+import hamburgerWhite from '../public/images/logos/hamburgerWhite.png';
 import headerLogo from '../public/images/logos/header-logo.png';
 import useStyles from '../utils/styles';
 
@@ -59,17 +61,25 @@ export default function Header() {
     >
       <nav className={classes.navMenu}>
         <div className={classes.logo}>
-          <NextLink href="/" passHref>
-            <Link>
-              <Image src={headerLogo} alt="Pure Farm Logo"></Image>
-            </Link>
-          </NextLink>
+          {navbar ? (
+            <NextLink href="/" passHref>
+              <Link>
+                <Image src={footerLogo} alt="Pure Farm Logo"></Image>
+              </Link>
+            </NextLink>
+          ) : (
+            <NextLink href="/" passHref>
+              <Link>
+                <Image src={headerLogo} alt="Pure Farm Logo"></Image>
+              </Link>
+            </NextLink>
+          )}
         </div>
 
         <div className={classes.navbarButtons}>
           <NextLink href="/" passHref>
             <Link>
-              <Typography variant="h2" component="h2">
+              <Typography variant="h2" component="h2" selected>
                 HOME
               </Typography>
             </Link>
@@ -118,28 +128,54 @@ export default function Header() {
       </nav>
 
       <div className={classes.mobileDisplayNav}>
-        <div className={classes.mobileLogo}>
-          <NextLink href="/" passHref>
-            <Link>
-              <Image src={headerLogo} alt="Pure Farm Logo"></Image>
-            </Link>
-          </NextLink>
-        </div>
+        {navbar ? (
+          <div className={classes.mobileLogo}>
+            <NextLink href="/" passHref>
+              <Link>
+                <Image src={footerLogo} alt="Pure Farm Logo"></Image>
+              </Link>
+            </NextLink>
+          </div>
+        ) : (
+          <div className={classes.mobileLogo}>
+            <NextLink href="/" passHref>
+              <Link>
+                <Image src={headerLogo} alt="Pure Farm Logo"></Image>
+              </Link>
+            </NextLink>
+          </div>
+        )}
 
         <div className={classes.hamburgerMenuContainer}>
-          <Button
-            component="button"
-            aria-controls="simple-Menu"
-            aria-haspopup="true"
-            onClick={
-              loginClickHandler
-            } /* Change this handler to showUserProfileMenuClickHandler */
-          >
-            <Image
-              src={hamburgerMenu}
-              alt="Hamburger Menu for Mobile display"
-            ></Image>
-          </Button>
+          {navbar ? (
+            <Button
+              component="button"
+              aria-controls="simple-Menu"
+              aria-haspopup="true"
+              onClick={
+                loginClickHandler
+              } /* Change this handler to showUserProfileMenuClickHandler */
+            >
+              <Image
+                src={hamburgerWhite}
+                alt="Hamburger Menu for Mobile display"
+              ></Image>
+            </Button>
+          ) : (
+            <Button
+              component="button"
+              aria-controls="simple-Menu"
+              aria-haspopup="true"
+              onClick={
+                loginClickHandler
+              } /* Change this handler to showUserProfileMenuClickHandler */
+            >
+              <Image
+                src={hamburgerMenu}
+                alt="Hamburger Menu for Mobile display"
+              ></Image>
+            </Button>
+          )}
 
           <Menu
             className={classes.hamburgerMenuBox}

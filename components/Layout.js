@@ -58,6 +58,13 @@ export default function Layout({
         margin: '1rem 0',
         fontFamily: 'oswald',
       },
+
+      h3: {
+        fontSize: '1.4rem',
+        fontWeight: 400,
+        margin: '1rem 0',
+        fontFamily: 'oswald',
+      },
     },
 
     palette: {

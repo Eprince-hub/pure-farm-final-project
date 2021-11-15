@@ -24,16 +24,20 @@ const useStyles = makeStyles({
   },
 
   onScrollClassName: {
-    background: '#FFFFFF',
+    background: '#002B2B',
     width: '100%',
     height: '6.6rem',
-    color: '#002B2B',
+
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     zIndex: 10,
     transition: 'all 0.6s ease-in-out',
+
+    '& h2': {
+      color: '#FFFFFF',
+    },
   },
 
   navMenu: {
@@ -132,7 +136,7 @@ const useStyles = makeStyles({
   heroPage: {
     marginBottom: 20,
     textAlign: 'center',
-    backgroundColor: 'rgba(182, 242, 109, 0.2)',
+    backgroundColor: 'rgba(182, 242, 109, 0.3)',
 
     width: '100%',
     minHeight: '100vh',
@@ -206,7 +210,8 @@ const useStyles = makeStyles({
   },
 
   categorySectionHeader: {
-    background: 'rgba(77, 115, 50, 0.2)',
+    /* background: 'rgba(77, 115, 50, 0.2)', */
+    backgroundColor: 'rgba(182, 242, 109, 1)',
     height: '100%',
     padding: '1rem 0rem',
     borderRadius: 5,
@@ -451,6 +456,34 @@ const useStyles = makeStyles({
     '& p:hover': {
       fontWeight: 'bold',
       color: '#002B2B',
+    },
+  },
+
+  infoPageStyles: {
+    margin: '2rem 0',
+    width: '100%',
+  },
+
+  infoPageGrids: {
+    marginTop: '8rem',
+    paddingTop: '8rem',
+    textAlign: 'center',
+    padding: ' 2rem 2rem',
+    width: '90%',
+    margin: '0 auto',
+    borderTop: '2px solid #AEB3B9',
+
+    '& div p:first-child:first-of-type': {
+      fontWeight: 'bold',
+      color: '#AEB3B9',
+    },
+
+    '& div h2:first-of-type': {
+      display: 'inline-block',
+      fontWeight: 'bold',
+      borderBottom: '4px solid #01C790',
+      paddingBottom: '2rem',
+      marginBottom: '2rem',
     },
   },
 });
