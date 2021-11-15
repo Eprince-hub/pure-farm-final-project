@@ -121,23 +121,10 @@
 }
 
 /* Custom and personal css module styles */
-/*
-.loginLayoutStyle {
-  position: relative;
+
+.heroPageWrapper {
+  background-image: url('../public/images/heropage.svg');
+  background-size: 100%;
+  background-position: bottom center;
   background-repeat: no-repeat;
-  background-size: auto;
 }
-
-.loginLayoutStyle::before {
-  content: '';
-  background-image: url('../public/images/login-background.jpg');
-
-  background-size: cover;
-  background-position: bottom;
-  position: absolute;
-  top: 155px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 0.45;
-} */

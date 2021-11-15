@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   navbar: {
-    backgroundColor: '#4D5056',
+    backgroundColor: '#002B2B',
     height: 50,
     '& a': {
       color: '#002B2B',
@@ -15,8 +15,24 @@ const useStyles = makeStyles({
   lowerNavigation: {
     width: '100%',
     height: '6.6rem',
-    backgroundColor: '#FFFFFF',
     color: '#002B2B',
+    position: 'fixed',
+    left: 0,
+    right: 0,
+    transition: 'all 0.6s ease',
+  },
+
+  onScrollClassName: {
+    background: '#FFFFFF',
+    width: '100%',
+    height: '6.6rem',
+    color: '#002B2B',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+    transition: 'all 0.6s ease-in-out',
   },
 
   navMenu: {
@@ -25,7 +41,6 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: '#FFFFFF',
     color: '#002B2B',
 
     '@media (max-width: 1230px)': {
@@ -40,15 +55,13 @@ const useStyles = makeStyles({
   },
 
   logo: {
-    /*  maxWidth: 160, */
-    width: 260,
+    maxWidth: 260,
   },
 
-  searchBar: {
+  /*  searchBar: {
     '& input': {
-      backgroundColor: 'red',
     },
-  },
+  }, */
 
   navbarButtons: {
     width: '40%',
@@ -62,6 +75,10 @@ const useStyles = makeStyles({
       color: '#002B2B',
       fontFamily: 'Oswald',
     },
+  },
+
+  disableSwitch: {
+    display: 'none',
   },
 
   flex: {
@@ -114,8 +131,10 @@ const useStyles = makeStyles({
   heroPage: {
     marginBottom: 20,
     textAlign: 'center',
-    backgroundColor: 'rgba(182, 242, 109, 0.3)',
+    backgroundColor: 'rgba(182, 242, 109, 0.2)',
+
     width: '100%',
+    minHeight: '100vh',
 
     display: 'flex',
     alignItems: 'center',

@@ -2,7 +2,7 @@ import { Button, Link, Menu, MenuItem, Typography } from '@material-ui/core';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import closeHamburgerMenu from '../public/images/logos/closeHamburgerMenu.svg';
 import hamburgerMenu from '../public/images/logos/hamburgerMenu.png';
 import headerLogo from '../public/images/logos/header-logo.png';
@@ -32,8 +32,31 @@ export default function Header() {
     }
   };
 
+  // change navbar background color on scroll
+  const [navbar, setNavbar] = useState(false);
+
+  useEffect(() => {
+    const changeBackground = () => {
+      if (window === undefined) {
+        return;
+      } else {
+        if (window.scrollY >= 50) {
+          setNavbar(true);
+        } else {
+          setNavbar(false);
+        }
+      }
+    };
+
+    changeBackground();
+
+    window.addEventListener('scroll', changeBackground);
+  }, [navbar]);
+
   return (
-    <header className={classes.lowerNavigation}>
+    <header
+      className={navbar ? classes.onScrollClassName : classes.lowerNavigation}
+    >
       <nav className={classes.navMenu}>
         <div className={classes.logo}>
           <NextLink href="/" passHref>
@@ -41,10 +64,6 @@ export default function Header() {
               <Image src={headerLogo} alt="Pure Farm Logo"></Image>
             </Link>
           </NextLink>
-        </div>
-
-        <div className={classes.searchBar}>
-          <input type="search" />
         </div>
 
         <div className={classes.navbarButtons}>
@@ -189,6 +208,10 @@ export default function Header() {
                 BLOG
               </Typography>
             </MenuItem>
+
+            <div className={classes.searchBar}>
+              <input type="search" />
+            </div>
           </Menu>
         </div>
       </div>

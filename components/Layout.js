@@ -160,6 +160,7 @@ export default function Layout({
 
             <div className={classes.flex}>
               <Switch
+                className={classes.disableSwitch}
                 checked={darkMode} /*{
                   darkModeState
                 }  I changed back to the old value that was not persisting the toggle */
@@ -279,7 +280,7 @@ export default function Layout({
           </Toolbar>
         </AppBar>
 
-        <Header />
+        {/* <Header /> */}
 
         <Container className={classes.main} maxWidth={false}>
           {children}

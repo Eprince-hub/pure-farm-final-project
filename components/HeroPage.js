@@ -14,36 +14,44 @@ import {
 import Image from 'next/image';
 import NextLink from 'next/link';
 import heroPagePic from '../public/images/heroPagePic.png';
+import styles from '../styles/Home.module.css';
 import useStyles from '../utils/styles';
+import Header from './Header';
 
 export default function HeroPage() {
   const classes = useStyles();
 
   return (
-    <section className={classes.heroPage}>
-      <Grid container spacing={3}>
-        <Grid item md={6} xs={12}>
-          <div className={classes.heroPageHeader}>
-            <Typography variant="h1" component="h1">
-              SEASONAL FARM PRODUCE FOR HEALTHY LIVING
-            </Typography>
+    <div className={styles.heroPageWrapper}>
+      <Header />
+      <section className={classes.heroPage}>
+        <Grid container spacing={3}>
+          <Grid item md={6} xs={12}>
+            <div className={classes.heroPageHeader}>
+              <Typography variant="h1" component="h1">
+                SEASONAL FARM PRODUCE FOR HEALTHY LIVING
+              </Typography>
 
-            <NextLink href="/market" passHref>
-              <Link>
-                <Typography variant="h2" component="h2">
-                  SHOP NOW
-                </Typography>
-              </Link>
-            </NextLink>
-          </div>
-        </Grid>
+              <NextLink href="/market" passHref>
+                <Link>
+                  <Typography variant="h2" component="h2">
+                    SHOP NOW
+                  </Typography>
+                </Link>
+              </NextLink>
+            </div>
+          </Grid>
 
-        <Grid item md={6} xs={12}>
-          <div className={classes.heroImage}>
-            <Image src={heroPagePic} alt="Some vegetables in a basket"></Image>
-          </div>
+          <Grid item md={6} xs={12}>
+            <div className={classes.heroImage}>
+              {/*        <Image
+                src={heroPagePic}
+                alt="Some vegetables in a basket"
+              ></Image> */}
+            </div>
+          </Grid>
         </Grid>
-      </Grid>
-    </section>
+      </section>
+    </div>
   );
 }
