@@ -32,6 +32,16 @@ export default function HeroPage() {
                 SEASONAL FARM PRODUCE FOR HEALTHY LIVING
               </Typography>
 
+              <Typography component="p" variant="p">
+                When you picture yourself a traditional Austrian farm produce
+                lover in {/* it's */} it classic, idyllic perception, this is
+                what Pure Farm actually looks like! Charming nature that
+                surrounds all of our farmers farming facilities and methods,
+                making sure that every single item is within the season is what
+                inspires and refreshes our website guests. When it is out of
+                season then it is out of Pure Farm.
+              </Typography>
+
               <NextLink href="/market" passHref>
                 <Link>
                   <Typography variant="h2" component="h2">

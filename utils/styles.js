@@ -4,6 +4,7 @@ const useStyles = makeStyles({
   navbar: {
     backgroundColor: '#002B2B',
     height: 50,
+    maxWidth: '100vw',
     '& a': {
       color: '#002B2B',
       marginRight: 10,
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
     top: 0,
     left: 0,
     right: 0,
-    zIndex: 1,
+    zIndex: 10,
     transition: 'all 0.6s ease-in-out',
   },
 
@@ -143,25 +144,40 @@ const useStyles = makeStyles({
 
   heroPageHeader: {
     color: '#002B2B',
-    marginTop: '5rem',
     display: 'flex',
     flexDirection: 'column',
     justContent: 'center',
     alignItems: 'center',
     padding: '1rem',
+    width: '40rem',
+    margin: '0 0 0 2rem',
 
     '& h1': {
-      fontSize: '480%',
+      fontSize: '380%',
 
       /* fontSize: 'calc(50%  5rem)', */
     },
 
-    '& a': {
+    '& p': {
+      marginBottom: '1rem',
+      lineHeight: 1.8,
+      textAlign: 'left',
+      padding: '1rem',
+      fontSize: '1rem',
       color: '#002B2B',
+    },
+
+    '& a': {
+      color: '#FFC745 ',
 
       borderRadius: 16,
       padding: '0rem 1.8rem',
-      background: '#FFC745',
+      background: '#002B2B',
+    },
+
+    '@media (max-width: 870px)': {
+      maxWidth: '100%',
+      margin: '0',
     },
   },
 
@@ -230,7 +246,7 @@ const useStyles = makeStyles({
   },
 
   loginPageStyle: {
-    width: '100%',
+    maxWidth: '60%',
     height: '60vh',
     display: 'flex',
     justifyContent: 'center',
@@ -241,7 +257,15 @@ const useStyles = makeStyles({
     marginTop: '2rem',
     padding: '0 1rem',
     borderRadius: 40,
+    margin: '0 auto',
+    marginTop: '10%',
     filter: 'drop-shadow(0 0 0.75rem green)',
+
+    '@media (max-width: 960px)': {
+      height: '160vh',
+      maxWidth: '90%',
+      marginTop: '20%',
+    },
   },
 
   loginGrid: {
@@ -374,6 +398,8 @@ const useStyles = makeStyles({
 
   mobileDisplayNav: {
     display: 'flex',
+    right: 0,
+    left: 0,
   },
 
   mobileLogo: {

@@ -280,7 +280,7 @@ export default function Layout({
           </Toolbar>
         </AppBar>
 
-        {/* <Header /> */}
+        <Header />
 
         <Container className={classes.main} maxWidth={false}>
           {children}
