@@ -204,9 +204,7 @@ const useStyles = makeStyles({
 
   categorySection: {
     width: '100%',
-    /* padding: '0rem 1rem', */
     textAlign: 'center',
-    margin: '2rem 0rem',
   },
 
   categorySectionHeader: {
@@ -228,10 +226,16 @@ const useStyles = makeStyles({
     },
   },
 
-  homePageProductsStyle: {
-    '& h3': {
-      marginBottom: '1.2rem',
-    },
+  productPageHeader: {
+    marginBottom: '1.2rem',
+    fontWeight: 'bold',
+    color: '#002B2B',
+    fontSize: '2rem',
+  },
+
+  productDisplayContainer: {
+    width: '80%',
+    margin: '0 auto',
   },
 
   form: {
@@ -485,6 +489,13 @@ const useStyles = makeStyles({
       paddingBottom: '2rem',
       marginBottom: '2rem',
     },
+  },
+
+  farmersInfo: {
+    width: '60%',
+    minHeight: '60vh',
+    margin: '0 auto',
+    textAlign: 'center',
   },
 });
 export default useStyles;

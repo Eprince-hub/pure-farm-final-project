@@ -11,8 +11,11 @@ import vegetables from '../public/images/utilityImages/vegetables.webp';
 import styles from '../styles/InfoPage.module.css';
 import useStyles from '../utils/styles';
 
-export default function LandingPageInfoDisplay() {
+export default function LandingPageInfoDisplay(props) {
   const classes = useStyles();
+
+  const { farmers } = props;
+
   return (
     <section className={classes.infoPageStyles}>
       <div className={classes.infoPageGrids}>
@@ -207,6 +210,23 @@ export default function LandingPageInfoDisplay() {
             </Grid>
           </Grid>
         </div>
+      </div>
+
+      <div className={classes.farmersInfo}>
+        <Typography component="h3" variant="h3">
+          Meet Our Farmers
+        </Typography>
+
+        <Grid container spacing={3}>
+          {farmers.map((farmer) => (
+            <Grid item md={4} xs={12} key={farmer._id}>
+              <div>Image coming Soon</div>
+              <Typography component="h3" variant="h3">
+                {farmer.name}
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
       </div>
     </section>
   );

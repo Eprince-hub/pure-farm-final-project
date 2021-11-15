@@ -70,11 +70,15 @@ export default function Market(props) {
           {/*  <CategoryNavigation /> */}
         </div>
         <div>
-          <Typography variant="h3" align="center">
+          <Typography
+            variant="h3"
+            align="center"
+            className={classes.productPageHeader}
+          >
             Fresh From Farm
           </Typography>
         </div>
-        <div>
+        <div className={classes.productDisplayContainer}>
           <Grid container spacing={3}>
             {products.map((product) => (
               <Grid item md={4} key={product.id}>

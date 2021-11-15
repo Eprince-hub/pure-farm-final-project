@@ -37,6 +37,9 @@
   margin-top: 1rem;
   color: #ffae33;
   transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .infoPageParallax div div a:hover {

@@ -17,6 +17,7 @@ import HeroPage from '../components/HeroPage';
 import LandingPageInfoDisplay from '../components/LandingPageInfoDisplay';
 import Layout from '../components/Layout';
 import Product from '../models/Product';
+import User from '../models/user';
 // import data from '../utils/data';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
@@ -33,6 +34,7 @@ export default function Home(props) {
 
   // getting the react context from useContext
   const { state, dispatch } = useContext(Store);
+
   // function for adding item to the cart
   const addToCartHandler = async (product) => {
     // Getting the current quantity of the item
@@ -71,11 +73,15 @@ export default function Home(props) {
           <CategoryNavigation />
         </div>
         <div>
-          <Typography variant="h3" align="center">
+          <Typography
+            variant="h3"
+            align="center"
+            className={classes.productPageHeader}
+          >
             Fresh From Farm
           </Typography>
         </div>
-        <div>
+        <div className={classes.productDisplayContainer}>
           <Grid container spacing={3}>
             {products.map((product) => (
               <Grid item md={4} key={product.id}>
@@ -109,7 +115,7 @@ export default function Home(props) {
           </Grid>
         </div>
 
-        <LandingPageInfoDisplay />
+        <LandingPageInfoDisplay farmers={props.farmers ? props.farmers : []} />
       </section>
     </Layout>
   );
@@ -129,6 +135,8 @@ export async function getServerSideProps() {
   // Mongoose document from the database.
   const products = await Product.find({}).lean();
 
+  const farmers = await User.find({ isAdmin: true }).lean();
+
   // disconnect from the database
   await db.disconnect();
 
@@ -139,6 +147,7 @@ export async function getServerSideProps() {
       // this stops the id errors from this function
       // because of the mongo document model.
       products: products.map(db.convertDocToObj),
+      farmers: farmers.map(db.convertDocToObj),
     },
   };
 }
