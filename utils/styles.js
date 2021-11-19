@@ -160,6 +160,10 @@ const useStyles = makeStyles({
       fontSize: '380%',
 
       /* fontSize: 'calc(50%  5rem)', */
+
+      '@media (max-width: 870px)': {
+        fontSize: '6vw',
+      },
     },
 
     '& p': {
@@ -496,6 +500,10 @@ const useStyles = makeStyles({
     minHeight: '60vh',
     margin: '0 auto',
     textAlign: 'center',
+
+    '@media (max-width: 870px)': {
+      width: '80%',
+    },
   },
 });
 export default useStyles;
