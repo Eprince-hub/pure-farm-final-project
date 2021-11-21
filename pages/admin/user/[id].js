@@ -255,7 +255,7 @@ function UserEdit({ params }) {
 
                       <ListItem>
                         <FormControlLabel
-                          label="Farmer"
+                          label={isAdmin ? 'Farmer' : 'User'}
                           control={
                             <Checkbox
                               onClick={(event) =>

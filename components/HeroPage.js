@@ -1,19 +1,5 @@
-import {
-  AppBar,
-  Badge,
-  Container,
-  createMuiTheme,
-  CssBaseline,
-  Grid,
-  Link,
-  Switch,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
-import Image from 'next/image';
+import { Grid, Link, Typography } from '@material-ui/core';
 import NextLink from 'next/link';
-import heroPagePic from '../public/images/heroPagePic.png';
 import styles from '../styles/Home.module.css';
 import useStyles from '../utils/styles';
 import Header from './Header';
@@ -52,14 +38,14 @@ export default function HeroPage() {
             </div>
           </Grid>
 
-          <Grid item md={6} xs={12}>
+          {/*           <Grid item md={6} xs={12}>
             <div className={classes.heroImage}>
-              {/*        <Image
+                    <Image
                 src={heroPagePic}
                 alt="Some vegetables in a basket"
-              ></Image> */}
+              ></Image>
             </div>
-          </Grid>
+          </Grid> */}
         </Grid>
       </section>
     </div>
