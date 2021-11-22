@@ -45,11 +45,6 @@ function PlaceOrder() {
     cart: { cartItems, shippingAddress, paymentMethod },
   } = state;
 
-  // getting undefined from the paymentMethod here, value present in the cookies but not here
-  console.log('States: ', state);
-
-  console.log('payment method from placeorder: ', paymentMethod);
-
   // Prices calculations
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // convert to 2 decimal point(123.4567) to (123.46)
 
@@ -71,10 +66,6 @@ function PlaceOrder() {
   useEffect(() => {
     if (!paymentMethod) {
       router.push('/payment');
-
-      console.log('Payment method not available');
-    } else {
-      console.log('Payment method is ready: ', paymentMethod);
     }
 
     // redirect back to the cart screen if the order have been placed and cart items deleted
@@ -86,9 +77,6 @@ function PlaceOrder() {
   // Function and setups that handles the place order action
   const [loading, setLoading] = useState(false);
   const { closeSnackbar, enqueueSnackbar } = useSnackbar();
-
-  console.log('User', userInfo);
-  console.log('cart', cartItems);
 
   // this functions sends an api call to the order api at the backend to create the order
   // in the database
@@ -135,8 +123,6 @@ function PlaceOrder() {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
-
-  console.log('Cart Items: ', cartItems);
 
   return (
     <Layout title="Place Order">

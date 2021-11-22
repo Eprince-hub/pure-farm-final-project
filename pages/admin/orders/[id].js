@@ -14,17 +14,15 @@ import {
   TableRow,
   Typography,
 } from '@material-ui/core';
-import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import React, { useContext, useEffect, useReducer, useState } from 'react';
-// import Layout from '../../components/Layout';
+import React, { useContext, useEffect, useReducer } from 'react';
 import Layout from '../../../components/Layout';
-// import { getError } from '../../utils/error';
 import { getError } from '../../../utils/error';
 import { Store } from '../../../utils/Store';
 import useStyles from '../../../utils/styles';
@@ -196,66 +194,9 @@ function OrderDeliver({ params }) {
     }
   }, [order, successPay, successDeliver]);
 
-  const { closeSnackbar, enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
-  console.log('User', userInfo);
-  console.log('cart', orderItems);
-
-  // functions that handles the paypal payment actions
-
-  // function creates a payment order to paypal
-  function createOrder(data, actions) {
-    // call action from paypal to create an order
-
-    return actions.order
-      .create({
-        // create functions returns a promise
-        purchase_units: [
-          {
-            amount: { value: totalPrice },
-          },
-        ],
-      })
-      .then((orderID) => {
-        return orderID;
-      }); // orderID here is created by paypal
-  }
-
-  // functions happens on a successful payment on paypal
-  function onApprove(data, actions) {
-    return actions.order.capture().then(async function (details) {
-      try {
-        // do something
-        dispatch({ type: 'PAY_REQUEST' });
-
-        // ajax request to update the order information on the backend
-        const { data } = await axios.put(
-          `/api/orders/${order._id}/pay`,
-          details,
-          {
-            headers: { authorization: `Bearer ${userInfo.token}` },
-          },
-        );
-
-        dispatch({ type: 'PAY_SUCCESS', payload: data });
-        enqueueSnackbar(`The total of €${totalPrice} Paid`, {
-          variant: 'success',
-        });
-        // enqueueSnackbar('Order is paid', { variant: 'success' });
-      } catch (err) {
-        dispatch({ type: 'PAY_FAIL', payload: getError(err) });
-        enqueueSnackbar(getError(err), { variant: 'error' }); // getting this error
-        console.log('The error is from here: ', err);
-      }
-    });
-  }
-
-  // functions that handles an error from the paypal payment
-  function onError(err) {
-    enqueueSnackbar(getError(err), { variant: 'error' });
-  }
-
-  // function for deliveryHandler
+  // function for controlling the delivery status of the orders
   async function deliverOrderHandler() {
     try {
       // do something

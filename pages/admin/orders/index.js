@@ -22,7 +22,6 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Bar } from 'react-chartjs-2';
-// import Layout from '../../components/Layout';
 import Layout from '../../../components/Layout';
 import { getError } from '../../../utils/error';
 import { Store } from '../../../utils/Store';

@@ -17,25 +17,6 @@ handler.use(isAuth, isSiteAdmin);
 
 handler.get(async (req, res) => {
   await db.connect();
-  /*
-// this is just to test if i can get an information based on some information i have in the database
-  // const valueFind = req.user._id; // testing out the querries for getting information for a single person
-
-  // count all the Order document record in the database
-  const ordersCount = await Order.countDocuments({
-    user: {
-      $in: [valueFind],
-    },
-  }); // this would count all the records in the order collection
-
-  // count all the products document record in the database
-  const productsCount = await Product.countDocuments({
-    farm: {
-      $in: ['farmer two'],
-    },
-  }); */
-
-  // ###############################
 
   // count all the Order document record in the database
   const ordersCount = await Order.countDocuments();

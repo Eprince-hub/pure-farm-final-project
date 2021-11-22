@@ -160,9 +160,6 @@ function UserEdit({ params }) {
     }
   };
 
-  // The above submit handler function is also handling the update of the user information after it has been created from the users.js folder with createUserHandler on that page.
-  // i will try to make it better by creating a separate user creation page where the farmer can create their user from scratch
-
   return (
     <Layout title={`Edit User ${userId}`}>
       <section>

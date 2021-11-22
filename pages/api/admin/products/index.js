@@ -18,16 +18,6 @@ handler.get(async (req, res) => {
   res.send(products);
 });
 
-/*
-
-  const match = await Product.find({}).populate('user'); // get the user
-    console.log('checking a product that matches this farmer: ', match);
-
-*/
-// #############################################################
-// #############################################################
-// #############################################################
-
 // this handler creates a new product with some sample information and user can update those information and personalize it.
 handler.post(async (req, res) => {
   await db.connect();

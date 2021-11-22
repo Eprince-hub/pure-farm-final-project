@@ -13,19 +13,19 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@material-ui/core'; // YES
+} from '@material-ui/core';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import axios from 'axios'; // YES
-import dynamic from 'next/dynamic'; // YES
-import Image from 'next/image'; // YES
-import NextLink from 'next/link'; // YES
-import { useRouter } from 'next/router'; // YES
-import { useSnackbar } from 'notistack'; // YES
-import React, { useContext, useEffect, useReducer, useState } from 'react'; // YES
-import Layout from '../../components/Layout'; // YES
-import { getError } from '../../utils/error'; // YES
-import { Store } from '../../utils/Store'; // YES
-import useStyles from '../../utils/styles'; // YES
+import axios from 'axios';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
+import Layout from '../../components/Layout';
+import { getError } from '../../utils/error';
+import { Store } from '../../utils/Store';
+import useStyles from '../../utils/styles';
 
 // defining the reducer function for the react useReducer hook with each cases
 function reducer(state, action) {
@@ -51,24 +51,6 @@ function reducer(state, action) {
     case 'PAY_RESET':
       return { ...state, loadingPay: false, successPay: false, errorPay: '' };
 
-    // The delivery status cases
-
-    /*    case 'DELIVER_REQUEST':
-      return { ...state, loadingDeliver: true };
-
-    case 'DELIVER_SUCCESS':
-      return { ...state, loadingDeliver: false, successDeliver: true };
-
-    case 'DELIVER_FAIL':
-      return { ...state, loadingDeliver: false, errorDeliver: action.payload };
-
-    case 'DELIVER_RESET':
-      return {
-        ...state,
-        loadingDeliver: false,
-        successDeliver: false,
-        errorDeliver: '',
-      }; */
     default:
       state;
   }
@@ -92,11 +74,6 @@ function Order({ params }) {
 
   // Getting the userInfo from state
   const { userInfo } = state;
-
-  // getting undefined from the paymentMethod here, when refreshed even though value present in the cookies but not here
-  // console.log('States: ', state);
-
-  // console.log('payment method from order: ', paymentMethod);
 
   // defining the react reducer => parameters for useReducer: reducer function and default values
   const [
@@ -192,12 +169,9 @@ function Order({ params }) {
 
       loadPaypalScript();
     }
-  }, [order, successPay /* , successDeliver */]);
+  }, [order, successPay]);
 
-  const { closeSnackbar, enqueueSnackbar } = useSnackbar();
-
-  console.log('User', userInfo);
-  console.log('cart', orderItems);
+  const { enqueueSnackbar } = useSnackbar();
 
   // functions that handles the paypal payment actions
 
@@ -243,7 +217,6 @@ function Order({ params }) {
       } catch (err) {
         dispatch({ type: 'PAY_FAIL', payload: getError(err) });
         enqueueSnackbar(getError(err), { variant: 'error' }); // getting this error
-        console.log('The error is from here: ', err);
       }
     });
   }
@@ -252,37 +225,6 @@ function Order({ params }) {
   function onError(err) {
     enqueueSnackbar(getError(err), { variant: 'error' });
   }
-
-  // function for deliveryHandler
-
-  /*
-  async function deliverOrderHandler() {
-    try {
-      // do something
-      dispatch({ type: 'DELIVER_REQUEST' });
-
-      // ajax request to update the order information on the backend
-      const { data } = await axios.put(
-        `/api/orders/${order._id}/deliver`,
-        {},
-        {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        },
-      );
-
-      dispatch({ type: 'DELIVER_SUCCESS', payload: data });
-      enqueueSnackbar('The Order Has Been Delivered', {
-        variant: 'success',
-      });
-      // enqueueSnackbar('Order is paid', { variant: 'success' });
-    } catch (err) {
-      dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
-      enqueueSnackbar(getError(err), { variant: 'error' });
-    }
-  }
- */
-
-  console.log('Order items: ', orderItems);
 
   return (
     <Layout title={`Oder Detail Id: ${orderId}`}>
