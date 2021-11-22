@@ -42,6 +42,7 @@ handler.put(async (req, res) => {
         .replaceAll(' ', '-') +
       '-' +
       Math.random();
+    // this is giving me an error on the deployed version, I have to check it and see why.
 
     // populate the product information with the new information coming from the api request
     product.name = req.body.name;
