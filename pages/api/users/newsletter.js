@@ -1,5 +1,5 @@
 import nc from 'next-connect';
-import NewsLetter from '../../../models/newsLetter';
+import NewsLetter from '../../../models/NewsLetter';
 import db from '../../../utils/db';
 
 const handler = nc();
