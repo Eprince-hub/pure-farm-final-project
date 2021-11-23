@@ -27,6 +27,7 @@ handler.post(async (req, res) => {
     // creating the reference to the user that created the product
     /* ...req.body, */
     // farmer: req.user._id, // comment out, checking errors
+    // user: mongoose.Types.ObjectId(req.user._id), Import mongoose
 
     // All needed fields for the product being created
 

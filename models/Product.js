@@ -1,12 +1,29 @@
 import mongoose from 'mongoose';
 
+// The schema for the reviews
+const reviewSchema = new mongoose.Schema(
+  {
+    // connecting the review with the person that created it.
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+
+    // user information
+    name: { type: String, required: true },
+    rating: { type: Number, default: 0 },
+    comment: { type: String, required: true },
+  },
+  {
+    // this creates the time line with date created and updated.
+    timestamps: true,
+  },
+);
+
 // This is the database model for our products
 
 // creating the product schema using mongoose
 const productSchema = new mongoose.Schema(
   {
     // This is the schema that connected the user to the product they are creating
-    // farmer: {
+    // user: {
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: 'User',
     //   required: true,
@@ -31,6 +48,7 @@ const productSchema = new mongoose.Schema(
     dietType: { type: String, required: true },
     packaging: { type: String, required: true },
     recipe: { type: String, required: true },
+    reviews: [reviewSchema],
   },
   {
     // this creates the time line with date created and updated.

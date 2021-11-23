@@ -8,6 +8,7 @@ import {
   Grid,
   Typography,
 } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 import axios from 'axios';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -90,6 +91,8 @@ export default function Market(props) {
                       ></CardMedia>
                       <CardContent>
                         <Typography>{product.name}</Typography>
+
+                        <Rating value={product.rating} readOnly></Rating>
                       </CardContent>
                     </CardActionArea>
                   </NextLink>
@@ -126,7 +129,7 @@ export async function getServerSideProps() {
   // the data back to a javascript object just like
   // JSON.stringify because mongoose always returns
   // Mongoose document from the database.
-  const products = await Product.find({}).lean();
+  const products = await Product.find({}, '-reviews').lean();
 
   // disconnect from the database
   await db.disconnect();

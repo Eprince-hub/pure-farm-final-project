@@ -505,5 +505,27 @@ const useStyles = makeStyles({
       width: '80%',
     },
   },
+
+  reviewForm: {
+    maxWidth: 800,
+    width: '100%',
+  },
+
+  reviewItem: {
+    marginRight: '1rem',
+    borderRight: '1px #808080 solid',
+    paddingRight: '1rem',
+  },
+
+  reviewsContainer: {
+    marginTop: '2rem',
+    maxWidth: '60%',
+    margin: '0 auto',
+  },
+
+  alignItemsCenter: {
+    textAlign: 'center',
+    /* not working yet */
+  },
 });
 export default useStyles;

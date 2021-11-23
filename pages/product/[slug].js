@@ -2,20 +2,25 @@ import {
   Button,
   Card,
   CardContent,
+  CircularProgress,
   Grid,
   Link,
   List,
   ListItem,
+  TextField,
   Typography,
 } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
+import { useSnackbar } from 'notistack';
+import React, { useContext, useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
 import Product from '../../models/Product';
 import db from '../../utils/db';
+import { getError } from '../../utils/error';
 import { Store } from '../../utils/Store';
 import useStyles from '../../utils/styles';
 
@@ -27,10 +32,63 @@ export default function ProductScreen(props) {
   // getting the react context from useContext
   const { state, dispatch } = useContext(Store);
 
+  const { userInfo } = state;
+
   // getting the product from the props from getServerSideProps
   const { product } = props;
 
   const classes = useStyles();
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  // reviews state variables
+  const [reviews, setReviews] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // function that handles the review submit
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      await axios.post(
+        `/api/products/${product._id}/reviews`,
+        { rating, comment },
+        {
+          headers: {
+            authorization: `Bearer ${userInfo.token}`,
+          },
+        },
+      );
+
+      setLoading(false);
+      enqueueSnackbar('You submitted a Review', { variant: 'success' });
+
+      fetchReviews();
+    } catch (err) {
+      setLoading(false);
+
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+
+  // function that fetches the reviews information from the backend api
+  const fetchReviews = async () => {
+    try {
+      const { data } = await axios.get(`/api/products/${product._id}/reviews`);
+
+      setReviews(data);
+    } catch (err) {
+      // fetch failed?
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
   if (!product) {
     return <div>Sorry, The Product Is Not Found</div>;
@@ -101,9 +159,12 @@ export default function ProductScreen(props) {
                 <Typography>Farm: {product.farmerName}</Typography>
               </ListItem>
               <ListItem>
-                <Typography>
-                  Rating: {product.rating} stars ({product.numReviews} reviews)
-                </Typography>
+                <Rating value={product.rating} readOnly></Rating>
+                <Link href="#reviews">
+                  <Typography>
+                    (This product has {product.numReviews} reviews)
+                  </Typography>
+                </Link>
               </ListItem>
               <ListItem>
                 <Typography> Description: {product.description}</Typography>
@@ -295,6 +356,100 @@ export default function ProductScreen(props) {
             </Grid>
           </Grid>
         </div>
+
+        <div className={classes.reviewsContainer}>
+          <List className={classes.alignItemsCenter}>
+            <ListItem>
+              <Typography
+                className={classes.alignItemsCenter}
+                name="reviews"
+                id="reviews"
+                variant="h2"
+                component="h2"
+              >
+                Customer Reviews
+              </Typography>
+            </ListItem>
+
+            {reviews.length === 0 && (
+              <ListItem>No Reviews For this Product</ListItem>
+            )}
+            {reviews.map((review) => (
+              <ListItem key={review._id}>
+                <Grid container>
+                  <Grid item className={classes.reviewItem}>
+                    <Typography>
+                      <strong>{review.name}</strong>
+                    </Typography>
+                    <Typography>{review.createdAt.substring(0, 10)}</Typography>
+                  </Grid>
+
+                  <Grid item className={classes.reviewItem}>
+                    <Rating value={review.rating} readOnly></Rating>
+                    <Typography>{review.comment}</Typography>
+                  </Grid>
+                </Grid>
+              </ListItem>
+            ))}
+
+            <ListItem>
+              {userInfo ? (
+                <form onSubmit={submitHandler} className={classes.reviewForm}>
+                  <List>
+                    <ListItem>
+                      <Typography variant="h2" component="h2">
+                        Let Others Know What You Think
+                      </Typography>
+                    </ListItem>
+
+                    <ListItem>
+                      <TextField
+                        multiline
+                        variant="outlined"
+                        fullWidth
+                        name="review"
+                        label="Enter Your Comment Here"
+                        value={comment}
+                        onChange={(event) => setComment(event.target.value)}
+                      >
+                        Let Others Know What You Think
+                      </TextField>
+                    </ListItem>
+
+                    <ListItem>
+                      <Rating
+                        name="simple-controlled"
+                        value={rating}
+                        onChange={(event) => setRating(event.target.value)}
+                      ></Rating>
+                    </ListItem>
+
+                    <ListItem>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="secondary"
+                      >
+                        Submit
+                      </Button>
+
+                      {loading && <CircularProgress />}
+                    </ListItem>
+                  </List>
+                </form>
+              ) : (
+                <Typography variant="h2" component="h2">
+                  You need to be logged in to make a comment
+                  {''}
+                  <Link href={`/login?redirect=/product/${product.slug}`}>
+                    Login Here
+                  </Link>
+                </Typography>
+              )}
+            </ListItem>
+          </List>
+        </div>
       </section>
     </Layout>
   );
@@ -318,7 +473,7 @@ export async function getServerSideProps(context) {
   // the data back to a javascript object just like
   // JSON.stringify because mongoose always returns
   // Mongoose document from the database.
-  const product = await Product.findOne({ slug }).lean();
+  const product = await Product.findOne({ slug }, '-reviews').lean(); // remove reviews to fix serialization error
 
   // disconnect from the database
   await db.disconnect();
