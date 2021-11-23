@@ -426,6 +426,14 @@ const useStyles = makeStyles({
     },
   },
 
+  mobileSidebar: {
+    display: 'none',
+
+    '@media (max-width: 870px)': {
+      display: 'block',
+    },
+  },
+
   hamburgerMenuContainer: {
     textAlign: 'right',
     margin: '0 0 0 auto',
@@ -526,6 +534,18 @@ const useStyles = makeStyles({
   alignItemsCenter: {
     textAlign: 'center',
     /* not working yet */
+  },
+
+  navbarButton: {
+    color: '#002B2B',
+    width: 40,
+    height: 40,
+  },
+
+  navbarButtonOnScroll: {
+    color: '#FFFFFF',
+    width: 40,
+    height: 40,
   },
 });
 export default useStyles;

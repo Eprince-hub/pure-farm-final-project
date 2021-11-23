@@ -3,7 +3,7 @@ import {
   Badge,
   Button,
   Container,
-  createMuiTheme,
+  createTheme,
   CssBaseline,
   Link,
   Menu,
@@ -11,7 +11,6 @@ import {
   Switch,
   ThemeProvider,
   Toolbar,
-  Typography,
 } from '@material-ui/core';
 import Cookies from 'js-cookie';
 import Head from 'next/head';
@@ -42,7 +41,7 @@ export default function Layout({
   const { darkMode, cart, userInfo } = state;
 
   // creating a material UI theme to customize my application
-  const theme = createMuiTheme({
+  const theme = createTheme({
     // this was changed to createTheme as advised but it throws an error
     typography: {
       h1: {
@@ -77,16 +76,6 @@ export default function Layout({
       },
     },
   });
-
-  // #############################################################################
-  // fixing the darkmode toggle unstable error with the code below: START
-  // const [darkModeState, setDarkModeState] = useState(false);
-
-  // useEffect(() => {
-  //   setDarkModeState(darkMode);
-  // }, []);
-
-  // #############################################################################
 
   // Using the classes and styles from Material UI
   const classes = useStyles();
@@ -155,16 +144,8 @@ export default function Layout({
         {/* Upper Navigation (Cart, login, register) */}
         <AppBar position="static" className={classes.navbar}>
           <Toolbar>
-            <NextLink href="/" passHref>
-              <Link>
-                <Typography className={classes.brand}>
-                  {/* Pure Farm */}
-                </Typography>
-              </Link>
-            </NextLink>
-
             <div className={classes.grow}></div>
-
+            {/* push menu items to right */}
             <div className={classes.flex}>
               <Switch
                 className={classes.disableSwitch}

@@ -1,13 +1,31 @@
-import { Button, Link, Menu, MenuItem, Typography } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  IconButton,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Typography,
+} from '@material-ui/core';
+import CancelIcon from '@material-ui/icons/cancel';
+import MenuIcon from '@material-ui/icons/Menu';
+import axios from 'axios';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import closeHamburgerMenu from '../public/images/logos/closeHamburgerMenu.svg';
 import footerLogo from '../public/images/logos/footer-logo.png';
 import hamburgerMenu from '../public/images/logos/hamburgerMenu.png';
 import hamburgerWhite from '../public/images/logos/hamburgerWhite.png';
 import headerLogo from '../public/images/logos/header-logo.png';
+import { getError } from '../utils/error';
 import useStyles from '../utils/styles';
 
 export default function Header() {
@@ -55,26 +73,115 @@ export default function Header() {
     window.addEventListener('scroll', changeBackground);
   }, [navbar]);
 
+  // search sidebar implementation
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  // function that handles opening of the category search side bar
+  const sidebarOpenHandler = () => {
+    setSidebarVisible(true);
+  };
+
+  // function that handles closing of the category search side bar
+  const sidebarCloseHandler = () => {
+    setSidebarVisible(false);
+  };
+
+  // state variable for the categories
+  const [categories, setCategories] = useState([]);
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  // api request to get the categories from the backend
+  const fetchCategories = async () => {
+    try {
+      const { data } = await axios.get(`/api/products/categories`);
+      setCategories(data);
+    } catch (error) {
+      enqueueSnackbar(getError(error), { variant: 'error' });
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   return (
     <header
       className={navbar ? classes.onScrollClassName : classes.lowerNavigation}
     >
       <nav className={classes.navMenu}>
-        <div className={classes.logo}>
-          {navbar ? (
-            <NextLink href="/" passHref>
-              <Link>
-                <Image src={footerLogo} alt="Pure Farm Logo"></Image>
-              </Link>
-            </NextLink>
-          ) : (
-            <NextLink href="/" passHref>
-              <Link>
-                <Image src={headerLogo} alt="Pure Farm Logo"></Image>
-              </Link>
-            </NextLink>
-          )}
+        {/* Side bar implementation started */}
+        <div>
+          <Box display="flex" alignItems="center">
+            <IconButton
+              edge="start"
+              aria-label="open drawer"
+              onClick={sidebarOpenHandler}
+            >
+              <MenuIcon
+                className={
+                  navbar ? classes.navbarButtonOnScroll : classes.navbarButton
+                }
+              />
+            </IconButton>
+
+            <div className={classes.logo}>
+              {navbar ? (
+                <NextLink href="/" passHref>
+                  <Link>
+                    <Image src={footerLogo} alt="Pure Farm Logo"></Image>
+                  </Link>
+                </NextLink>
+              ) : (
+                <NextLink href="/" passHref>
+                  <Link>
+                    <Image src={headerLogo} alt="Pure Farm Logo"></Image>
+                  </Link>
+                </NextLink>
+              )}
+            </div>
+          </Box>
+
+          <Drawer
+            anchor="left"
+            open={sidebarVisible}
+            onClose={sidebarCloseHandler}
+          >
+            <List>
+              <ListItem>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography>Search Products By Category</Typography>
+                  <IconButton
+                    aria-label="search side bar close"
+                    onClick={sidebarCloseHandler}
+                  >
+                    <CancelIcon />
+                  </IconButton>
+                </Box>
+              </ListItem>
+
+              <Divider light />
+
+              {categories.map((category) => (
+                <NextLink
+                  key={category}
+                  href={`/search?category=${category}`}
+                  passHref
+                >
+                  <ListItem button component="a" onClick={sidebarCloseHandler}>
+                    <ListItemText primary={category}></ListItemText>
+                  </ListItem>
+                </NextLink>
+              ))}
+            </List>
+          </Drawer>
         </div>
+
+        <div>Search bar comes here</div>
 
         <div className={classes.navbarButtons}>
           <NextLink href="/" passHref>
@@ -128,6 +235,61 @@ export default function Header() {
       </nav>
 
       <div className={classes.mobileDisplayNav}>
+        {/* Side bar implementation started */}
+        <div className={classes.mobileSidebar}>
+          <Box display="flex" alignItems="center">
+            <IconButton
+              edge="start"
+              aria-label="open drawer"
+              onClick={sidebarOpenHandler}
+            >
+              <MenuIcon
+                className={
+                  navbar ? classes.navbarButtonOnScroll : classes.navbarButton
+                }
+              />
+            </IconButton>
+          </Box>
+
+          <Drawer
+            anchor="left"
+            open={sidebarVisible}
+            onClose={sidebarCloseHandler}
+          >
+            <List>
+              <ListItem>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography>Search Products By Category</Typography>
+                  <IconButton
+                    aria-label="search side bar close"
+                    onClick={sidebarCloseHandler}
+                  >
+                    <CancelIcon />
+                  </IconButton>
+                </Box>
+              </ListItem>
+
+              <Divider light />
+
+              {categories.map((category) => (
+                <NextLink
+                  key={category}
+                  href={`/search?category=${category}`}
+                  passHref
+                >
+                  <ListItem button component="a" onClick={sidebarCloseHandler}>
+                    <ListItemText primary={category}></ListItemText>
+                  </ListItem>
+                </NextLink>
+              ))}
+            </List>
+          </Drawer>
+        </div>
+
         {navbar ? (
           <div className={classes.mobileLogo}>
             <NextLink href="/" passHref>
@@ -156,10 +318,16 @@ export default function Header() {
                 loginClickHandler
               } /* Change this handler to showUserProfileMenuClickHandler */
             >
-              <Image
+              {/*  <Image
                 src={hamburgerWhite}
                 alt="Hamburger Menu for Mobile display"
-              ></Image>
+              ></Image> */}
+
+              <MenuIcon
+                className={
+                  navbar ? classes.navbarButtonOnScroll : classes.navbarButton
+                }
+              />
             </Button>
           ) : (
             <Button
@@ -170,10 +338,16 @@ export default function Header() {
                 loginClickHandler
               } /* Change this handler to showUserProfileMenuClickHandler */
             >
-              <Image
+              {/*  <Image
                 src={hamburgerMenu}
                 alt="Hamburger Menu for Mobile display"
-              ></Image>
+              ></Image> */}
+
+              <MenuIcon
+                className={
+                  navbar ? classes.navbarButtonOnScroll : classes.navbarButton
+                }
+              />
             </Button>
           )}
 
