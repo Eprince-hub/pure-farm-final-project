@@ -148,7 +148,7 @@ export default function Layout({
         {description && <meta name="description" content={description}></meta>}
       </Head>
       <ThemeProvider theme={theme}>
-        {/* Deifining the Css Baseline for the theme provider */}
+        {/* Defining the Css Baseline for the theme provider */}
 
         <CssBaseline />
 
