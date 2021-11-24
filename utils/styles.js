@@ -552,7 +552,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   }, */
 
-  searchGridMt1: {
+  componentTopMargin: {
     marginTop: '1rem',
   },
 
@@ -595,6 +595,20 @@ const useStyles = makeStyles((theme) => ({
 
   sort: {
     marginRight: 5,
+  },
+
+  // Carousel component
+  carouselComponent: {
+    background: 'red',
+    textAlign: 'center',
+    marginTop: '2rem',
+
+    '& h2': {
+      marginBottom: '1.2rem',
+      fontWeight: 'bold',
+      color: '#002B2B',
+      fontSize: '2rem',
+    },
   },
 }));
 export default useStyles;

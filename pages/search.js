@@ -21,7 +21,7 @@ import db from '../utils/db';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 3;
 
 // prices search ranges
 const prices = [
@@ -78,7 +78,6 @@ export default function Search(props) {
   const router = useRouter();
 
   // deconstruct all the values i need from the router query
-
   const {
     query = 'all',
     category = 'all',
@@ -110,10 +109,10 @@ export default function Search(props) {
     const { query } = router;
 
     if (page) query.page = page;
+    if (searchQuery) query.searchQuery = searchQuery;
+    if (sort) query.sort = sort;
     if (category) query.category = category;
     if (farmerName) query.farmerName = farmerName;
-    if (sort) query.sort = sort;
-    if (searchQuery) query.searchQuery = searchQuery;
     if (price) query.price = price;
     if (rating) query.rating = rating;
     if (min) query.min ? query.min : query.min === 0 ? 0 : min;
@@ -130,8 +129,8 @@ export default function Search(props) {
     filterSearch({ category: event.target.value });
   };
 
-  const pageHandler = (event) => {
-    filterSearch({ page: event.target.value });
+  const pageHandler = (event, page) => {
+    filterSearch({ page });
   };
 
   const farmerNameHandler = (event) => {
@@ -180,7 +179,7 @@ export default function Search(props) {
   console.log(query.page);
   return (
     <Layout title="Search">
-      <Grid className={classes.searchGridMt1} container spacing={1}>
+      <Grid className={classes.componentTopMargin} container spacing={1}>
         <Grid item md={3}>
           <List>
             {/* categories */}
@@ -293,7 +292,7 @@ export default function Search(props) {
             </Grid>
           </Grid>
 
-          <Grid className={classes.searchGridMt1} container spacing={3}>
+          <Grid className={classes.componentTopMargin} container spacing={3}>
             {products.map((product) => (
               <Grid item md={4} key={product.name}>
                 <ProductItem
@@ -305,7 +304,7 @@ export default function Search(props) {
           </Grid>
 
           <Pagination
-            className={classes.searchGridMt1}
+            className={classes.componentTopMargin}
             defaultPage={parseInt(query.page || '1')}
             count={pages}
             onChange={pageHandler}
@@ -330,7 +329,9 @@ export async function getServerSideProps({ query }) {
   const sort = query.sort || '';
   const searchQuery = query.query || '';
 
-  console.log('from backend: ', query.page);
+  console.log('page query: ', query.page);
+  console.log('from backend: ', query);
+  console.log('the page: ', page);
 
   // create the filter criterias
   const queryFilter =

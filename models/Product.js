@@ -49,6 +49,8 @@ const productSchema = new mongoose.Schema(
     packaging: { type: String, required: true },
     recipe: { type: String, required: true },
     reviews: [reviewSchema],
+    // featuredImage: { type: String },
+    // featured: { type: Boolean, required: true, default: false },
   },
   {
     // this creates the time line with date created and updated.

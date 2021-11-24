@@ -13,7 +13,7 @@ import {
   MenuItem,
   Typography,
 } from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/cancel';
+import CancelIcon from '@material-ui/icons/Cancel';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
