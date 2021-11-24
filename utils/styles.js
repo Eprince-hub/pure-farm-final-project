@@ -481,13 +481,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   infoPageGrids: {
-    marginTop: '8rem',
     paddingTop: '8rem',
     textAlign: 'center',
     padding: ' 2rem 2rem',
     width: '90%',
     margin: '0 auto',
-    borderTop: '2px solid #AEB3B9',
 
     '& div p:first-child:first-of-type': {
       fontWeight: 'bold',
@@ -599,15 +597,29 @@ const useStyles = makeStyles((theme) => ({
 
   // Carousel component
   carouselComponent: {
-    background: 'red',
     textAlign: 'center',
-    marginTop: '2rem',
+    marginTop: '4rem',
 
     '& h2': {
       marginBottom: '1.2rem',
       fontWeight: 'bold',
       color: '#002B2B',
       fontSize: '2rem',
+    },
+  },
+
+  carouselCardArea: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  carouselImage: {
+    height: '20rem',
+
+    '@media (max-width: 870px)': {
+      height: 'initial',
     },
   },
 }));

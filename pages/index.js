@@ -14,7 +14,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import CategoryNavigation from '../components/CategoryNavigation';
-import FeaturedProducts from '../components/FeaturedProducts';
+import FeaturedProductSlides from '../components/FeaturedProductSlides';
 import HeroPage from '../components/HeroPage';
 import LandingPageInfoDisplay from '../components/LandingPageInfoDisplay';
 import Layout from '../components/Layout';
@@ -135,7 +135,7 @@ export default function Home(props) {
         <div>
           {/* render this component only when window is defined,, => fixed window undefined error */}
           {windowDefined ? (
-            <FeaturedProducts featuredProducts={featuredProducts} />
+            <FeaturedProductSlides featuredProducts={featuredProducts} />
           ) : (
             []
           )}
@@ -169,7 +169,7 @@ export async function getServerSideProps() {
   const featuredProducts = await Product.find({}, '-reviews')
     .lean()
     .sort({ rating: -1 })
-    .limit(4);
+    .limit(6);
 
   // console.log('featured products: ', featuredProducts);
 

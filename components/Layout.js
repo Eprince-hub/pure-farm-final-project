@@ -69,7 +69,7 @@ export default function Layout({
     palette: {
       type: darkMode ? 'dark' : 'light',
       primary: {
-        main: '#A2D761',
+        main: '#002B2B',
       },
       secondary: {
         main: '#002B2B',
