@@ -153,6 +153,7 @@ export default function Layout({
                   darkModeState
                 }  I changed back to the old value that was not persisting the toggle */
                 onChange={darkModeChangeHandler}
+                style={{ display: 'none' }}
               ></Switch>
               <NextLink href="/cart" passHref>
                 <Link>

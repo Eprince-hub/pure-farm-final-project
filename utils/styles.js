@@ -559,13 +559,15 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   },
 
   searchForm: {
     border: '1px solid #FFFFFF',
     backgroundColor: '#FFFFFF',
-    borderRadius: 10,
+    borderRadius: 4,
   },
 
   searchInput: {
@@ -580,7 +582,7 @@ const useStyles = makeStyles((theme) => ({
   iconButton: {
     backgroundColor: '#002B2B',
     padding: 5,
-    borderRadius: '0 10px 10px 0',
+    borderRadius: '0 4px 4px 0',
 
     '& span': {
       color: '#FFFFFF',
