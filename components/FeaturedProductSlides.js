@@ -26,7 +26,7 @@ export default function FeaturedProductSlides({ featuredProducts }) {
   const properties = {
     duration: 3000,
     slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     autoplay: true,
     indicators: true,
   };
