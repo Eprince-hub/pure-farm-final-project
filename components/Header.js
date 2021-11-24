@@ -4,6 +4,7 @@ import {
   Divider,
   Drawer,
   IconButton,
+  InputBase,
   Link,
   List,
   ListItem,
@@ -14,6 +15,7 @@ import {
 } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/cancel';
 import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -101,6 +103,20 @@ export default function Header() {
     }
   };
 
+  // Implement the Search functionality
+  const [query, setQuery] = useState('');
+
+  const queryChangeHandler = (event) => {
+    setQuery(event.target.value);
+  };
+
+  // function that handles the search function from the search input
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+
+    router.push(`/search?query=${query}`);
+  };
+
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -117,6 +133,7 @@ export default function Header() {
               edge="start"
               aria-label="open drawer"
               onClick={sidebarOpenHandler}
+              className={classes.menuButton}
             >
               <MenuIcon
                 className={
@@ -181,7 +198,24 @@ export default function Header() {
           </Drawer>
         </div>
 
-        <div>Search bar comes here</div>
+        <div className={classes.searchSection}>
+          <form onSubmit={formSubmitHandler} className={classes.searchForm}>
+            <InputBase
+              name="query"
+              className={classes.searchInput}
+              placeholder="Search"
+              onChange={queryChangeHandler}
+            />
+
+            <IconButton
+              type="submit"
+              className={classes.iconButton}
+              aria-label="search"
+            >
+              <SearchIcon />
+            </IconButton>
+          </form>
+        </div>
 
         <div className={classes.navbarButtons}>
           <NextLink href="/" passHref>
@@ -426,55 +460,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-
-    /*     <div className={classes.lowerNavigation}>
-      <AppBar position="static" className={classes.navbar}>
-        <Toolbar>
-          <NextLink href="/" passHref>
-            <Link>
-              <Image src={pureFarm} alt="Pure Farm Logo"></Image>
-            </Link>
-          </NextLink>
-
-          <div>
-            <NextLink href="/" passHref>
-              <Link>
-                <Typography>HOME</Typography>
-              </Link>
-            </NextLink>
-
-            <NextLink href="/farmers" passHref>
-              <Link>
-                <Typography>FARMERS</Typography>
-              </Link>
-            </NextLink>
-
-            <NextLink href="/market" passHref>
-              <Link>
-                <Typography>MARKETS</Typography>
-              </Link>
-            </NextLink>
-
-            <NextLink href="/about" passHref>
-              <Link>
-                <Typography>ABOUT US</Typography>
-              </Link>
-            </NextLink>
-
-            <NextLink href="/contact" passHref>
-              <Link>
-                <Typography>CONTACT US</Typography>
-              </Link>
-            </NextLink>
-
-            <NextLink href="/blog" passHref>
-              <Link>
-                <Typography>BLOG</Typography>{' '}
-              </Link>
-            </NextLink>
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div> */
   );
 }

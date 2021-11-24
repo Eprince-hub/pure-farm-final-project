@@ -35,7 +35,7 @@ export default function Farmers(props) {
   const { adminUsers } = props;
 
   return (
-    <Layout>
+    <Layout title="farmers">
       <section className={classes.homePageProductsStyle}>
         <div>
           <Typography variant="h3" align="center">

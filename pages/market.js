@@ -62,7 +62,7 @@ export default function Market(props) {
   const classes = useStyles();
   const { products } = props;
   return (
-    <Layout>
+    <Layout title="Market">
       <section className={classes.homePageProductsStyle}>
         <div>
           <MarketHero />

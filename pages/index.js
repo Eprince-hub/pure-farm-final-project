@@ -67,7 +67,7 @@ export default function Home(props) {
   const { products } = props;
 
   return (
-    <Layout>
+    <Layout title="Home Page">
       <section className={classes.homePageProductsStyle}>
         <div>
           <HeroPage />
