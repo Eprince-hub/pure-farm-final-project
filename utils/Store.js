@@ -15,7 +15,7 @@ const initialState = {
 
     shippingAddress: Cookies.get('shippingAddress')
       ? JSON.parse(Cookies.get('shippingAddress'))
-      : {}, // default value is an empty array;
+      : { location: {} }, // default value is an empty array;
 
     // Was not implemented in original video
     paymentMethod: Cookies.get('paymentMethod')
@@ -87,7 +87,24 @@ function reducer(state, action) {
     case 'SAVE_SHIPPING_ADDRESS':
       return {
         ...state,
-        cart: { ...state.cart, shippingAddress: action.payload },
+        // cart: { ...state.cart, shippingAddress: action.payload }, // value before google map
+        cart: {
+          ...state.cart,
+          shippingAddress: { ...state.cart.shippingAddress, ...action.payload },
+        }, // value after google map
+      };
+
+    // the case for shipping address chosen from map
+    case 'SAVE_SHIPPING_ADDRESS_MAP_LOCATION':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          shippingAddress: {
+            ...state.cart.shippingAddress,
+            location: action.payload,
+          },
+        },
       };
 
     // the case for saving the payment method
@@ -115,7 +132,8 @@ function reducer(state, action) {
         ...state,
         userInfo: null,
         cart: { cartItems: [] },
-        shippingAddress: {},
+        // shippingAddress: {}, // before map implementation
+        shippingAddress: { location: {} },
         paymentMethod: '',
       };
 

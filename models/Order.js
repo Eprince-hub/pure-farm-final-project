@@ -33,6 +33,14 @@ const orderSchema = new mongoose.Schema(
       city: { type: String, required: true },
       postalCode: { type: String, required: true },
       country: { type: String, required: true },
+      location: {
+        lat: String,
+        lng: String,
+        address: String,
+        name: String,
+        vicinity: String,
+        googleAddressId: String,
+      },
     },
 
     paymentMethod: { type: String, required: true },
@@ -58,23 +66,3 @@ const orderSchema = new mongoose.Schema(
 const Order = mongoose.models.Order || mongoose.model('Order', orderSchema);
 
 export default Order;
-
-// ##############
-/*
-
-   id: 1,
-      name: 'Food Box One',
-      slug: 'food-box-one',
-      category: 'Vegetables',
-      image: '/images/box1.jpeg',
-      price: 70,
-      farm: 'farmer one',
-      rating: 4.5,
-      numReviews: 10,
-      countInStock: 20,
-      description:
-        'The food box contains the following items and they are sweet. and the farmer will suggest some recept for cooking what is inside the box',
-
-
-
-*/

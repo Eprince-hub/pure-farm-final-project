@@ -21,6 +21,7 @@ export default function Shipping() {
     control,
     formState: { errors },
     setValue, // will set the values entered by a user back into the respective input field.
+    getValues,
   } = useForm();
 
   // setting up the use router hook
@@ -37,6 +38,9 @@ export default function Shipping() {
     userInfo,
     cart: { shippingAddress },
   } = state;
+
+  // for map choosing address.
+  const { location } = shippingAddress;
 
   // check if userInfo exists // which should be the user who is already logged in,
   // if it is not true then no need to go to the payment or shipping page anymore, Redirect to the home login page
@@ -66,18 +70,54 @@ export default function Shipping() {
     // save the data we got from the backend here to the react context
     dispatch({
       type: 'SAVE_SHIPPING_ADDRESS',
-      payload: { fullName, address, city, postalCode, country },
+      payload: { fullName, address, city, postalCode, country, location },
     });
 
     // after dispatching the above action then we set the cookies with the user information
     Cookies.set(
       'shippingAddress',
-      JSON.stringify({ fullName, address, city, postalCode, country }),
+      JSON.stringify({
+        fullName,
+        address,
+        city,
+        postalCode,
+        country,
+        location,
+      }),
     );
 
     // redirecting the user either to the shipping screen or homepage
     router.push('/payment'); // check if this needs an /
   };
+
+  // function that handles the choose location from map
+  const chooseLocationHandler = () => {
+    const fullName = getValues('fullName');
+    const address = getValues('address');
+    const city = getValues('city');
+    const postalCode = getValues('postalCode');
+    const country = getValues('country');
+
+    dispatch({
+      type: 'SAVE_SHIPPING_LOCATION',
+      payload: { fullName, address, city, postalCode, country },
+    });
+
+    Cookies.set(
+      'shippingAddress',
+      JSON.stringify({
+        fullName,
+        address,
+        city,
+        postalCode,
+        country,
+        location,
+      }),
+    );
+
+    router.push('/map');
+  };
+
   return (
     <Layout title="Shipping">
       <section>
@@ -251,6 +291,20 @@ export default function Shipping() {
                   ></TextField>
                 )}
               ></Controller>
+            </ListItem>
+
+            <ListItem>
+              <Button
+                variant="contained"
+                type="button"
+                onClick={chooseLocationHandler}
+              >
+                Choose Address On Map
+              </Button>
+
+              <Typography>
+                {location.lat && `${location.lat}, ${location.lat}`}
+              </Typography>
             </ListItem>
 
             <ListItem>

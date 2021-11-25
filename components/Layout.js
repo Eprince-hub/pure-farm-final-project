@@ -124,6 +124,12 @@ export default function Layout({
     // remove cartItems
     Cookies.remove('cartItems');
 
+    // remove shippingAddress
+    Cookies.remove('shippingAddress');
+
+    // remove paymentMethod
+    Cookies.remove('paymentMethod');
+
     // redirect user back to home screen
     router.push('/');
   };
@@ -177,6 +183,9 @@ export default function Layout({
                 /* Set css styles for this button later */
                 <>
                   <Button
+                    style={{
+                      color: 'white',
+                    }} /* Fix this later,, need to render a visual guidance for user to see they can click on it*/
                     aria-controls="simple-Menu"
                     aria-haspopup="true"
                     onClick={
