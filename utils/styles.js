@@ -624,5 +624,10 @@ const useStyles = makeStyles((theme) => ({
       height: 'initial',
     },
   },
+
+  // all the pages needs this for a better margin and padding
+  allPagesPadding: {
+    paddingTop: '4rem',
+  },
 }));
 export default useStyles;

@@ -187,7 +187,7 @@ export default function Shipping() {
               ></Controller>
             </ListItem>
 
-            {/* User's posta code */}
+            {/* User's postal code */}
             <ListItem>
               <Controller
                 name="postalCode"

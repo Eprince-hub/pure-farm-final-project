@@ -1,0 +1,176 @@
+.contactSection {
+  margin-top: 6rem;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.contactHero {
+  height: 50vh;
+  width: 100%;
+  background-image: url('../public/images/utilityImages/farmer-wife-in-a-farm.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 6rem;
+}
+
+.contactHero div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 43, 43, 0.5);
+}
+
+.contactHero div div {
+  height: 24rem;
+  width: 24rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 43, 43, 0.8);
+  color: #ffffff;
+  border-radius: 50%;
+}
+.contactHero div div p {
+  font-size: 1.2rem;
+  color: rgb(172, 169, 169);
+  font-weight: bold;
+}
+.contactHero div div h1 {
+  font-size: 2.4rem;
+}
+
+.contactFormContainer {
+  background: rgb(234, 242, 245);
+  padding: 1rem;
+  width: 60%;
+  min-height: 100vh;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.contactInfoBox {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.contactInfoBox p {
+  color: #69ad7f;
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+}
+
+.contactInfoBox h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: #69ad7f 2px 4px 2px;
+}
+
+.contactGrid {
+  margin: 2rem 0 8rem 0;
+
+  height: 20rem;
+}
+
+.contactGridItem .contactCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactGridItem .dividerRight,
+.contactGridItem .dividerLeft {
+  height: 80%;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+.contactGridItem .dividerRight {
+  border-left: 3px solid rgb(105, 120, 128);
+}
+
+.formContainer {
+  margin-bottom: 6rem;
+}
+
+.formContainer h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: #69ad7f 2px 4px 2px;
+}
+
+.formContainer p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.formContainer .formInputs {
+  margin-bottom: 1.4rem;
+}
+
+.formContainer .formMessageInputs {
+  margin-bottom: 1rem;
+}
+
+.formContainer button {
+  background: #69ad7f;
+  border-radius: 10px;
+  height: 3rem;
+  width: 20rem;
+  color: #002b2b;
+  font-size: 1rem;
+}
+
+.formContainer button:hover {
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 870px) {
+  .contactHero div div {
+    height: 20rem;
+    width: 20rem;
+  }
+
+  .contactHero div div h1 {
+    font-size: 6vw;
+  }
+
+  .contactFormContainer {
+    width: 100%;
+  }
+
+  .contactInfoBox {
+    width: 80%;
+  }
+
+  .contactInfoBox h2 {
+    font-size: 1.6rem;
+  }
+
+  .contactGridItem .dividerRight,
+  .contactGridItem .dividerLeft {
+    height: 100%;
+  }
+
+  .contactGridItem .dividerRight {
+    border-top: 3px solid rgb(105, 120, 128);
+    border-left: none;
+  }
+
+  .formContainer {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .formContainer button {
+    width: 16rem;
+  }
+}
