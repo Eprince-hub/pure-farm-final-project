@@ -220,7 +220,15 @@ export default function LandingPageInfoDisplay(props) {
         <Grid container spacing={3}>
           {farmers.map((farmer) => (
             <Grid item md={4} xs={12} key={farmer._id}>
-              <div>Image coming Soon</div>
+              <div>
+                <Image
+                  src={farmer.image}
+                  alt={farmer.name}
+                  component="responsive"
+                  width={400}
+                  height={400}
+                ></Image>
+              </div>
               <Typography component="h3" variant="h3">
                 {farmer.name}
               </Typography>

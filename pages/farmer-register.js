@@ -13,7 +13,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
 import farmImage from '../public/images/signup-page-image.svg';
@@ -22,6 +22,15 @@ import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
 
 export default function FarmerRegister() {
+  // using the reducer set above
+  /*   const [{ loading, error, loadingUpload }, uploadDispatch] = useReducer(
+    uploadReducer,
+    {
+      loading: true,
+      error: '',
+    },
+  );
+ */
   // defining the variables from useForm from react-hook-form
   const {
     handleSubmit,
@@ -128,7 +137,7 @@ export default function FarmerRegister() {
                 className={classes.form}
               >
                 <Typography component="h1" variant="h1">
-                  Register As Farmer
+                  You are Registering as a Farmer
                 </Typography>
 
                 <List>

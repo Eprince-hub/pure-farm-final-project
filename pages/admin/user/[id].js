@@ -250,6 +250,7 @@ function UserEdit({ params }) {
                         ></Controller>
                       </ListItem>
 
+                      {/* The admin button toggle */}
                       <ListItem>
                         <FormControlLabel
                           label={isAdmin ? 'Farmer' : 'User'}

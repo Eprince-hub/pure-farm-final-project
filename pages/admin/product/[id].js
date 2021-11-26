@@ -71,8 +71,6 @@ function ProductEdit({ params }) {
   // getting the userInfo from the state of the react context from the Store.js
   const { state } = useContext(Store);
 
-  console.log('State from edit page: ', state);
-
   // using the reducer defined above
   const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] =
     useReducer(reducer, {
@@ -115,8 +113,6 @@ function ProductEdit({ params }) {
           const { data } = await axios.get(`/api/admin/products/${productId}`, {
             headers: { authorization: `Bearer ${userInfo.token}` },
           });
-
-          console.log('Token: ', userInfo.token);
 
           dispatch({ type: 'FETCH_SUCCESS' });
 

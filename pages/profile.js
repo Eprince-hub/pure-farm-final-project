@@ -1,6 +1,7 @@
 import {
   Button,
   Card,
+  CircularProgress,
   Grid,
   Link,
   List,
@@ -15,16 +16,45 @@ import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
 import { getError } from '../utils/error';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
 
+// reducer for image uplaod using react reducer
+function uploadReducer(state, action) {
+  switch (action.type) {
+    case 'UPLOAD_REQUEST':
+      return { ...state, loadingUpload: false, errorUpload: '' };
+
+    case 'UPLOAD_SUCCESS':
+      return { ...state, loadingUpload: false, errorUpload: '' };
+
+    case 'UPLOAD_FAIL':
+      return { ...state, loadingUpload: false, errorUpload: action.payload };
+
+    default:
+      return state;
+  }
+}
+
 // from this page the none admin users can view their user profile to make changes and update it
 // changes like name, email address and etc
 function Profile() {
+  // using the reducer set above for the image upload
+  const [{ loading, error, loadingUpload }, uploadDispatch] = useReducer(
+    uploadReducer,
+    {
+      loading: true,
+      error: '',
+    },
+  );
+
+  // when i logout, the userInfo.isAdmin throws an undefined error && i try to fix this with useState
+  const [isUserAdmin, setIsUserAdmin] = useState(false); // fixed the error
+
   // getting the userInfo from the state of the react context from the Store.js
   const { state, dispatch } = useContext(Store);
 
@@ -60,10 +90,56 @@ function Profile() {
     // if userInfo exists
     setValue('name', userInfo.name);
     setValue('email', userInfo.email);
+    setValue('image', userInfo.image);
+
+    setIsUserAdmin(userInfo.isAdmin);
   }, []);
 
+  console.log('searching for admin: ', isUserAdmin);
+
+  // function that handles the image upload to Cloudinary
+  const uploadHandler = async (event) => {
+    const file = event.target.files[0];
+
+    // define a new form data
+    const bodyFormData = new FormData();
+
+    // append the new file to the form data
+    bodyFormData.append('file', file);
+
+    // send an ajax request
+    try {
+      dispatch({ type: 'UPLOAD_REQUEST' });
+
+      const { data } = await axios.post('/api/admin/upload', bodyFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // multipart file system allows file upload through ajax request
+          authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+
+      dispatch({ type: 'UPLOAD_SUCCESS' });
+
+      // populate the image field with the url from cloudinary
+      setValue('image', data.secure_url); // from cloudinary
+
+      enqueueSnackbar('File upload was successful', { variant: 'success' });
+    } catch (err) {
+      // the upload request was not successful
+
+      dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+
   // function that handles the form submission for user profile update
-  const submitHandler = async ({ name, email, password, confirmPassword }) => {
+  const submitHandler = async ({
+    name,
+    email,
+    image,
+    password,
+    confirmPassword,
+  }) => {
     closeSnackbar();
     // prevent default
     // event.preventDefault();
@@ -80,6 +156,7 @@ function Profile() {
         {
           name,
           email,
+          image,
           password,
         },
         { headers: { authorization: `Bearer ${userInfo.token}` } },
@@ -132,7 +209,7 @@ function Profile() {
               <List>
                 <ListItem>
                   <Typography component="h1" variant="h1">
-                    Profile
+                    Your Profile
                   </Typography>
                 </ListItem>
 
@@ -174,6 +251,57 @@ function Profile() {
                           )}
                         ></Controller>
                       </ListItem>
+
+                      {/* Show option for image upload only if admin */}
+
+                      {isUserAdmin ? (
+                        <ListItem>
+                          {/* product's Image */}
+                          <ListItem>
+                            <Controller
+                              name="image"
+                              control={control}
+                              defaultValue=""
+                              rules={{
+                                // validations
+                                required: true,
+                              }}
+                              render={({ field }) => (
+                                <TextField
+                                  variant="outlined"
+                                  fullWidth
+                                  id="image"
+                                  label="Image"
+                                  error={Boolean(errors.image)}
+                                  helperText={
+                                    errors.image // errors exists or not
+                                      ? 'Image is required'
+                                      : ''
+                                  }
+                                  /* onChange={(event) => setName(event.target.value)} */
+                                  {...field}
+                                ></TextField>
+                              )}
+                            ></Controller>
+                          </ListItem>
+
+                          {/* Image uplaod to cloudinary */}
+                          <ListItem>
+                            <Button variant="contained" component="label">
+                              Upload File
+                              <input
+                                type="file"
+                                onChange={uploadHandler}
+                                hidden
+                              />
+                            </Button>
+
+                            {loadingUpload && <CircularProgress />}
+                          </ListItem>
+                        </ListItem>
+                      ) : (
+                        []
+                      )}
 
                       <ListItem>
                         {/* Define the controller component that comes from the react-hook-form
@@ -301,155 +429,3 @@ function Profile() {
 }
 
 export default dynamic(() => Promise.resolve(Profile), { ssr: false });
-
-/* import {
-  Button,
-  Card,
-  CircularProgress,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@material-ui/core';
-import axios from 'axios';
-import dynamic from 'next/dynamic';
-import NexLink from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useReducer } from 'react';
-import Layout from '../components/Layout';
-import { getError } from '../utils/error';
-import { Store } from '../utils/Store';
-import useStyles from '../utils/styles';
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'FETCH_REQUEST':
-      return { ...state, loading: true, error: '' };
-    case 'FETCH_SUCCESS':
-      return { ...state, loading: false, orders: action.payload, error: '' };
-    case 'FETCH_FAIL':
-      return { ...state, loading: false, error: action.payload };
-    default:
-      state;
-  }
-}
-
-function Profile() {
-  const { state } = useContext(Store);
-  const router = useRouter();
-  const classes = useStyles();
-  const { userInfo } = state;
-
-  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
-    loading: true,
-    orders: [],
-    error: '',
-  });
-
-  useEffect(() => {
-    if (!userInfo) {
-      router.push('/login');
-    }
-    const fetchOrders = async () => {
-      try {
-        dispatch({ type: 'FETCH_REQUEST' });
-        const { data } = await axios.get(`/api/orders/history`, {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        });
-        dispatch({ type: 'FETCH_SUCCESS', payload: data });
-      } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
-      }
-    };
-    fetchOrders();
-  }, []);
-  return (
-    <Layout title="Profile">
-      <Grid container spacing={1}>
-        <Grid item md={3} xs={12}>
-          <Card className={classes.section}>
-            <List>
-              <NexLink href="/profile" passHref>
-                <ListItem button component="a">
-                  <ListItemText primary="User Profile"></ListItemText>
-                </ListItem>
-              </NexLink>
-              <NexLink href="/order-history" passHref>
-                <ListItem selected button component="a">
-                  <ListItemText primary="Profile"></ListItemText>
-                </ListItem>
-              </NexLink>
-            </List>
-          </Card>
-        </Grid>
-        <Grid item md={9} xs={12}>
-          <Card className={classes.section}>
-            <List>
-              <ListItem>
-                <Typography component="h1" variant="h1">
-                  Profile
-                </Typography>
-              </ListItem>
-              <ListItem>
-                {loading ? (
-                  <CircularProgress />
-                ) : error ? (
-                  <Typography className={classes.error}>{error}</Typography>
-                ) : (
-                  <TableContainer>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>ID</TableCell>
-                          <TableCell>DATE</TableCell>
-                          <TableCell>TOTAL</TableCell>
-                          <TableCell>PAID</TableCell>
-                          <TableCell>DELIVERED</TableCell>
-                          <TableCell>ACTION</TableCell>
-                        </TableRow>
-                      </TableHead>
-
-                      <TableBody>
-                        {orders.map((order) => (
-                          <TableRow key={order._id}>
-                            <TableCell>{order._id.substring(20, 24)}</TableCell>
-                            <TableCell>{order.createdAt}</TableCell>
-                            <TableCell>${order.totalPrice}</TableCell>
-                            <TableCell>
-                              {order.isPaid
-                                ? `paid at ${order.paidAt}`
-                                : 'not paid'}
-                            </TableCell>
-                            <TableCell>
-                              {order.isDelivered
-                                ? `delivered at ${order.deliveredAt}`
-                                : 'not delivered'}
-                            </TableCell>
-                            <TableCell>
-                              <NexLink href={`/order/${order._id}`} passHref>
-                                <Button variant="contained">Details</Button>
-                              </NexLink>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                )}
-              </ListItem>
-            </List>
-          </Card>
-        </Grid>
-      </Grid>
-    </Layout>
-  );
-}
-
-export default dynamic(() => Promise.resolve(Profile), { ssr: false }); */

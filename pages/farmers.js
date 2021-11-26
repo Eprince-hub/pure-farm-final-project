@@ -8,6 +8,7 @@ import {
   TableRow,
   Typography,
 } from '@material-ui/core';
+import Image from 'next/image';
 import NextLink from 'next/link';
 import { useContext } from 'react';
 import Layout from '../components/Layout';
@@ -44,32 +45,30 @@ export default function Farmers(props) {
             </Typography>
           </div>
           <div>
-            <Grid container spacing={3}>
-              <TableContainer>
-                <Table>
-                  {/* Table Body From Material UI*/}
-                  <TableBody>
-                    {adminUsers.map((adminUser) => (
-                      <TableRow key={adminUser._id}>
-                        {/* Table name Cell */}
+            <Grid container spacing={2}>
+              {adminUsers.map((adminUser) => (
+                <Grid item md={4} xs={12} key={adminUser._id}>
+                  <div>
+                    <Image
+                      src={adminUser.image}
+                      alt={adminUser.name}
+                      component="responsive"
+                      width={400}
+                      height={400}
+                    ></Image>
+                  </div>
 
-                        <TableCell>
-                          <NextLink href="/market" passHref>
-                            <Link>
-                              <Typography>Name: {adminUser.name}</Typography>
-                            </Link>
-                          </NextLink>
-                        </TableCell>
+                  <div>
+                    <NextLink href="/market" passHref>
+                      <Link>
+                        <Typography>{adminUser.name}</Typography>
+                      </Link>
+                    </NextLink>
+                  </div>
 
-                        {/* Table cell for Price */}
-                        <TableCell align="right">
-                          Joined Since: {adminUser.createdAt.slice(0, 16)}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+                  <div>Joined Since: {adminUser.createdAt.slice(0, 16)}</div>
+                </Grid>
+              ))}
             </Grid>
           </div>
         </section>

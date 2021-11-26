@@ -14,7 +14,7 @@ import axios from 'axios';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import Layout from '../../components/Layout';
 import { getError } from '../../utils/error';
@@ -51,7 +51,9 @@ function AdminDashboard() {
 
   const { userInfo } = state;
 
-  console.log('User Info from Dashboard: ', userInfo);
+  // A user must be the site Administrator in oder to see or edit some information on this page
+  // set state variable for a site admin
+  const [isUserSiteAdmin, setIsUserSiteAdmin] = useState(false);
 
   // defining the react reducer => parameters for useReducer: reducer function and default values
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
@@ -59,8 +61,6 @@ function AdminDashboard() {
     summary: { salesData: [] },
     error: '',
   });
-
-  console.log('Sales Data: ', summary.salesData);
 
   // this makes sure that only a logged in user can access this page
   useEffect(() => {
@@ -72,6 +72,8 @@ function AdminDashboard() {
       // if the userInfo is available but not an admin then redirect to the user's profile
     } else if (!userInfo.isAdmin) {
       router.push('/profile');
+    } else if (userInfo.isSiteAdmin) {
+      router.push('/admin/site-admin');
     }
 
     // fetching the order information from the database
@@ -96,6 +98,9 @@ function AdminDashboard() {
 
     // calling the fetchData function
     fetchData();
+
+    // set user that matches the site Admin into the state variable
+    setIsUserSiteAdmin(userInfo.isSiteAdmin);
   }, []);
 
   return (
@@ -127,11 +132,13 @@ function AdminDashboard() {
                   </ListItem>
                 </NextLink>
 
-                <NextLink href="/admin/users" passHref>
-                  <ListItem button component="a">
-                    <ListItemText primary="Users"></ListItemText>
-                  </ListItem>
-                </NextLink>
+                {isUserSiteAdmin && (
+                  <NextLink href="/admin/users" passHref>
+                    <ListItem button component="a">
+                      <ListItemText primary="Users"></ListItemText>
+                    </ListItem>
+                  </NextLink>
+                )}
               </List>
             </Card>
           </Grid>
@@ -147,7 +154,8 @@ function AdminDashboard() {
                     <Typography className={classes.error}>{error}</Typography>
                   ) : (
                     <Grid container spacing={5}>
-                      <Grid item md={3}>
+                      {/* Sales Card */}
+                      <Grid item xs={12} md={isUserSiteAdmin ? 3 : 4}>
                         <Card raised>
                           <CardContent>
                             <Typography variant="h1" component="h1">
@@ -159,7 +167,7 @@ function AdminDashboard() {
 
                           <CardActions>
                             <NextLink
-                              href="/admin/sales"
+                              href="/admin/sales" /* Just realized this has no page,, implement */
                               color="primary"
                               passHref
                             >
@@ -171,7 +179,8 @@ function AdminDashboard() {
                         </Card>
                       </Grid>
 
-                      <Grid item md={3}>
+                      {/* Orders Card */}
+                      <Grid item xs={12} md={isUserSiteAdmin ? 3 : 4}>
                         <Card raised>
                           <CardContent>
                             <Typography variant="h1" component="h1">
@@ -195,7 +204,9 @@ function AdminDashboard() {
                         </Card>
                       </Grid>
 
-                      <Grid item md={3}>
+                      {/* Products Card */}
+
+                      <Grid item xs={12} md={isUserSiteAdmin ? 3 : 4}>
                         <Card raised>
                           <CardContent>
                             <Typography variant="h1" component="h1">
@@ -219,29 +230,32 @@ function AdminDashboard() {
                         </Card>
                       </Grid>
 
-                      <Grid item md={3}>
-                        <Card raised>
-                          <CardContent>
-                            <Typography variant="h1" component="h1">
-                              {summary.usersCount}
-                            </Typography>
+                      {/* conditionally render the users's Card */}
+                      {isUserSiteAdmin && (
+                        <Grid item xs={12} md={3}>
+                          <Card raised>
+                            <CardContent>
+                              <Typography variant="h1" component="h1">
+                                {summary.usersCount}
+                              </Typography>
 
-                            <Typography>Users</Typography>
-                          </CardContent>
+                              <Typography>Users</Typography>
+                            </CardContent>
 
-                          <CardActions>
-                            <NextLink
-                              href="/admin/users"
-                              color="primary"
-                              passHref
-                            >
-                              <Button size="small" color="primary">
-                                View Users
-                              </Button>
-                            </NextLink>
-                          </CardActions>
-                        </Card>
-                      </Grid>
+                            <CardActions>
+                              <NextLink
+                                href="/admin/users"
+                                color="primary"
+                                passHref
+                              >
+                                <Button size="small" color="primary">
+                                  View Users
+                                </Button>
+                              </NextLink>
+                            </CardActions>
+                          </Card>
+                        </Grid>
+                      )}
                     </Grid>
                   )}
                 </ListItem>

@@ -12,7 +12,8 @@ const data = {
       postCode: '4810',
       isAdmin: true,
       isSiteAdmin: false,
-      image: 'https://i.imgur.com/xEoNwRI.jpg',
+      image:
+        'https://res.cloudinary.com/fluema-digital/image/upload/v1637929538/farmer-avater_vncwey.png',
     },
 
     {
@@ -24,7 +25,8 @@ const data = {
       postCode: '4810',
       isAdmin: false,
       isSiteAdmin: false,
-      image: 'https://i.imgur.com/ztNwczs.jpg',
+      image:
+        'https://res.cloudinary.com/fluema-digital/image/upload/v1637929538/farmer-avater_vncwey.png',
     },
   ],
 

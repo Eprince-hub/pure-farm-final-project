@@ -22,7 +22,7 @@ handler.post(async (req, res) => {
       isSiteAdmin: false, // added this to make me accessible to some information
       image: req.body.image
         ? req.body.image
-        : 'https://i.imgur.com/8sggcBp.png',
+        : 'https://res.cloudinary.com/fluema-digital/image/upload/v1637929538/farmer-avater_vncwey.png',
     });
 
     // saving the new created user to the database by calling the save object property of mongoose

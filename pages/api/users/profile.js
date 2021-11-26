@@ -23,9 +23,9 @@ handler.put(async (req, res) => {
     // update the user information with the information available from the request header
     user.name = req.body.name;
     user.email = req.body.email;
-    (user.image = req.body.email
-      ? req.body.email
-      : 'https://i.imgur.com/8sggcBp.png'),
+    (user.image = req.body.image
+      ? req.body.image
+      : 'https://res.cloudinary.com/fluema-digital/image/upload/v1637929538/farmer-avater_vncwey.png'),
       // to update password we need to make sure that we only update when the password is not an empty string
 
       (user.password = req.body.password
