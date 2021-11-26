@@ -426,26 +426,7 @@ function Order({ params }) {
                     </Grid>
                   </ListItem>
                   {/*  Paypal corners*/}
-                  {/* {!isPaid && (
-                    <ListItem>
-                      {' '}
-                      {isPending ? (
-                        <CircularProgress />
-                      ) : (
-                        <div className={classes.fullWidth}>
-                          <PayPalButtons
-                            style={{
-                              color: 'blue',
-                              label: 'pay',
-                            }}
-                            createOrder={createOrder}
-                            onApprove={onApprove}
-                            onError={onError}
-                          ></PayPalButtons>
-                        </div>
-                      )}
-                    </ListItem>
-                  )} */}
+
                   {!isPaid ? (
                     /* !userInfo.isAdmin ?  */ <ListItem>
                       {isPending ? (
@@ -478,37 +459,6 @@ function Order({ params }) {
                       </NextLink>
                     </ListItem>
                   )}
-
-                  {/* To implement when i transfer this to admin alone */}
-                  {/*   {isPaid && !userInfo.isAdmin && (
-                    <ListItem>
-                      <NextLink href="/order-history" passHref>
-                        <Button
-                          variant="contained"
-                          fullWidth
-                          component="a"
-                          color="primary"
-                        >
-                          View Your Orders
-                        </Button>
-                      </NextLink>
-                    </ListItem>
-                  )} */}
-
-                  {/*      {userInfo.isAdmin && isPaid && !isDelivered && (
-                    <ListItem>
-                      {loadingDeliver && <CircularProgress />}
-
-                      <Button
-                        variant="contained"
-                        fullWidth
-                        color="primary"
-                        onClick={deliverOrderHandler}
-                      >
-                        Mark As Delivered
-                      </Button>
-                    </ListItem>
-                  )} */}
                 </List>
               </Card>
             </Grid>
@@ -526,7 +476,4 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-// setting es6 to true in .eslintrc file removed the error coming from using Promise.
-// setting the cart page to a dynamic component and setting the ssr to false
-// makes this component only renders on the client side because the cookie was giving errors
 export default dynamic(() => Promise.resolve(Order), { ssr: false });

@@ -20,16 +20,9 @@ import LandingPageInfoDisplay from '../components/LandingPageInfoDisplay';
 import Layout from '../components/Layout';
 import Product from '../models/Product';
 import User from '../models/User';
-// import data from '../utils/data';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
-
-// Using the grid component from material UI
-// The grid parent is called Container and it can take spaces and other props
-// the grid items are called card and
-// the cardActionArea inside the card will be clickable areas.
-// cardMedia = image
 
 export default function Home(props) {
   const router = useRouter();
@@ -154,12 +147,6 @@ export async function getServerSideProps() {
   // connecting to DB database;
   await db.connect();
 
-  // Getting the products from the database;
-  // we use lean object from mongoose to transform
-  // the data back to a javascript object just like
-  // JSON.stringify because mongoose always returns
-  // Mongoose document from the database.
-  // const products = await Product.find({}, '-reviews').lean();
   const ratedProducts = await Product.find({}, '-reviews')
     .lean()
     .sort({ countInStock: -1, createdAt: -1 })
@@ -182,9 +169,7 @@ export async function getServerSideProps() {
   return {
     props: {
       // calling the convert to doc function on each product that is returned from the database
-      // and pass the value to the products
-      // this stops the id errors from this function
-      // because of the mongo document model.
+
       products: ratedProducts.map(db.convertDocToObj),
       farmers: farmers.map(db.convertDocToObj),
       featuredProducts: featuredProducts.map(db.convertDocToObj),

@@ -64,30 +64,3 @@ const Product =
   mongoose.models.Product || mongoose.model('Product', productSchema);
 
 export default Product;
-
-// ##############
-/*
-
-      id: 1,
-      name: 'Food Box One',
-      slug: 'food-box-one',
-      category: 'Vegetables',
-      image: '/images/box1.jpeg',
-      price: 70,
-      farmerName: 'farmer one',
-      farmingMethod: 'Bio and Climate Friendly',
-      address: 'man dummy street 26',
-      city: 'Vienna',
-      postCode: '4810',
-      rating: 4.5,
-      numReviews: 10,
-      countInStock: 20,
-      description:
-        'The food box contains the following items and they are sweet. and the farmer will suggest some recept for cooking what is inside the box',
-      contains: 'Spinach, Tomatoes, Asparagus, Garlic',
-      dietType: 'Gluten Free, Lactose Free, Vegan, No preservatives',
-      packaging: 'In a Carton Box',
-      recipe: 'You can cook bla bla bla with this items',
-
-
-*/

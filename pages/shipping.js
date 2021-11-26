@@ -52,11 +52,6 @@ export default function Shipping() {
     setValue('country', shippingAddress.country);
   }, []);
 
-  // defining states for email and password
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
 
   const classes = useStyles();
 
@@ -269,27 +264,3 @@ export default function Shipping() {
     </Layout>
   );
 }
-
-// import { useRouter } from 'next/router';
-// import { useContext } from 'react';
-// import { Store } from '../utils/Store';
-
-// export default function Shipping() {
-//   const router = useRouter();
-
-//   // checking the react context
-//   // using the context from the StoreProvide component.
-//   const { state, dispatch } = useContext(Store);
-
-//   // deconstructing the userInfo and cart from the state
-//   const { userInfo } = state;
-
-//   // check if userInfo exists // which should be the user who is already logged in,
-//   // if it doesn't exist then redirect user to the login page and when they login then redirect user
-//   // to the shipping page
-//   if (!userInfo) {
-//     router.push('/login?redirect=/shipping');
-//   }
-
-//   return <div>WELCOME SHIPPING</div>;
-// }

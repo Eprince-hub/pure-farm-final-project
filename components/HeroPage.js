@@ -37,15 +37,6 @@ export default function HeroPage() {
               </NextLink>
             </div>
           </Grid>
-
-          {/*           <Grid item md={6} xs={12}>
-            <div className={classes.heroImage}>
-                    <Image
-                src={heroPagePic}
-                alt="Some vegetables in a basket"
-              ></Image>
-            </div>
-          </Grid> */}
         </Grid>
       </section>
     </div>

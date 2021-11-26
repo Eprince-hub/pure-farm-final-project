@@ -16,21 +16,12 @@ import { useSnackbar } from 'notistack';
 import { useContext, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
-import farmImage from '../public/images/signup-page-image.svg';
+import farmImage from '../public/images/signup-page-image.webp';
 import { getError } from '../utils/error';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
 
 export default function FarmerRegister() {
-  // using the reducer set above
-  /*   const [{ loading, error, loadingUpload }, uploadDispatch] = useReducer(
-    uploadReducer,
-    {
-      loading: true,
-      error: '',
-    },
-  );
- */
   // defining the variables from useForm from react-hook-form
   const {
     handleSubmit,
@@ -60,12 +51,6 @@ export default function FarmerRegister() {
       router.push('/');
     }
   }, []);
-
-  // defining states for email and password
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
 
   const classes = useStyles();
 

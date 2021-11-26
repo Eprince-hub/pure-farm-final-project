@@ -304,9 +304,6 @@ function Profile() {
                       )}
 
                       <ListItem>
-                        {/* Define the controller component that comes from the react-hook-form
-              using the controller to wrap all our textField, but before it works we need to define the render property. and give it a function that will return the textField*/}
-                        {/* User's Email */}
                         <Controller
                           name="email"
                           control={control}

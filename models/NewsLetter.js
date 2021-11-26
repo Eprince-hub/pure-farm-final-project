@@ -20,23 +20,3 @@ const NewsLetter =
   mongoose.models.NewsLetter || mongoose.model('NewsLetter', newsLetterSchema);
 
 export default NewsLetter;
-
-// ##############
-/*
-
-   id: 1,
-      name: 'Food Box One',
-      slug: 'food-box-one',
-      category: 'Vegetables',
-      image: '/images/box1.jpeg',
-      price: 70,
-      farm: 'farmer one',
-      rating: 4.5,
-      numReviews: 10,
-      countInStock: 20,
-      description:
-        'The food box contains the following items and they are sweet. and the farmer will suggest some recept for cooking what is inside the box',
-
-
-
-*/

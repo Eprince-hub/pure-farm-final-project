@@ -208,7 +208,4 @@ function CartScreen() {
   );
 }
 
-// setting es6 to true in .eslintrc file removed the error coming from using Promise.
-// setting the cart page to a dynamic component and setting the ssr to false
-// makes this component only renders on the client side because the cookie was giving errors
 export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });

@@ -16,7 +16,7 @@ import { useSnackbar } from 'notistack';
 import { useContext, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
-import farmImage from '../public/images/login-page-image.svg';
+import farmImage from '../public/images/login-page-image.webp';
 import { getError } from '../utils/error';
 /* import { loginLayoutStyle } from '../styles/Home.module.css'; */
 import { Store } from '../utils/Store';

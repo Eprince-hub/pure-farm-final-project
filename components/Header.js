@@ -22,10 +22,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
-import closeHamburgerMenu from '../public/images/logos/closeHamburgerMenu.svg';
 import footerLogo from '../public/images/logos/footer-logo.png';
-import hamburgerMenu from '../public/images/logos/hamburgerMenu.png';
-import hamburgerWhite from '../public/images/logos/hamburgerWhite.png';
 import headerLogo from '../public/images/logos/header-logo.png';
 import { getError } from '../utils/error';
 import useStyles from '../utils/styles';
@@ -352,15 +349,8 @@ export default function Header() {
               component="button"
               aria-controls="simple-Menu"
               aria-haspopup="true"
-              onClick={
-                loginClickHandler
-              } /* Change this handler to showUserProfileMenuClickHandler */
+              onClick={loginClickHandler}
             >
-              {/*  <Image
-                src={hamburgerWhite}
-                alt="Hamburger Menu for Mobile display"
-              ></Image> */}
-
               <MenuIcon
                 className={
                   navbar
@@ -374,15 +364,8 @@ export default function Header() {
               component="button"
               aria-controls="simple-Menu"
               aria-haspopup="true"
-              onClick={
-                loginClickHandler
-              } /* Change this handler to showUserProfileMenuClickHandler */
+              onClick={loginClickHandler}
             >
-              {/*  <Image
-                src={hamburgerMenu}
-                alt="Hamburger Menu for Mobile display"
-              ></Image> */}
-
               <MenuIcon
                 className={
                   navbar
@@ -399,20 +382,14 @@ export default function Header() {
             anchorEl={anchorEl}
             keepMounted
             open={Boolean(anchorEl)}
-            onClose={
-              loginMenuCloseHandler
-            } /* Change this handler to closeUserProfileMenuClickHandler */
+            onClose={loginMenuCloseHandler}
           >
             <MenuItem
               className={classes.hamburgerMenuItem}
               onClick={loginMenuCloseHandler}
             >
               <div className={classes.closeHamburgerMenuImage}>
-                <Image
-                  component="img"
-                  src={closeHamburgerMenu}
-                  alt="Hamburger Menu for Mobile display"
-                ></Image>
+                <CancelIcon className={classes.closeMobileMenu} />
               </div>
             </MenuItem>
 
@@ -460,10 +437,6 @@ export default function Header() {
                 BLOG
               </Typography>
             </MenuItem>
-
-            <div className={classes.searchBar}>
-              <input type="search" />
-            </div>
           </Menu>
         </div>
       </div>

@@ -476,7 +476,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   closeHamburgerMenuImage: {
-    width: 60,
     marginLeft: 400,
 
     '& img': {
@@ -567,9 +566,11 @@ const useStyles = makeStyles((theme) => ({
     height: 40,
   },
 
-  /*   menuButton: {
-    padding: 0,
-  }, */
+  closeMobileMenu: {
+    color: '#000000',
+    width: 40,
+    height: 40,
+  },
 
   componentTopMargin: {
     marginTop: '1rem',

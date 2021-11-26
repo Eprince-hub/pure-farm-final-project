@@ -13,10 +13,10 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
-import farmImage from '../public/images/signup-page-image.svg';
+import farmImage from '../public/images/user-sign-up-image.webp';
 import { getError } from '../utils/error';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
@@ -52,11 +52,6 @@ export default function Register() {
     }
   }, []);
 
-  // defining states for email and password
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
 
   const classes = useStyles();
 

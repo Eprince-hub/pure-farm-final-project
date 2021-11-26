@@ -18,7 +18,3 @@ handler.get(async (req, res) => {
 });
 
 export default handler;
-
-// creating an api that will return the list of items from Database
-
-// next-connect creates routing and middleware for nextjs backend

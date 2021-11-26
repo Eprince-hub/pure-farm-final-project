@@ -1,8 +1,6 @@
 import {
   Button,
   Card,
-  CardActions,
-  CardContent,
   CircularProgress,
   Grid,
   List,

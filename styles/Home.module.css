@@ -123,7 +123,7 @@
 /* Custom and personal css module styles */
 
 .heroPageWrapper {
-  background-image: url('../public/images/heropage.svg');
+  background-image: url('../public/images/heropage.webp');
   background-size: 100%;
   background-position: bottom center;
   background-repeat: no-repeat;

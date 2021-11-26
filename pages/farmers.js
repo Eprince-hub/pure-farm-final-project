@@ -12,17 +12,10 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { useContext } from 'react';
 import Layout from '../components/Layout';
-// import Product from '../models/Product';
 import User from '../models/User';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
-
-// Using the grid component from material UI
-// The grid parent is called Container and it can take spaces and other props
-// the grid items are called card and
-// the cardActionArea inside the card will be clickable areas.
-// cardMedia = image
 
 export default function Farmers(props) {
   // getting the react context from useContext

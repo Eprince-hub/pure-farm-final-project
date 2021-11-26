@@ -1,6 +1,6 @@
 import { Grid } from '@material-ui/core';
 import Image from 'next/image';
-import farmMarket from '../public/images/farm-market1.svg';
+import farmMarket from '../public/images/farm-market.webp';
 import useStyles from '../utils/styles';
 
 export default function MarketHero() {
