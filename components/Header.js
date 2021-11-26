@@ -137,7 +137,9 @@ export default function Header() {
             >
               <MenuIcon
                 className={
-                  navbar ? classes.navbarButtonOnScroll : classes.navbarButton
+                  navbar
+                    ? classes.navbarButtonOnScroll
+                    : classes.sideNavbarButton
                 }
               />
             </IconButton>
@@ -279,7 +281,9 @@ export default function Header() {
             >
               <MenuIcon
                 className={
-                  navbar ? classes.navbarButtonOnScroll : classes.navbarButton
+                  navbar
+                    ? classes.navbarButtonOnScroll
+                    : classes.sideNavbarButton
                 }
               />
             </IconButton>
@@ -359,7 +363,9 @@ export default function Header() {
 
               <MenuIcon
                 className={
-                  navbar ? classes.navbarButtonOnScroll : classes.navbarButton
+                  navbar
+                    ? classes.navbarButtonOnScroll
+                    : classes.sideNavbarButton
                 }
               />
             </Button>
@@ -379,7 +385,9 @@ export default function Header() {
 
               <MenuIcon
                 className={
-                  navbar ? classes.navbarButtonOnScroll : classes.navbarButton
+                  navbar
+                    ? classes.navbarButtonOnScroll
+                    : classes.sideNavbarButton
                 }
               />
             </Button>

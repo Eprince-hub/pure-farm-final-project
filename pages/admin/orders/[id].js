@@ -224,7 +224,7 @@ function OrderDeliver({ params }) {
 
   return (
     <Layout title={`Oder Detail Id: ${orderId}`}>
-      <section>
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
           Order Id: {orderId}
         </Typography>

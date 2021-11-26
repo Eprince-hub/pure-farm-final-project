@@ -126,10 +126,10 @@ function PlaceOrder() {
 
   return (
     <Layout title="Place Order">
-      <section>
+      <section className={classes.allPagesPadding}>
         <CheckoutWizard activeStep={3} />
         <Typography component="h1" variant="h1">
-          Place Order
+          Place Your Order
         </Typography>
 
         <Grid container spacing={1}>

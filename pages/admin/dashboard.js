@@ -99,10 +99,10 @@ function AdminDashboard() {
   }, []);
 
   return (
-    <Layout title="Admin Dashboard">
-      <section>
+    <Layout title="Farm Manager">
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
-          Admin Dashboard {/* Maybe not needed	 */}
+          Your Farm Manager {/* Maybe not needed	 */}
         </Typography>
 
         <Grid container spacing={1}>
@@ -111,7 +111,7 @@ function AdminDashboard() {
               <List>
                 <NextLink href="/admin/dashboard" passHref>
                   <ListItem selected button component="a">
-                    <ListItemText primary="Admin Dashboard"></ListItemText>
+                    <ListItemText primary="Farm Manager"></ListItemText>
                   </ListItem>
                 </NextLink>
 

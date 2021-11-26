@@ -11,6 +11,7 @@ import {
   Switch,
   ThemeProvider,
   Toolbar,
+  Typography,
 } from '@material-ui/core';
 import Cookies from 'js-cookie';
 import Head from 'next/head';
@@ -144,7 +145,15 @@ export default function Layout({
         {/* Upper Navigation (Cart, login, register) */}
         <AppBar position="static" className={classes.navbar}>
           <Toolbar>
-            <div className={classes.grow}></div>
+            <div className={classes.grow}>
+              <Typography
+                component="p"
+                variant="p"
+                className={classes.hideOnMobile}
+              >
+                Email: ejikello123@yahoo.com || Phone: (+43) 068864981555
+              </Typography>
+            </div>
             {/* push menu items to right */}
             <div className={classes.flex}>
               <Switch
@@ -176,7 +185,7 @@ export default function Layout({
               {/* Hide login and register if the user is already logged in */}
               {userInfo ? (
                 /* Set css styles for this button later */
-                <>
+                <div className={classes.loggedInUserContainer}>
                   <Button
                     aria-controls="simple-Menu"
                     aria-haspopup="true"
@@ -185,7 +194,9 @@ export default function Layout({
                     } /* Change this handler to showUserProfileMenuClickHandler */
                     className={classes.navbarButton}
                   >
-                    Welcome: {userInfo.name}
+                    <Typography component="p" variant="p">
+                      Welcome: {userInfo.name}
+                    </Typography>
                   </Button>
 
                   {/* Simple Menu from Material UI */}
@@ -242,7 +253,7 @@ export default function Layout({
 
                     <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
                   </Menu>
-                </>
+                </div>
               ) : (
                 /* conditionally render the login and register button based on if the user is logged in or not */
                 <div className={classes.flex}>

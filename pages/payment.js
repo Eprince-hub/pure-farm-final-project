@@ -75,7 +75,7 @@ export default function Payment() {
   };
   return (
     <Layout title="Payment Method">
-      <section>
+      <section className={classes.allPagesPadding}>
         <CheckoutWizard activeStep={2} />
 
         <form className={classes.form} onSubmit={submitHandler}>

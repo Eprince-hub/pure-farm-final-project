@@ -253,7 +253,7 @@ function ProductEdit({ params }) {
 
   return (
     <Layout title={`Edit Product ${productId}`}>
-      <section>
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
           Edit Your Product Information {/* Maybe not needed	 */}
         </Typography>
@@ -264,7 +264,7 @@ function ProductEdit({ params }) {
               <List>
                 <NextLink href="/admin/dashboard" passHref>
                   <ListItem button component="a">
-                    <ListItemText primary="Admin Dashboard"></ListItemText>
+                    <ListItemText primary="Farm Manager"></ListItemText>
                   </ListItem>
                 </NextLink>
 

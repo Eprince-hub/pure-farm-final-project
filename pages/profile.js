@@ -102,9 +102,9 @@ function Profile() {
 
   return (
     <Layout title="Profile">
-      <section>
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
-          Your Profile {/* Maybe not needed	 */}
+          You Can Edit Your Profile {/* Maybe not needed	 */}
         </Typography>
 
         <Grid container spacing={1}>

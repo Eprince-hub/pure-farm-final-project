@@ -96,7 +96,7 @@ function OrderHistory() {
 
   return (
     <Layout title="Order History">
-      <section>
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
           Your Order History {/* Maybe not needed	 */}
         </Typography>

@@ -166,7 +166,7 @@ function Users() {
 
   return (
     <Layout title="Admin User Display">
-      <section>
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
           Users
         </Typography>
@@ -177,7 +177,7 @@ function Users() {
               <List>
                 <NextLink href="/admin/dashboard" passHref>
                   <ListItem button component="a">
-                    <ListItemText primary="Admin Dashboard"></ListItemText>
+                    <ListItemText primary="Farm Manager"></ListItemText>
                   </ListItem>
                 </NextLink>
 

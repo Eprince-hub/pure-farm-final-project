@@ -225,9 +225,9 @@ function Products() {
 
   return (
     <Layout title="Admin Product Display">
-      <section>
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
-          Products
+          Product Lists
         </Typography>
 
         <Grid container spacing={1}>
@@ -236,7 +236,7 @@ function Products() {
               <List>
                 <NextLink href="/admin/dashboard" passHref>
                   <ListItem button component="a">
-                    <ListItemText primary="Admin Dashboard"></ListItemText>
+                    <ListItemText primary="Farm Manager"></ListItemText>
                   </ListItem>
                 </NextLink>
 

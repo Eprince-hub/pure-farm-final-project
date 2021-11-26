@@ -90,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    height: 40,
 
     '& a[href="/cart"]': { marginRight: 20 },
 
@@ -113,6 +114,37 @@ const useStyles = makeStyles((theme) => ({
       width: 108,
       height: 30,
     },
+  },
+
+  loggedInUserContainer: {
+    minWidth: '10rem',
+    marginLeft: '2rem',
+
+    '@media (max-width: 870px)': {
+      marginLeft: '0rem',
+    },
+  },
+
+  hideOnMobile: {
+    '@media (max-width: 870px)': {
+      display: 'none',
+    },
+  },
+
+  navbarButton: {
+    color: '#ffffff',
+    textTransform: 'initial',
+    fontSize: '1.2rem',
+
+    '@media (max-width: 870px)': {
+      fontSize: '1rem',
+    },
+  },
+
+  sideNavbarButton: {
+    color: '#002B2B',
+    width: 40,
+    height: 40,
   },
 
   cartIcon: {
@@ -247,11 +279,6 @@ const useStyles = makeStyles((theme) => ({
     /* textAlign: 'center', */
     maxWidth: 800,
     margin: '0 auto',
-  },
-
-  navbarButton: {
-    color: '#ffffff',
-    textTransform: 'initial',
   },
 
   loginLayoutStyle: {
@@ -534,12 +561,6 @@ const useStyles = makeStyles((theme) => ({
     /* not working yet */
   },
 
-  navbarButton: {
-    color: '#002B2B',
-    width: 40,
-    height: 40,
-  },
-
   navbarButtonOnScroll: {
     color: '#FFFFFF',
     width: 40,
@@ -625,9 +646,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  // all the pages needs this for a better margin and padding
+  // all the pages needs this for a better padding
   allPagesPadding: {
-    paddingTop: '4rem',
+    paddingTop: '6rem',
+    textAlign: 'center',
   },
 }));
 export default useStyles;

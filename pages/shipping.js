@@ -80,7 +80,7 @@ export default function Shipping() {
   };
   return (
     <Layout title="Shipping">
-      <section>
+      <section className={classes.allPagesPadding}>
         <CheckoutWizard activeStep={1} />
         <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
           <Typography component="h1" variant="h1">

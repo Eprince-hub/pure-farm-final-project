@@ -179,138 +179,140 @@ export default function Search(props) {
   console.log(query.page);
   return (
     <Layout title="Search">
-      <Grid className={classes.componentTopMargin} container spacing={1}>
-        <Grid item md={3}>
-          <List>
-            {/* categories */}
-            <ListItem>
-              <Box className={classes.fullWidth}>
-                <Typography>Categories</Typography>
+      <section className={classes.allPagesPadding}>
+        <Grid className={classes.componentTopMargin} container spacing={1}>
+          <Grid item md={3}>
+            <List>
+              {/* categories */}
+              <ListItem>
+                <Box className={classes.fullWidth}>
+                  <Typography>Categories</Typography>
 
-                <Select fullWidth value={category} onChange={categoryHandler}>
-                  <MenuItem value="all">All</MenuItem>
-                  {categories &&
-                    categories.map((category) => (
-                      <MenuItem key={category} value={category}>
-                        {category}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </Box>
-            </ListItem>
+                  <Select fullWidth value={category} onChange={categoryHandler}>
+                    <MenuItem value="all">All</MenuItem>
+                    {categories &&
+                      categories.map((category) => (
+                        <MenuItem key={category} value={category}>
+                          {category}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </Box>
+              </ListItem>
 
-            {/* Farmers name */}
-            <ListItem>
-              <Box className={classes.fullWidth}>
-                <Typography>Farm Name</Typography>
+              {/* Farmers name */}
+              <ListItem>
+                <Box className={classes.fullWidth}>
+                  <Typography>Farm Name</Typography>
 
-                <Select
-                  fullWidth
-                  value={farmerName}
-                  onChange={farmerNameHandler}
-                >
-                  <MenuItem value="all">All</MenuItem>
-                  {farmerNames &&
-                    farmerNames.map((farmerName) => (
-                      <MenuItem key={farmerName} value={farmerName}>
-                        {farmerName}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </Box>
-            </ListItem>
+                  <Select
+                    fullWidth
+                    value={farmerName}
+                    onChange={farmerNameHandler}
+                  >
+                    <MenuItem value="all">All</MenuItem>
+                    {farmerNames &&
+                      farmerNames.map((farmerName) => (
+                        <MenuItem key={farmerName} value={farmerName}>
+                          {farmerName}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </Box>
+              </ListItem>
 
-            {/* Prices */}
-            <ListItem>
-              <Box className={classes.fullWidth}>
-                <Typography>Prices</Typography>
+              {/* Prices */}
+              <ListItem>
+                <Box className={classes.fullWidth}>
+                  <Typography>Prices</Typography>
 
-                <Select fullWidth value={price} onChange={priceHandler}>
-                  <MenuItem value="all">All</MenuItem>
-                  {prices &&
-                    prices.map((price) => (
-                      <MenuItem key={price.value} value={price.value}>
-                        {price.name}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </Box>
-            </ListItem>
+                  <Select fullWidth value={price} onChange={priceHandler}>
+                    <MenuItem value="all">All</MenuItem>
+                    {prices &&
+                      prices.map((price) => (
+                        <MenuItem key={price.value} value={price.value}>
+                          {price.name}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </Box>
+              </ListItem>
 
-            {/* Ratings */}
-            <ListItem>
-              <Box className={classes.fullWidth}>
-                <Typography>Ratings</Typography>
+              {/* Ratings */}
+              <ListItem>
+                <Box className={classes.fullWidth}>
+                  <Typography>Ratings</Typography>
 
-                <Select fullWidth value={rating} onChange={ratingHandler}>
-                  <MenuItem value="all">All</MenuItem>
-                  {ratings &&
-                    ratings.map((rating) => (
-                      <MenuItem key={rating} value={rating}>
-                        <Rating value={rating} readOnly />
-                        <Typography component="span">&amp; Above</Typography>
-                      </MenuItem>
-                    ))}
-                </Select>
-              </Box>
-            </ListItem>
-          </List>
-        </Grid>
-
-        <Grid item md={9}>
-          <Grid container justifyContent="space-between" alignItems="center">
-            <Grid item>
-              {products.length === 0 ? 'No' : countProducts} Results
-              {query !== 'all' && query !== '' && ' : ' + query}
-              {category !== 'all' && ' : ' + category}
-              {farmerName !== 'all' && ' : ' + farmerName}
-              {price !== 'all' && ' : Price ' + price}
-              {rating !== 'all' && ' : Rating ' + rating + ' & up'}
-              {(query !== 'all' && query !== '') ||
-              category !== 'all' ||
-              farmerName !== 'all' ||
-              rating !== 'all' ||
-              price !== 'all' ? (
-                <Button onClick={() => router.push('/search')}>
-                  <CancelIcon />
-                </Button>
-              ) : null}
-            </Grid>
-
-            {/* sort */}
-            <Grid item>
-              <Typography component="span" className={classes.sort}>
-                Sort by
-              </Typography>
-              <Select value={sort} onChange={sortHandler}>
-                <MenuItem value="featured">Featured</MenuItem>
-                <MenuItem value="lowest">Price: Low to High</MenuItem>
-                <MenuItem value="highest">Price: High to Low</MenuItem>
-                <MenuItem value="toprated">Customer Reviews</MenuItem>
-                <MenuItem value="newest">Newest Arrivals</MenuItem>
-              </Select>
-            </Grid>
+                  <Select fullWidth value={rating} onChange={ratingHandler}>
+                    <MenuItem value="all">All</MenuItem>
+                    {ratings &&
+                      ratings.map((rating) => (
+                        <MenuItem key={rating} value={rating}>
+                          <Rating value={rating} readOnly />
+                          <Typography component="span">&amp; Above</Typography>
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </Box>
+              </ListItem>
+            </List>
           </Grid>
 
-          <Grid className={classes.componentTopMargin} container spacing={3}>
-            {products.map((product) => (
-              <Grid item md={4} key={product.name}>
-                <ProductItem
-                  product={product}
-                  addToCartHandler={addToCartHandler}
-                />
+          <Grid item md={9}>
+            <Grid container justifyContent="space-between" alignItems="center">
+              <Grid item>
+                {products.length === 0 ? 'No' : countProducts} Results
+                {query !== 'all' && query !== '' && ' : ' + query}
+                {category !== 'all' && ' : ' + category}
+                {farmerName !== 'all' && ' : ' + farmerName}
+                {price !== 'all' && ' : Price ' + price}
+                {rating !== 'all' && ' : Rating ' + rating + ' & up'}
+                {(query !== 'all' && query !== '') ||
+                category !== 'all' ||
+                farmerName !== 'all' ||
+                rating !== 'all' ||
+                price !== 'all' ? (
+                  <Button onClick={() => router.push('/search')}>
+                    <CancelIcon />
+                  </Button>
+                ) : null}
               </Grid>
-            ))}
-          </Grid>
 
-          <Pagination
-            className={classes.componentTopMargin}
-            defaultPage={parseInt(query.page || '1')}
-            count={pages}
-            onChange={pageHandler}
-          ></Pagination>
+              {/* sort */}
+              <Grid item>
+                <Typography component="span" className={classes.sort}>
+                  Sort by
+                </Typography>
+                <Select value={sort} onChange={sortHandler}>
+                  <MenuItem value="featured">Featured</MenuItem>
+                  <MenuItem value="lowest">Price: Low to High</MenuItem>
+                  <MenuItem value="highest">Price: High to Low</MenuItem>
+                  <MenuItem value="toprated">Customer Reviews</MenuItem>
+                  <MenuItem value="newest">Newest Arrivals</MenuItem>
+                </Select>
+              </Grid>
+            </Grid>
+
+            <Grid className={classes.componentTopMargin} container spacing={3}>
+              {products.map((product) => (
+                <Grid item md={4} key={product.name}>
+                  <ProductItem
+                    product={product}
+                    addToCartHandler={addToCartHandler}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+
+            <Pagination
+              className={classes.componentTopMargin}
+              defaultPage={parseInt(query.page || '1')}
+              count={pages}
+              onChange={pageHandler}
+            ></Pagination>
+          </Grid>
         </Grid>
-      </Grid>
+      </section>
     </Layout>
   );
 }

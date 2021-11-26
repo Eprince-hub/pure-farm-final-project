@@ -36,42 +36,44 @@ export default function Farmers(props) {
 
   return (
     <Layout title="farmers">
-      <section className={classes.homePageProductsStyle}>
-        <div>
-          <Typography variant="h3" align="center">
-            Know Where Your Food Is Coming From
-          </Typography>
-        </div>
-        <div>
-          <Grid container spacing={3}>
-            <TableContainer>
-              <Table>
-                {/* Table Body From Material UI*/}
-                <TableBody>
-                  {adminUsers.map((adminUser) => (
-                    <TableRow key={adminUser._id}>
-                      {/* Table name Cell */}
+      <div className={classes.allPagesPadding}>
+        <section className={classes.homePageProductsStyle}>
+          <div>
+            <Typography variant="h3" align="center">
+              Know Where Your Food Is Coming From
+            </Typography>
+          </div>
+          <div>
+            <Grid container spacing={3}>
+              <TableContainer>
+                <Table>
+                  {/* Table Body From Material UI*/}
+                  <TableBody>
+                    {adminUsers.map((adminUser) => (
+                      <TableRow key={adminUser._id}>
+                        {/* Table name Cell */}
 
-                      <TableCell>
-                        <NextLink href="/market" passHref>
-                          <Link>
-                            <Typography>Name: {adminUser.name}</Typography>
-                          </Link>
-                        </NextLink>
-                      </TableCell>
+                        <TableCell>
+                          <NextLink href="/market" passHref>
+                            <Link>
+                              <Typography>Name: {adminUser.name}</Typography>
+                            </Link>
+                          </NextLink>
+                        </TableCell>
 
-                      {/* Table cell for Price */}
-                      <TableCell align="right">
-                        Joined Since: {adminUser.createdAt.slice(0, 16)}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-        </div>
-      </section>
+                        {/* Table cell for Price */}
+                        <TableCell align="right">
+                          Joined Since: {adminUser.createdAt.slice(0, 16)}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+          </div>
+        </section>
+      </div>
     </Layout>
   );
 }

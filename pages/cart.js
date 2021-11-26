@@ -67,7 +67,7 @@ function CartScreen() {
 
   return (
     <Layout title="Shopping Cart">
-      <section>
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
           Shopping Cart
         </Typography>

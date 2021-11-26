@@ -103,10 +103,10 @@ function Orders() {
   }, []);
 
   return (
-    <Layout title="Admin Dashboard">
-      <section>
+    <Layout title="Order Items">
+      <section className={classes.allPagesPadding}>
         <Typography component="h1" variant="h1">
-          Admin Dashboard {/* Maybe not needed	 */}
+          Order Items {/* Maybe not needed	 */}
         </Typography>
 
         <Grid container spacing={1}>
@@ -115,7 +115,7 @@ function Orders() {
               <List>
                 <NextLink href="/admin/dashboard" passHref>
                   <ListItem button component="a">
-                    <ListItemText primary="Admin Dashboard"></ListItemText>
+                    <ListItemText primary="Farm Manager"></ListItemText>
                   </ListItem>
                 </NextLink>
 
