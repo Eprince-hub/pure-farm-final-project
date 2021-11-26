@@ -151,7 +151,7 @@ export default function Layout({
                 variant="p"
                 className={classes.hideOnMobile}
               >
-                Email: ejikello123@yahoo.com || Phone: (+43) 068864981555
+                Email: victorejikewebdev@gmail.com || Phone: (+43) 068864981555
               </Typography>
             </div>
             {/* push menu items to right */}
