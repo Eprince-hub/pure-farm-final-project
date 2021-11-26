@@ -19,7 +19,7 @@ import HeroPage from '../components/HeroPage';
 import LandingPageInfoDisplay from '../components/LandingPageInfoDisplay';
 import Layout from '../components/Layout';
 import Product from '../models/Product';
-import User from '../models/user';
+import User from '../models/User';
 // import data from '../utils/data';
 import db from '../utils/db';
 import { Store } from '../utils/Store';

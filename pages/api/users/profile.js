@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import nc from 'next-connect';
-import User from '../../../models/user';
+import User from '../../../models/User';
 import { isAuth, signToken } from '../../../utils/auth';
 import db from '../../../utils/db';
 

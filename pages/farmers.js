@@ -12,7 +12,7 @@ import NextLink from 'next/link';
 import { useContext } from 'react';
 import Layout from '../components/Layout';
 // import Product from '../models/Product';
-import User from '../models/user';
+import User from '../models/User';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
