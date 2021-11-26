@@ -1,7 +1,8 @@
 import nc from 'next-connect';
 import Order from '../../../models/Order';
 import { isAuth } from '../../../utils/auth';
-import db, { onError } from '../../../utils/db';
+import db from '../../../utils/db';
+import { onError } from '../../../utils/error';
 
 // api for creating the orders
 
