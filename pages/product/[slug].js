@@ -126,7 +126,7 @@ export default function ProductScreen(props) {
   };
   return (
     <Layout title={product.name} description={product.description}>
-      <section>
+      <section className={classes.allPagesPadding}>
         <div className={classes.section}>
           <NextLink href="/market" passHref>
             <Link>
