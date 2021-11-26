@@ -12,6 +12,7 @@ const signToken = (user) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isSiteAdmin: user.isSiteAdmin,
+      image: user.image,
     },
 
     // second parameter: the jwt secrete

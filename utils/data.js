@@ -12,6 +12,7 @@ const data = {
       postCode: '4810',
       isAdmin: true,
       isSiteAdmin: false,
+      image: 'https://i.imgur.com/xEoNwRI.jpg',
     },
 
     {
@@ -23,6 +24,7 @@ const data = {
       postCode: '4810',
       isAdmin: false,
       isSiteAdmin: false,
+      image: 'https://i.imgur.com/ztNwczs.jpg',
     },
   ],
 

@@ -23,12 +23,14 @@ handler.put(async (req, res) => {
     // update the user information with the information available from the request header
     user.name = req.body.name;
     user.email = req.body.email;
+    (user.image = req.body.email
+      ? req.body.email
+      : 'https://i.imgur.com/8sggcBp.png'),
+      // to update password we need to make sure that we only update when the password is not an empty string
 
-    // to update password we need to make sure that we only update when the password is not an empty string
-
-    user.password = req.body.password
-      ? bcrypt.hashSync(req.body.password)
-      : user.password;
+      (user.password = req.body.password
+        ? bcrypt.hashSync(req.body.password)
+        : user.password);
 
     // save the user back in the database
     await user.save();
@@ -47,6 +49,7 @@ handler.put(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isSiteAdmin: user.isSiteAdmin,
+      image: user.image,
     });
   } catch (error) {
     // console.log(error);

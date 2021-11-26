@@ -20,6 +20,9 @@ handler.post(async (req, res) => {
       password: bcrypt.hashSync(req.body.password),
       isAdmin: false,
       isSiteAdmin: false, // added this to make me accessible to some information
+      image: req.body.image
+        ? req.body.image
+        : 'https://i.imgur.com/8sggcBp.png',
     });
 
     // saving the new created user to the database by calling the save object property of mongoose
@@ -39,6 +42,7 @@ handler.post(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isSiteAdmin: user.isSiteAdmin,
+      image: user.image,
     });
   } catch (error) {
     // console.log(error);
