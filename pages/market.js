@@ -65,7 +65,6 @@ export default function Market(props) {
       <section className={classes.homePageProductsStyle}>
         <div>
           <MarketHero />
-          {/*  <CategoryNavigation /> */}
         </div>
         <div>
           <Typography
@@ -73,7 +72,7 @@ export default function Market(props) {
             align="center"
             className={classes.productPageHeader}
           >
-            Fresh From Farm
+            Pure Farm Market
           </Typography>
         </div>
         <div className={classes.productDisplayContainer}>

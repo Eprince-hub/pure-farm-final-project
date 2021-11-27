@@ -1,6 +1,4 @@
-import { Grid, Typography } from '@material-ui/core';
-import Image from 'next/image';
-import farmMarket from '../public/images/farm-market.webp';
+import { Typography } from '@material-ui/core';
 import styles from '../styles/InfoPage.module.css';
 import useStyles from '../utils/styles';
 
@@ -13,23 +11,14 @@ export default function MarketHero() {
         <div>
           <div>
             <Typography component="p" variant="p">
-              PURE FARM
+              MEET OUR FARMERS
             </Typography>
             <Typography component="h1" variant="h1">
-              MARKET PLACE
+              Know Where Your Food Comes From
             </Typography>
           </div>
         </div>
       </div>
     </section>
-    // <section className={styles.marketHeroImage /*  : classes.heroPage */}>
-    //   <div className={styles.heroImage}>
-    //     <Image
-    //       src={farmMarket}
-    //       alt="illustration of a farmers selling their produce"
-    //     ></Image>
-    //     HELLO WORLD
-    //   </div>
-    // </section>
   );
 }

@@ -1,16 +1,8 @@
-import {
-  Grid,
-  Link,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography,
-} from '@material-ui/core';
+import { Grid, Link, Typography } from '@material-ui/core';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useContext } from 'react';
+import FarmerHeroPage from '../components/FarmerHeroPage';
 import Layout from '../components/Layout';
 import User from '../models/User';
 import db from '../utils/db';
@@ -30,13 +22,11 @@ export default function Farmers(props) {
 
   return (
     <Layout title="farmers">
-      <div className={classes.allPagesPadding}>
+      <div /* className={classes.allPagesPadding} */>
+        <div>
+          <FarmerHeroPage />
+        </div>
         <section className={classes.homePageProductsStyle}>
-          <div>
-            <Typography variant="h3" align="center">
-              Know Where Your Food Is Coming From
-            </Typography>
-          </div>
           <div>
             <Grid container spacing={2}>
               {adminUsers.map((adminUser) => (
