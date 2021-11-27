@@ -261,11 +261,11 @@ export default function ProductScreen(props) {
                     </ListItem>
                   </List>
 
-             {/*      <Typography variant="p" component="p">
+                  <Typography variant="p" component="p">
                     {product.contains.split(',').map((item) => (
                       <Typography key={item}>{item},</Typography>
                     ))}
-                  </Typography> */}
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -280,12 +280,12 @@ export default function ProductScreen(props) {
                       </Typography>
                     </ListItem>
                   </List>
-{/*
+
                   <Typography variant="p" component="p">
                     {product.dietType.split(',').map((item) => (
                       <Typography key={item}>{item},</Typography>
                     ))}
-                  </Typography> */}
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -319,11 +319,11 @@ export default function ProductScreen(props) {
                     </ListItem>
                   </List>
 
-                  {/* <Typography variant="p" component="p">
+                  <Typography variant="p" component="p">
                     {product.farmingMethod.split(',').map((item) => (
                       <Typography key={item}>{item},</Typography>
                     ))}
-                  </Typography> */}
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>

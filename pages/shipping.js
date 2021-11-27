@@ -52,7 +52,6 @@ export default function Shipping() {
     setValue('country', shippingAddress.country);
   }, []);
 
-
   const classes = useStyles();
 
   // function that sends the user shipping information to the shipping authentication api using an ajax request

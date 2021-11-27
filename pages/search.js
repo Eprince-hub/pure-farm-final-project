@@ -360,8 +360,8 @@ export async function getServerSideProps({ query }) {
         }
       : {};
 
-  const priceFilter = 'all';
-  /*     price && price !== 'all'
+  const priceFilter =
+ price && price !== 'all'
       ? {
           // get the price that is greater than the first price and less than the second price
           price: {
@@ -370,7 +370,7 @@ export async function getServerSideProps({ query }) {
             $lte: Number(price.split('-')[1]),
           },
         }
-      : {}; */
+      : {};
 
   // sorting the products depending on different criteria
 
