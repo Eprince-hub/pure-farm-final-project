@@ -262,7 +262,7 @@ export default function ProductScreen(props) {
                   </List>
 
                   <Typography variant="p" component="p">
-                    {product.contains.split(',').map((item) => (
+                    {product.contains?.split(',').map((item) => (
                       <Typography key={item}>{item},</Typography>
                     ))}
                   </Typography>
@@ -282,7 +282,7 @@ export default function ProductScreen(props) {
                   </List>
 
                   <Typography variant="p" component="p">
-                    {product.dietType.split(',').map((item) => (
+                    {product.dietType?.split(',').map((item) => (
                       <Typography key={item}>{item},</Typography>
                     ))}
                   </Typography>
@@ -320,7 +320,7 @@ export default function ProductScreen(props) {
                   </List>
 
                   <Typography variant="p" component="p">
-                    {product.farmingMethod.split(',').map((item) => (
+                    {product.farmingMethod?.split(',').map((item) => (
                       <Typography key={item}>{item},</Typography>
                     ))}
                   </Typography>

@@ -366,8 +366,8 @@ export async function getServerSideProps({ query }) {
           // get the price that is greater than the first price and less than the second price
           price: {
             // 20 - 60
-            $gte: Number(price.split('-')[0]),
-            $lte: Number(price.split('-')[1]),
+            $gte: Number(price?.split('-')[0]),
+            $lte: Number(price?.split('-')[1]),
           },
         }
       : {};
