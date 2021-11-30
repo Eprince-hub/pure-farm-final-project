@@ -1,59 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pure Farm
 
-## Getting Started
+## Description
+Pure Farm is a multi Vendor Marketplace for farmers and organic food lovers. It enable farmers to sale thier farm produce easily and simply by just registering on the platform and start uploading the food box that they want to sale. The buyers on the other hand can simply get on the platform and search for the food box they want to buy.
 
-First, run the development server:
+At first glance of the platform, you will be greated with a beautiful landing page and you can see some of the food boxes on the overview of the landing page and on the market is where you see all the food boxes available on the platform. As an unregistered users you can view all the products, view the farmers currently registered on the platform, add food boxes to your cart.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+When a user is registered as a customer then the user will have access to a profile page where they can edit thier profile and make some changes if there was a mistake and then onhly they can continue to enter their delivery address and continue to place an order and make purchase.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+When a user is registered as a farmer, they have all the privileges of á customer and an extra privileges of having a dashboard where they can manage their digital farm. On this dashboard they can delete an unwanted product or edit the product information. and they can also create a new product where a lot of information would be needed about the food box and what is in it.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Main Technonolies Used to Build the App
+Next.js
+Node.js
+MongoDB
+Material ui
+Paypal Payment
+Cloudinary
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-<!--
-
-video 14 the last video of mongoDB set up:
-plans:
-
-14: FETCH PRODUCT FROM API
-1. use getServerSIdeProps
-2. get product from db
-3. return data as props
-4. use it in product screen too
+## The application is fully deployed on:
+HEROKU:  [Heroku](https://pure-farm.herokuapp.com/)
+VERCEL: [Vercel](https://pure-farm-mongoose-stable.vercel.app/)
 
 
 
+## Setup
+If you would like to set up the project yourself, follow these steps:
 
-video 15 the last video of mongoDB set up:
-plans:
+## MongoDB Atlas
+- The application requires MongoDB Atlas in order to work.
+- It is necessary to create or have a [MongoDB Atlas Account](https://account.mongodb.com/account/login) for that.
+- Once your done with that, you need to create a new cluster if you don't have one yet.
+- Stick to the instructions of the [Official Documentation](https://docs.atlas.mongodb.com/tutorial/create-new-cluster/) to do that.
+- Make sure to select a shared database as it is the only one that is for free.
+- After having done all of the previous steps, you should see your cluster under Deployment/Databases.
+- Click on 'Browse Collections'.
+- Create a new database with a name you would like.
+- Once you've created the database go back to the main page under Deployment/Databases.
+- Click on 'Connect' and then click on 'Connect your application'.
+- Copy the connection string starting with 'mongodb+srv...'. You will need it for the next step.
 
-15: IMPLEMENT ADD TO CART
-1. define cart in context
-2. dispatch add to cart action
-3. set click event handler for button
+## Cloning the Project
+Clone the project using git clone.
+Add your project to your GitHub Profile.
+After you're done with that, open your code editor and terminal.
+Run yarn to install all the require dependencies.
+Create a .env.local file in the root directory.
+You need to declare four environment variables in there:
+MONGODB_URI (with the value of the connection string you copied from MongoDB Atlas).
+DB_Name (with the value of the name of the database you created within the cluster).
+JWT_SECRET (This will be needed in case if you want the user authentication functionality).
+PAYPAL_CLIENT_ID (For paypal payment to work,l you will need this, from the paypal delveloper sandbox, you can can follow the instruction there).
+CLOUDINARY_CLOUD_NAME (These are the information you need to get the picture upload functionality).
+CLOUDINARY_API_KEY (These are the information you need to get the picture upload functionality).
+CLOUDINARY_API_SECRET (These are the information you need to get the picture upload functionality).
 
+## SOME VISUALS
+![Landing Image](https://i.imgur.com/AgCsF2k.png) 
+\
+&nbsp;
+\
+&nbsp;
+![Landing Image](https://i.imgur.com/62NYybP.png) 
+\
+&nbsp;
+\
+&nbsp;
+![Landing Image](https://i.imgur.com/mIXcBNX.png) 
 
- -->
+### Thanks For Viewing
+
