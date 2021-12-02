@@ -23,7 +23,7 @@ HEROKU:  [Heroku](https://pure-farm.herokuapp.com/)
 &nbsp;
 \
 &nbsp;
-VERCEL: [Vercel](https://pure-farm-mongoose-stable.vercel.app/)
+VERCEL: [Vercel](https://pure-farm.vercel.app/)
 
 
 
