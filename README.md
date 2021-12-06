@@ -51,7 +51,7 @@ If you would like to set up the project yourself, follow these steps:
 
 - Create a .env.local file in the root directory.
 
-- You need to declare four environment variables in there:
+- You need to declare seven environment variables in there:
 
 - MONGODB_URI (with the value of the connection string you copied from MongoDB Atlas).
 
