@@ -44,42 +44,28 @@ If you would like to set up the project yourself, follow these steps:
 - Copy the connection string starting with 'mongodb+srv...'. You will need it for the next step.
 
 ## Cloning the Project
-Clone the project using git clone.
-\
-&nbsp;
-Add your project to your GitHub Profile.
-\
-&nbsp;
-After you're done with that, open your code editor and terminal.\
-&nbsp;
-Run yarn to install all the require dependencies.
-\
-&nbsp;
-Create a .env.local file in the root directory.
-\
-&nbsp;
-You need to declare four environment variables in there:
-\
-&nbsp;
-MONGODB_URI (with the value of the connection string you copied from MongoDB Atlas).
-\
-&nbsp;
-DB_Name (with the value of the name of the database you created within the cluster).
-\
-&nbsp;
-JWT_SECRET (This will be needed in case if you want the user authentication functionality).
-\
-&nbsp;
-PAYPAL_CLIENT_ID (For paypal payment to work,l you will need this, from the paypal delveloper sandbox, you can can follow the instruction there).
-\
-&nbsp;
-CLOUDINARY_CLOUD_NAME (These are the information you need to get the picture upload functionality).
-\
-&nbsp;
-CLOUDINARY_API_KEY (These are the information you need to get the picture upload functionality).
-\
-&nbsp;
-CLOUDINARY_API_SECRET (These are the information you need to get the picture upload functionality).
+- Clone the project using git clone.
+- Add your project to your GitHub Profile.
+- After you're done with that, open your code editor and terminal.
+- Run yarn to install all the require dependencies.
+
+- Create a .env.local file in the root directory.
+
+- You need to declare four environment variables in there:
+
+- MONGODB_URI (with the value of the connection string you copied from MongoDB Atlas).
+
+- DB_Name (with the value of the name of the database you created within the cluster).
+
+- JWT_SECRET (This will be needed in case if you want the user authentication functionality).
+
+- PAYPAL_CLIENT_ID (For paypal payment to work,l you will need this, from the paypal delveloper sandbox, you can can follow the instruction there).
+
+- CLOUDINARY_CLOUD_NAME (These are the information you need to get the picture upload functionality).
+
+- CLOUDINARY_API_KEY (These are the information you need to get the picture upload functionality).
+
+- CLOUDINARY_API_SECRET (These are the information you need to get the picture upload functionality).
 
 ## SOME VISUALS
 ![Landing Image](https://i.imgur.com/AgCsF2k.png) 
