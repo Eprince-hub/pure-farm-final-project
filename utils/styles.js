@@ -1,18 +1,19 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  //transfered as appbar
   navbar: {
     backgroundColor: '#002B2B',
     height: 50,
     maxWidth: '100vw',
     '& a': {
-      color: '#002B2B',
       marginRight: 10,
       fontSize: '1.2rem',
       color: '#FFFFFF',
     },
   },
 
+  // transfered
   lowerNavigation: {
     width: '100%',
     height: '6.6rem',
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     transition: 'all 0.6s ease',
   },
 
+  // transfered
   onScrollClassName: {
     background: '#002B2B',
     width: '100%',
@@ -40,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered
   navMenu: {
     width: 'inherit',
     height: 'inherit',
@@ -59,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered
   logo: {
     maxWidth: 260,
   },
@@ -68,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }, */
 
+  // transfered to classes
   navbarButtons: {
     width: '40%',
     height: 'inherit',
@@ -81,11 +86,12 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: 'Oswald',
     },
   },
-
+  // done
   disableSwitch: {
     display: 'none',
   },
 
+  // Transfered
   flex: {
     display: 'flex',
     justifyContent: 'center',
@@ -99,7 +105,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 10,
       textAlign: 'center',
       borderRadius: 5,
-
       width: 108,
       height: 30,
     },
@@ -116,6 +121,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // done
   loggedInUserContainer: {
     minWidth: '10rem',
     marginLeft: '2rem',
@@ -125,12 +131,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
+
   hideOnMobile: {
     '@media (max-width: 870px)': {
       display: 'none',
     },
   },
 
+  // transfered to new classes
   navbarButton: {
     color: '#ffffff',
     textTransform: 'initial',
@@ -141,20 +150,23 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to new classes
   sideNavbarButton: {
     color: '#002B2B',
     width: 40,
     height: 40,
   },
-
+  // done
   cartIcon: {
     width: 30,
   },
 
+  // done
   profileIcon: {
     marginRight: 5,
   },
 
+  // done
   lineUp: {
     color: '#FFFFFF',
     display: 'flex',
@@ -165,6 +177,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 10,
   },
 
+  // transfered to home.module css
   heroPage: {
     marginBottom: 20,
     textAlign: 'center',
@@ -178,6 +191,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
 
+  // trannsfered to classes
   heroPageHeader: {
     color: '#002B2B',
     display: 'flex',
@@ -226,10 +240,13 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5rem',
   },
 
+  // done
   grow: {
     flexGrow: 1,
   },
+  // done
   main: {
+    marginTop: 2, // added new
     minHeight: '80vh',
   },
 
@@ -238,11 +255,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
   },
 
+  // transfered to home.module css
   categorySection: {
     width: '100%',
     textAlign: 'center',
   },
 
+  // transfered to classes
   categorySectionHeader: {
     /* background: 'rgba(77, 115, 50, 0.2)', */
     backgroundColor: 'rgba(182, 242, 109, 1)',
@@ -262,6 +281,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   productPageHeader: {
     marginBottom: '1.2rem',
     fontWeight: 'bold',
@@ -269,6 +289,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2rem',
   },
 
+  // transfered to classes
   productDisplayContainer: {
     width: '80%',
     margin: '0 auto',
@@ -281,10 +302,12 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
   },
 
+  // transfered to classes
   loginLayoutStyle: {
     backgroundColor: 'rgba(182, 242, 109, 0.3)',
   },
 
+  // transfered to classes
   loginPageStyle: {
     maxWidth: '60%',
     height: '60vh',
@@ -308,6 +331,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   loginGrid: {
     width: '100%',
     display: 'flex',
@@ -315,6 +339,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 
+  // transfered to
   loginPageImage: {
     width: '100%',
     height: '100%',
@@ -332,6 +357,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   loginFormTexts: {
     display: 'flex',
     flexDirection: 'column',
@@ -350,14 +376,19 @@ const useStyles = makeStyles((theme) => ({
     background: 'transparent',
   },
 
+  // done
   error: {
     color: '#F04040',
   },
 
+  //done
   fullWidth: {
     width: '100%',
   },
+  // added new,, no refering to any element
+  fullHeight: { height: '100vh' },
 
+  // transfered to classes
   siteAdminStyle: {
     '& h2': {
       textAlign: 'center',
@@ -366,6 +397,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   chooseRegistration: {
     height: '60vh',
     display: 'flex',
@@ -378,11 +410,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   centerAligned: {
     textAlign: 'center',
     fontSize: '2rem',
     marginTop: '3rem',
   },
+
+  // transfered to classes
 
   cartContinueShopping: {
     '& h1': {
@@ -391,6 +426,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // Transfered
   footer: {
     padding: '1rem',
     marginTop: 60,
@@ -409,6 +445,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // Transfered
   footerSocialIcons: {
     paddingTop: '0.5rem',
     width: 200,
@@ -417,10 +454,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 
+  // Transfered
   icons: {
     width: 20,
   },
 
+  // Transfered
   footerButton: {
     background: 'transparent',
     display: 'flex',
@@ -428,6 +467,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 
+  // Transfered
   formInputContainer: {
     display: 'flex',
     justifyContent: 'center',
@@ -436,12 +476,14 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px 0px',
   },
 
+  // transfered to classes
   mobileDisplayNav: {
     display: 'flex',
     right: 0,
     left: 0,
   },
 
+  // transfered to classes
   mobileLogo: {
     width: 260,
     margin: '0 auto',
@@ -453,6 +495,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   mobileSidebar: {
     display: 'none',
 
@@ -461,6 +504,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   hamburgerMenuContainer: {
     textAlign: 'right',
     margin: '0 0 0 auto',
@@ -475,6 +519,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   closeHamburgerMenuImage: {
     marginLeft: 400,
 
@@ -484,6 +529,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   hamburgerMenuItem: {
     background: '#002B2B',
     color: 'white',
@@ -501,11 +547,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to infopage.module css
   infoPageStyles: {
     margin: '2rem 0',
     width: '100%',
   },
 
+  // transfered to classes
   infoPageGrids: {
     paddingTop: '8rem',
     textAlign: 'center',
@@ -527,6 +575,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   farmersInfo: {
     width: '60%',
     minHeight: '60vh',
@@ -560,6 +609,7 @@ const useStyles = makeStyles((theme) => ({
     /* not working yet */
   },
 
+  // transfered to new classes
   navbarButtonOnScroll: {
     color: '#FFFFFF',
     width: 40,
@@ -586,12 +636,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   searchForm: {
     border: '1px solid #FFFFFF',
     backgroundColor: '#FFFFFF',
     borderRadius: 4,
   },
 
+  // transfered to classes
   searchInput: {
     paddingLeft: 5,
     color: '#000000',
@@ -601,6 +653,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   iconButton: {
     backgroundColor: '#002B2B',
     padding: 5,
@@ -615,10 +668,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // done
   sort: {
     marginRight: 5,
   },
 
+  // transfered to classes
   // Carousel component
   carouselComponent: {
     textAlign: 'center',
@@ -632,6 +687,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // transfered to classes
   carouselCardArea: {
     display: 'flex',
     flexDirection: 'column',
@@ -639,6 +695,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 
+  // transfered to classes
   carouselImage: {
     height: '20rem',
 
