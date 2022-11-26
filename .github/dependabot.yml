@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+      day: friday
+      time: '07:00'
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: ssri
+        versions:
+          - 6.0.2
+          
