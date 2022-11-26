@@ -1016,29 +1016,27 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@paypal/paypal-js@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-4.2.1.tgz#350efe38962a94f440d34c44514fe80b8a13bb19"
-  integrity sha512-5b+UykL8+WNOEWHgC2nGJUR9EMmRJNspVBjT7knZcItTP9sQeQ7lCGoM5yubFDMeVmhmCZDtJDASpwlo9VOcJg==
+"@paypal/paypal-js@^5.0.6":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-5.1.2.tgz#fa36512eb702a5920aab6cc5551b947ae695241a"
+  integrity sha512-hdJUnAmsmhsZ1D4WgWg3Q7cpoUZ3Xxrr2LMREsOZVAARNVtzoy1ZZrDKzvFYEXUyWWDRr45Bc6Ov3yvZidLMrA==
   dependencies:
-    promise-polyfill "^8.2.1"
+    promise-polyfill "^8.2.3"
 
-"@paypal/react-paypal-js@^7.2.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-7.5.0.tgz#f48b6281dac17e47a302b9b2d3195e37d1fce2d8"
-  integrity sha512-QWA0FArj4DG8WcyWZuQ/m7r4tI3Z3AF8Q/1cN8ANjUljjq7crvYu1a7WlRoBiwRQqaERXNjAZ3Ch+f22KRFGMA==
+"@paypal/react-paypal-js@^7.8.1":
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-7.8.1.tgz#ab5b62240552cf38ff4782c4925ef4d99a8bf444"
+  integrity sha512-+cAa0QLJUO1TUlFk/xqJsfEm6Ywtg3kvMmxf2EJcmVJDkNHc6+7Qq2o6Gt1mTn16ZG4/2uWRROeKcoXFFdNrQA==
   dependencies:
-    "@paypal/paypal-js" "^4.2.1"
-    "@paypal/sdk-constants" "^1.0.110"
+    "@paypal/paypal-js" "^5.0.6"
+    "@paypal/sdk-constants" "^1.0.116"
 
-"@paypal/sdk-constants@^1.0.110":
-  version "1.0.113"
-  resolved "https://registry.yarnpkg.com/@paypal/sdk-constants/-/sdk-constants-1.0.113.tgz#0aff5aeb25654f2e7c8ae091ad568d07ae0ae89c"
-  integrity sha512-Lk4xIy+EqdmAHx2JGiOubd7unzTKge8ktKtV3HA3zi+g2jUWbXMtDE31pXVnE2fU+woFtZifkNHoT7GVHEJlZA==
+"@paypal/sdk-constants@^1.0.116":
+  version "1.0.127"
+  resolved "https://registry.yarnpkg.com/@paypal/sdk-constants/-/sdk-constants-1.0.127.tgz#1b3f2a2a70f07654bfbe30c0af6920c66af43577"
+  integrity sha512-6T/HpO1RiQtVC/VSz1lLJJNroq9AxJbejzp+EnFoqu30lmSp9EUrogxyfGkMpZUxZNSxBJy9gCcUOgHbJ8yd3A==
   dependencies:
-    cross-domain-utils "^2.0.10"
     hi-base32 "^0.5.0"
-    zalgo-promise "^1.0.28"
 
 "@pkgr/utils@^2.3.1":
   version "2.3.1"
@@ -1768,13 +1766,6 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     ripemd160 "^2.0.0"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
-
-cross-domain-utils@^2.0.10:
-  version "2.0.38"
-  resolved "https://registry.yarnpkg.com/cross-domain-utils/-/cross-domain-utils-2.0.38.tgz#2eaf321c4dfdb61596805ca4233fde4400cb6377"
-  integrity sha512-zZfi3+2EIR9l4chrEiXI2xFleyacsJf8YMLR1eJ0Veb5FTMXeJ3DpxDjZkto2FhL/g717WSELqbptNSo85UJDw==
-  dependencies:
-    zalgo-promise "^1.0.11"
 
 cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
@@ -3918,10 +3909,10 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-promise-polyfill@^8.2.1:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.2.1.tgz#1fa955b325bee4f6b8a4311e18148d4e5b46d254"
-  integrity sha512-3p9zj0cEHbp7NVUxEYUWjQlffXqnXaZIMPkAO7HhFh8u5636xLRDHOUo2vpWSK0T2mqm6fKLXYn1KP6PAZ2gKg==
+promise-polyfill@^8.2.3:
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.2.3.tgz#2edc7e4b81aff781c88a0d577e5fe9da822107c6"
+  integrity sha512-Og0+jCRQetV84U8wVjMNccfGCnMQ9mGs9Hv78QFe+pSDD3gWTpz0y+1QCuxy5d/vBFuZ3iwP2eycAkvqIMPmWg==
 
 prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
@@ -4965,8 +4956,3 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
-
-zalgo-promise@^1.0.11, zalgo-promise@^1.0.28:
-  version "1.0.48"
-  resolved "https://registry.yarnpkg.com/zalgo-promise/-/zalgo-promise-1.0.48.tgz#9e33eef502d5ed9f5a09fc5728c833c3e87afa2e"
-  integrity sha512-LLHANmdm53+MucY9aOFIggzYtUdkSBFxUsy4glTTQYNyK6B3uCPWTbfiGvSrEvLojw0mSzyFJ1/RRLv+QMNdzQ==
