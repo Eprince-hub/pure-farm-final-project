@@ -2744,9 +2744,9 @@ raw-body@^2.2.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-chartjs-2@^3.0.3:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-3.3.0.tgz#3f62681645acccc1ab27a9186c70f79d6d417f73"
+react-chartjs-2@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-5.0.0.tgz#bd55afc982b09241f248caa0fa9cc5c8f4acff1a"
 
 react-dom@17.0.2:
   version "17.0.2"
