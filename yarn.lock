@@ -869,22 +869,22 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@paypal/paypal-js@^5.0.6":
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-5.1.2.tgz#fa36512eb702a5920aab6cc5551b947ae695241a"
+"@paypal/paypal-js@^5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-5.1.4.tgz#aff45a27bb542dc331853577094aee78d5233b75"
   dependencies:
     promise-polyfill "^8.2.3"
 
-"@paypal/react-paypal-js@^7.2.0":
-  version "7.8.1"
-  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-7.8.1.tgz#ab5b62240552cf38ff4782c4925ef4d99a8bf444"
+"@paypal/react-paypal-js@^7.8.2":
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-7.8.2.tgz#df24d0e50aebce9d9ac467c53a66f45ed93beca1"
   dependencies:
-    "@paypal/paypal-js" "^5.0.6"
-    "@paypal/sdk-constants" "^1.0.116"
+    "@paypal/paypal-js" "^5.1.4"
+    "@paypal/sdk-constants" "^1.0.122"
 
-"@paypal/sdk-constants@^1.0.116":
-  version "1.0.127"
-  resolved "https://registry.yarnpkg.com/@paypal/sdk-constants/-/sdk-constants-1.0.127.tgz#1b3f2a2a70f07654bfbe30c0af6920c66af43577"
+"@paypal/sdk-constants@^1.0.122":
+  version "1.0.128"
+  resolved "https://registry.yarnpkg.com/@paypal/sdk-constants/-/sdk-constants-1.0.128.tgz#210ed1da43f3129042a8d0e0f4c7e8407b01e27f"
   dependencies:
     hi-base32 "^0.5.0"
 
