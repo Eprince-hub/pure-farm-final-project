@@ -2411,9 +2411,9 @@ mongodb@4.11.0:
     "@aws-sdk/credential-providers" "^3.186.0"
     saslprep "^1.0.3"
 
-mongoose@^6.7.3:
-  version "6.7.3"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.7.3.tgz#1ec0d8cabcb53ecc171d17baaf4a68356ab470ed"
+mongoose@^6.7.5:
+  version "6.7.5"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.7.5.tgz#3e97faabf71952020e6a528513ab63ead936cc18"
   dependencies:
     bson "^4.7.0"
     kareem "2.4.1"
